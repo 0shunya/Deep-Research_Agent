@@ -183,3 +183,15 @@ def test_citation_check_drops_uncited_and_flags_misplaced_disputes():
     assert stats["disputed_cited_outside_disputed_section"] == 1
     assert stats["sentences_on_unverified_only"] == 1
     assert [s["idx"] for sec in sections for s in sec["sentences"]] == [0, 1, 2, 3]
+
+
+def test_provider_schema_is_flat_and_keeps_title_property():
+    import json as _json
+
+    from app.llm.gateway import provider_schema
+
+    schema = provider_schema(WriterOutput)
+    dumped = _json.dumps(schema)
+    assert "$ref" not in dumped and "$defs" not in dumped
+    assert not any(k in dumped for k in ('"minLength"', '"maxLength"', '"minItems"', '"maxItems"'))
+    assert "title" in schema["properties"] and schema["required"] == ["title", "sections"]

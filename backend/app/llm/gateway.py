@@ -107,6 +107,33 @@ def parse_reply(text: str, model: type[T]) -> T:
                             f"The response did not match the {model.__name__} schema ({len(exc.errors())} error(s)).") from exc
 
 
+_SIZE_KEYWORDS = {"minLength", "maxLength", "minItems", "maxItems"}
+
+
+def provider_schema(model: type[BaseModel]) -> dict:
+    """The JSON schema sent to the provider: $refs inlined, title annotations and size limits removed.
+
+    Gemini rejected the writer's schema with a bare 400 "invalid argument" until the nested
+    length/item limits were removed (measured on gemini-3.5-flash-lite). The limits are not lost: every
+    reply is still validated against the full Pydantic model in ``parse_reply``.
+    """
+    schema = model.model_json_schema()
+    defs = schema.pop("$defs", {})
+
+    def inline(node):
+        if isinstance(node, dict):
+            if "$ref" in node:
+                return inline(dict(defs[node["$ref"].rsplit("/", 1)[-1]]))
+            # drop "title" annotations (strings), never a property that happens to be called "title"
+            return {k: inline(v) for k, v in node.items()
+                    if k not in _SIZE_KEYWORDS and not (k == "title" and isinstance(v, str))}
+        if isinstance(node, list):
+            return [inline(v) for v in node]
+        return node
+
+    return inline(schema)
+
+
 def _backoff(attempt: int, retry_after: float | None) -> float:
     if retry_after is not None:
         return min(retry_after, MAX_BACKOFF_SECONDS)
@@ -145,7 +172,7 @@ class ModelGateway:
     async def generate(self, prompt: Prompt, output_model: type[T], ctx: CallContext | None = None,
                        *, max_output_tokens: int = 8192) -> GatewayResult[T]:
         ctx = ctx or CallContext()
-        request = ProviderRequest(prompt.feature, prompt.system, prompt.user, output_model.model_json_schema(),
+        request = ProviderRequest(prompt.feature, prompt.system, prompt.user, provider_schema(output_model),
                                   max_output_tokens)
         attempt = 0
         last: ModelCallFailed | None = None
