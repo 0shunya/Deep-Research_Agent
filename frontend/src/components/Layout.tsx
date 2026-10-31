@@ -33,6 +33,11 @@ function SystemStatus() {
       </p>
       <p className="mt-0.5 truncate font-mono text-[11px]" title={h.models.join(", ")}>{h.models[0] ?? "no model"}</p>
       <p className="truncate font-mono text-[11px]">search: {h.search_provider}</p>
+      {h.model_calls_left_today !== null && (
+        <p className="truncate text-[11px]" title={`A report uses at most ${h.max_model_calls_per_run} model calls`}>
+          {h.model_calls_left_today} model calls left today
+        </p>
+      )}
     </div>
   );
 }

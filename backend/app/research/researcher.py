@@ -41,10 +41,22 @@ def claim_group_key(text: str) -> str:
     return hashlib.sha1(" ".join(tokens).encode()).hexdigest()[:16]
 
 
+# Model calls kept back from research for the verifier and the writer.
+CALLS_RESERVED_FOR_VERIFY_AND_WRITE = 2
+
+
 def budget_left(run_id: uuid.UUID, share: float = 1.0) -> bool:
+    """Tokens and model calls both bound a run. ``share < 1`` is the research phase, which must leave room
+    (tokens and calls) for verify + write."""
+    from app.config import get_settings
+    from app.services.observability import run_model_calls
+
     with session_scope() as db:
         run = db.get(Run, run_id)
-        return run is not None and run.spent_tokens < run.budget_tokens * share
+        if run is None or run.spent_tokens >= run.budget_tokens * share:
+            return False
+    calls_cap = get_settings().max_model_calls_per_run - (CALLS_RESERVED_FOR_VERIFY_AND_WRITE if share < 1 else 0)
+    return run_model_calls(run_id) < calls_cap
 
 
 @dataclass

@@ -8,7 +8,7 @@ from typing import Protocol
 from app.config import Settings, get_settings
 from app.llm.gateway import ModelGateway, build_providers
 from app.research.web import FetchedPage, HttpFetcher, SearchProvider, TavilySearch, WikipediaSearch
-from app.services.observability import record_call_to_db, under_daily_limit
+from app.services.observability import record_call_to_db, under_daily_limit, under_model_limit, under_run_call_budget
 
 
 class Fetcher(Protocol):
@@ -34,7 +34,8 @@ def build_search(settings: Settings) -> SearchProvider:
 def build_default_env(settings: Settings | None = None) -> ResearchEnv:
     settings = settings or get_settings()
     gateway = ModelGateway(build_providers(settings), record_call_to_db, max_attempts=settings.model_max_attempts,
-                           allow_call=under_daily_limit)
+                           allow_call=under_daily_limit, allow_model=under_model_limit,
+                           allow_run_call=under_run_call_budget)
     fetcher = HttpFetcher(timeout=settings.fetch_timeout_seconds, max_bytes=settings.fetch_max_bytes,
                           allow_private=settings.allow_private_fetch, user_agent=settings.http_user_agent)
     return ResearchEnv(gateway, build_search(settings), fetcher, settings)

@@ -185,3 +185,41 @@ def test_resume_after_crash_reruns_only_unfinished_tasks(make_env, new_run):
         assert tasks[0].attempts == 1 and tasks[0].summary == "q1 already done"
         assert tasks[1].status == "done" and tasks[1].attempts == 2
         assert db.get(Run, run_id).status == "completed"
+
+
+def test_per_run_call_budget_stops_research_but_leaves_room_to_finish(make_env, new_run, settings_override):
+    # 5 calls per run: plan (1) + one research call leaves exactly the 2 reserved for verify + write.
+    settings_override(max_model_calls_per_run=5)
+    env = make_env()
+    run_id = new_run(workers=1)
+    _plan_and_approve(env, run_id)
+    asyncio.run(execute_run(env, run_id))
+    with session_scope() as db:
+        run = db.get(Run, run_id)
+        calls = db.scalar(select(func.count(ModelCall.id)).where(ModelCall.run_id == run_id))
+        assert run.status == "completed", run.error_message
+        assert run.stop_reason == "budget"
+        assert calls <= 5
+        report = db.scalar(select(Report).where(Report.run_id == run_id))
+        assert report.stats["writer"] == "model"
+
+
+def test_run_with_no_claims_fails_visibly(make_env, new_run):
+    from app.llm.providers import ProviderResponse, ScriptedProvider
+    from app.research.simulated import scripted_responder
+
+    inner = scripted_responder()
+
+    def empty_research(request):
+        if request.feature == "research":
+            return ProviderResponse(text='{"claims": [], "summary": "Nothing relevant.", "next_query": ""}',
+                                    input_tokens=10, output_tokens=5)
+        return inner(request)
+
+    env = make_env(provider=ScriptedProvider(empty_research))
+    run_id = new_run()
+    _plan_and_approve(env, run_id)
+    asyncio.run(execute_run(env, run_id))
+    with session_scope() as db:
+        run = db.get(Run, run_id)
+        assert run.status == "failed" and run.error_code == "no_claims"

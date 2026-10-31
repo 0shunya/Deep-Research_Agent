@@ -134,6 +134,8 @@ export interface Health {
   search_provider: string;
   worker: string;
   access_code_required: boolean;
+  model_calls_left_today: number | null;
+  max_model_calls_per_run: number;
 }
 
 export interface FeatureMetrics {

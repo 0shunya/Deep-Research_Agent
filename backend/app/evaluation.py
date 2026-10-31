@@ -126,10 +126,11 @@ def aggregate(scores: list[dict]) -> dict:
     cited = sum(s["cited_claims"] for s in done)
     extracted = sum(s["extracted_quotes"] for s in scores)
     walls = sorted(s["wall_seconds"] for s in done if s["wall_seconds"] is not None)
-    recalls = [s["fact_recall"] for s in done if s["fact_recall"] is not None]
+    # A question without a report counts as a wrong answer with zero recall: failures are not filtered out.
+    recalls = [(s["fact_recall"] if s["has_report"] else 0.0) for s in scores if s["fact_recall"] is not None]
     return {
         "questions": len(scores), "with_report": len(done),
-        "answer_accuracy": _ratio(sum(s["answer_correct"] for s in done), len(done)),
+        "answer_accuracy": _ratio(sum(s["answer_correct"] for s in done), len(scores)),
         "fact_recall_mean": round(statistics.mean(recalls), 3) if recalls else None,
         "cited_claims": cited,
         "cited_quote_backed_share": _ratio(sum(s["cited_quote_backed"] for s in done), cited),

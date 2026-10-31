@@ -26,7 +26,9 @@ class Settings(BaseSettings):
     gemini_thinking_level: Literal["minimal", "low", "medium", "high"] = "low"
     model_timeout_seconds: float = Field(default=90, ge=5, le=300)
     model_max_attempts: int = Field(default=3, ge=1, le=5)
-    daily_model_call_limit: int = Field(default=200, ge=0)
+    daily_model_call_limit: int = Field(default=200, ge=0)          # all models together; 0 = no limit
+    daily_calls_per_model: int = Field(default=0, ge=0)             # per model id; 0 = no limit
+    max_model_calls_per_run: int = Field(default=14, ge=3, le=100)  # attempts incl. retries, per report
     # List prices in USD per 1M tokens, used to turn real token counts into cost. Free-tier calls are
     # billed $0; this is the price the same tokens would cost on a paid key. Verify against the
     # provider's pricing page before quoting it.

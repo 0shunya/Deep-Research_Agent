@@ -111,3 +111,17 @@ def test_access_code_guards_api_but_not_health(make_env, settings_override):
         assert c.get("/api/runs").status_code == 401
         assert c.get("/api/runs", headers={"X-Access-Code": "letmein"}).status_code == 200
         assert c.get("/api/runs?access_code=letmein").status_code == 200
+
+
+def test_new_runs_are_refused_when_todays_calls_are_used_up(client, settings_override):
+    from app.db import session_scope
+    from app.models import ModelCall
+
+    settings_override(daily_calls_per_model=2, gemini_models="m1,m2")
+    with session_scope() as db:
+        for model in ("m1", "m1", "m2"):
+            db.add(ModelCall(trace_id="t", feature="plan", provider="google", model=model, prompt_version="v",
+                             attempt=1, status="success", latency_ms=1))
+    assert client.get("/api/health").json()["model_calls_left_today"] == 1
+    response = client.post("/api/runs", json={"question": "When was the Eiffel Tower completed?"})
+    assert response.status_code == 429 and response.json()["error"]["code"] == "daily_quota_reached"

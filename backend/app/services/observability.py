@@ -66,6 +66,49 @@ def under_daily_limit() -> bool:
         return calls_today(db) < limit
 
 
+def under_model_limit(model: str) -> bool:
+    from app.config import get_settings
+
+    limit = get_settings().daily_calls_per_model
+    if limit <= 0:
+        return True
+    start = datetime.combine(datetime.now(timezone.utc).date(), time.min, tzinfo=timezone.utc)
+    with session_scope() as db:
+        used = db.scalar(select(func.count(ModelCall.id)).where(ModelCall.model == model,
+                                                                ModelCall.created_at >= start)) or 0
+    return used < limit
+
+
+def calls_left_today() -> int | None:
+    """Model calls still available today under the configured caps, or None when nothing is capped."""
+    from app.config import get_settings
+
+    settings = get_settings()
+    start = datetime.combine(datetime.now(timezone.utc).date(), time.min, tzinfo=timezone.utc)
+    with session_scope() as db:
+        left: int | None = None
+        if settings.daily_calls_per_model > 0:
+            used = dict(db.execute(select(ModelCall.model, func.count(ModelCall.id))
+                                   .where(ModelCall.created_at >= start).group_by(ModelCall.model)).all())
+            left = sum(max(0, settings.daily_calls_per_model - used.get(m, 0)) for m in settings.model_list)
+        if settings.daily_model_call_limit > 0:
+            overall = max(0, settings.daily_model_call_limit - calls_today(db))
+            left = overall if left is None else min(left, overall)
+    return left
+
+
+def run_model_calls(run_id: uuid.UUID | str) -> int:
+    run_id = uuid.UUID(str(run_id))
+    with session_scope() as db:
+        return db.scalar(select(func.count(ModelCall.id)).where(ModelCall.run_id == run_id)) or 0
+
+
+def under_run_call_budget(run_id: str) -> bool:
+    from app.config import get_settings
+
+    return run_model_calls(run_id) < get_settings().max_model_calls_per_run
+
+
 def emit(run_id: uuid.UUID, type_: str, **data) -> None:
     """Append a progress event. The SSE endpoint tails this table, so events survive reconnects."""
     with session_scope() as db:

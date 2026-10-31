@@ -35,9 +35,11 @@ from app.research.orchestrator import approve_plan
 from app.research.planning import PlanError
 from app.research.scheduler import get_scheduler
 from app.research.writer import latest_report, load_claim, supporting_sources
+from app.services.observability import calls_left_today
 
 router = APIRouter(prefix="/api")
 PIPELINE_VERSION = "dra-1"
+MIN_CALLS_TO_START = 4  # plan + one research call + verify + write
 SSE_POLL_SECONDS = 0.5
 SSE_HEARTBEAT_SECONDS = 15
 SIMULATED_PROVIDER = "scripted"  # app/research/simulated.py
@@ -87,6 +89,8 @@ def health(db: Session = Depends(get_db)):
     return {"status": "ok" if database == "ok" else "degraded", "version": __version__, "database": database,
             "model_configured": settings.gemini_configured, "models": settings.model_list,
             "search_provider": settings.resolved_search_provider, "worker": settings.worker_mode,
+            "model_calls_left_today": calls_left_today() if database == "ok" else None,
+            "max_model_calls_per_run": settings.max_model_calls_per_run,
             "access_code_required": bool(settings.demo_access_code)}
 
 
@@ -100,6 +104,11 @@ def create_run(body: CreateRun, request: Request, db: Session = Depends(get_db),
         existing = db.scalar(select(Run).where(Run.idempotency_key == key))
         if existing:
             return run_detail(existing.id, db)
+    left = calls_left_today()
+    if left is not None and left < MIN_CALLS_TO_START:
+        raise ApiError(429, "daily_quota_reached",
+                       "Today's model-call allowance for this demo is used up. It resets at 00:00 UTC.",
+                       {"calls_left_today": left})
     run_limiter.check(request)
     scheduler = _scheduler()
     budget = min(body.budget_tokens or settings.default_budget_tokens, settings.max_budget_tokens)

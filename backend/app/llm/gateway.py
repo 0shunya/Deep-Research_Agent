@@ -168,6 +168,10 @@ class ModelGateway:
     max_attempts: int = 3
     sleep: Callable[[float], Awaitable[None]] = _async_sleep
     allow_call: Callable[[], bool] | None = None  # daily spend guard; False -> fail before calling
+    # Per-model daily cap (free-tier quotas are per model): False -> skip this model, try the next one.
+    allow_model: Callable[[str], bool] | None = None
+    # Per-run call budget, so one report cannot drain the day: False -> fail this call.
+    allow_run_call: Callable[[str], bool] | None = None
 
     async def generate(self, prompt: Prompt, output_model: type[T], ctx: CallContext | None = None,
                        *, max_output_tokens: int = 8192) -> GatewayResult[T]:
@@ -178,9 +182,18 @@ class ModelGateway:
         last: ModelCallFailed | None = None
         for provider in self.providers:
             invalid_retries_left = INVALID_OUTPUT_RETRIES
+            if self.allow_model is not None and not self.allow_model(provider.model):
+                log.warning("model's daily cap reached; trying next model",
+                            extra={"trace_id": ctx.trace_id, "model": provider.model})
+                last = ModelCallFailed("daily_limit", "Every configured model has reached its daily call cap.",
+                                       trace_id=ctx.trace_id, attempts=attempt)
+                continue
             for _ in range(self.max_attempts):
                 if self.allow_call is not None and not self.allow_call():
                     raise ModelCallFailed("daily_limit", "The server's daily model-call limit is reached.",
+                                          trace_id=ctx.trace_id, attempts=attempt)
+                if ctx.run_id and self.allow_run_call is not None and not self.allow_run_call(ctx.run_id):
+                    raise ModelCallFailed("run_call_budget", "This run has used its model-call budget.",
                                           trace_id=ctx.trace_id, attempts=attempt)
                 attempt += 1
                 started = time.perf_counter()

@@ -21,7 +21,7 @@ from sqlalchemy import func, select, update
 from app.db import session_scope
 from app.llm.gateway import CallContext, ModelCallFailed
 from app.llm.schemas import Plan
-from app.models import Run, RunStatus, Task, TaskStatus, utcnow
+from app.models import Claim, Run, RunStatus, Task, TaskStatus, utcnow
 from app.research.env import ResearchEnv
 from app.research.planning import PlanError, depth_profile, plan_prompt, plan_to_tasks, validate_plan
 from app.research.researcher import budget_left, run_research_task
@@ -32,7 +32,8 @@ from app.services.observability import emit
 log = logging.getLogger(__name__)
 
 # Failures that another attempt cannot fix.
-FATAL_CATEGORIES = {"quota_exhausted", "daily_limit", "auth_error", "config_missing", "model_not_found"}
+FATAL_CATEGORIES = {"quota_exhausted", "daily_limit", "run_call_budget", "auth_error", "config_missing",
+                    "model_not_found"}
 POLL_SECONDS = 0.5
 
 
@@ -223,10 +224,15 @@ async def execute_run(env: ResearchEnv, run_id: uuid.UUID) -> None:
                 done = db.scalar(select(func.count(Task.id)).where(Task.run_id == run_id,
                                                                     Task.status == TaskStatus.done.value))
                 errors = [t.error for t in db.scalars(select(Task).where(Task.run_id == run_id)) if t.error]
+                claims = db.scalar(select(func.count(Claim.id)).where(Claim.run_id == run_id))
+            # A "completed" run with an empty report would hide the failure, so both cases fail visibly.
             if not done:
-                # Nothing was researched: a "completed" run with an empty report would hide the failure.
                 fail_run(run_id, "research_failed", "No sub-question could be researched. "
                          + (f"Last error: {errors[-1]}" if errors else f"Stopped: {stop}"))
+                return
+            if not claims:
+                fail_run(run_id, "no_claims", "The pages found did not contain checkable claims for this question. "
+                         "Try rephrasing it or a deeper search.")
                 return
             if stop:
                 with session_scope() as db:
@@ -245,7 +251,7 @@ async def execute_run(env: ResearchEnv, run_id: uuid.UUID) -> None:
         if status == RunStatus.writing.value:
             set_status(run_id, RunStatus.writing)
             await write_report(env, run_id, use_model=budget_left(run_id),
-                               reason="" if budget_left(run_id) else "token budget used up")
+                               reason="" if budget_left(run_id) else "run budget (tokens or model calls) used up")
             set_status(run_id, RunStatus.completed)
     except asyncio.CancelledError:
         await finish_cancelled(env, run_id)

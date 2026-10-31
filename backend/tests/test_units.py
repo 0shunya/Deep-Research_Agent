@@ -207,3 +207,34 @@ def test_cross_check_matches_differently_worded_sentence_with_same_number():
     assert sentence.startswith("The Burj Khalifa is 828 m")
     # an unrelated sentence that only shares a number is still not a candidate
     assert best_sentence(claim, "The company reported 828 new customers in the quarter this year.") is None
+
+
+def test_gateway_skips_a_model_at_its_daily_cap():
+    first, second = _queue(OK, model="m1"), _queue(OK, model="m2")
+    gateway, records = _gateway(first, second)
+    gateway.allow_model = lambda model: model != "m1"
+    result = asyncio.run(gateway.generate(PROMPT, VerifierOutput))
+    assert result.model == "m2" and [r.model for r in records] == ["m2"]
+    gateway.allow_model = lambda model: False
+    with pytest.raises(ModelCallFailed) as exc:
+        asyncio.run(gateway.generate(PROMPT, VerifierOutput))
+    assert exc.value.category == "daily_limit"
+
+
+def test_gateway_enforces_the_per_run_call_budget():
+    gateway, records = _gateway(_queue(OK))
+    gateway.allow_run_call = lambda run_id: False
+    with pytest.raises(ModelCallFailed) as exc:
+        asyncio.run(gateway.generate(PROMPT, VerifierOutput, CallContext(run_id=str(uuid.uuid4()))))
+    assert exc.value.category == "run_call_budget" and records == []
+
+
+def test_aggregate_counts_missing_reports_as_wrong():
+    from app.evaluation import aggregate
+
+    base = dict(cited_claims=0, cited_quote_backed=0, cited_supported_verdict=0, extracted_quotes=0,
+                extracted_quotes_verbatim=0, domains=1, cost_usd=0.0, tokens=0, model_calls=1, wall_seconds=1.0)
+    scores = [dict(base, has_report=True, answer_correct=True, fact_recall=1.0),
+              dict(base, has_report=False, answer_correct=False, fact_recall=0.5)]
+    agg = aggregate(scores)
+    assert agg["answer_accuracy"] == 0.5 and agg["fact_recall_mean"] == 0.5
