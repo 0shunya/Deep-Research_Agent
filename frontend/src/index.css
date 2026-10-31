@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Design tokens. One accent colour; status colours carry meaning and are never decorative. */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-canvas: #f6f7f8;
+  --color-surface: #ffffff;
+  --color-sunken: #f1f3f5;
+  --color-line: #e3e6ea;
+  --color-line-strong: #cfd4da;
+  --color-ink: #15191e;
+  --color-ink-2: #4a525c;
+  --color-ink-3: #77808b;
+
+  --color-accent: #1d4e6f;
+  --color-accent-hover: #163d58;
+  --color-accent-soft: #e8f0f6;
+
+  --color-ok: #1f7a4d;
+  --color-ok-soft: #e7f4ec;
+  --color-warn: #a35c00;
+  --color-warn-soft: #fdf3e2;
+  --color-bad: #b42318;
+  --color-bad-soft: #fdecea;
+  --color-info: #2b5fb3;
+  --color-info-soft: #e9f0fb;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  body {
+    @apply bg-canvas text-ink font-sans text-[14px] leading-5;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
