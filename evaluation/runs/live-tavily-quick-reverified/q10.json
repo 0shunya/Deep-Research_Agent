@@ -1,0 +1,267 @@
+{
+  "run": {
+    "id": "975c49d4-dbb3-46ee-abec-6925eb1268c3",
+    "question": "In what year did the Chernobyl disaster happen, and in which present-day country is the plant?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 7663,
+    "cost_usd": 0.001175,
+    "search_calls": 2,
+    "research_wall_seconds": 13.3
+  },
+  "plan": {
+    "brief": "This research aims to determine the exact year of the Chernobyl disaster and identify the present-day country where the nuclear power plant is located.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "In what year did the Chernobyl disaster happen?",
+        "why": "To establish the chronological date of the event.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In which present-day country is the Chernobyl nuclear power plant located?",
+        "why": "To identify the modern geographical location and sovereign nation of the site.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "In what year did the Chernobyl disaster happen?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In which present-day country is the Chernobyl nuclear power plant located?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Chernobyl Disaster Overview\n\n## Overview\n\nThe Chernobyl disaster occurred in the year 1986. [1][2][3] One source reports that the Chernobyl Nuclear Power Plant is located near the abandoned city of Pripyat in northern Ukraine. [4]\n\n## Sources\n\n1. [https://www.britannica.com/event/Chernobyl-disaster](https://www.britannica.com/event/Chernobyl-disaster) — britannica.com, fetched 2026-10-31\n2. [Chernobyl - Wikipedia](https://en.wikipedia.org/wiki/Chernobyl) — wikipedia.org, published 2001-08-13, fetched 2026-10-31\n3. [This Happened — April 26: Chernobyl Nuclear Disaster - Worldcrunch](https://worldcrunch.com/this-happened/chernobyl-nuclear-disaster-photo) — worldcrunch.com, published 2024-04-26, fetched 2026-10-31\n4. [Chernobyl Nuclear Power Plant - Wikipedia](https://en.wikipedia.org/wiki/Chernobyl_Nuclear_Power_Plant) — wikipedia.org, published 2004-12-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The Chernobyl disaster occurred in the year 1986.",
+            "claim_ids": [
+              "d12f8daa-67f1-430f-aefa-78b61166e3a9"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that the Chernobyl Nuclear Power Plant is located near the abandoned city of Pripyat in northern Ukraine.",
+            "claim_ids": [
+              "14092cce-2b93-4b2b-a77a-7405832db135"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Chernobyl Disaster Overview",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 1,
+      "sentences_total": 2,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "14092cce-2b93-4b2b-a77a-7405832db135",
+      "text": "The Chernobyl Nuclear Power Plant is located near the abandoned city of Pripyat in northern Ukraine.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Chernobyl_Nuclear_Power_Plant",
+          "quote": "The Chernobyl Nuclear Power Plant ( ChNPP ) is a former nuclear power plant undergoing decommissioning . ChNPP is located near the abandoned city of Pripyat in northern Ukraine , 16.5 kilometres (10 mi) northwest of the city of Chernobyl , 16 kilometres (10 mi) from the Belarus–Ukraine border , and about 100 kilometres (62 mi) north of Kyiv .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "9cc5e232-a7ea-407d-82e1-fca2a6f6d57f",
+      "text": "Both the exclusion zone and the Chernobyl power plant are administered by the State Agency of Ukraine on Exclusion Zone Management.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Chernobyl_Nuclear_Power_Plant",
+          "quote": "Both the zone and the power plant are administered by the State Agency of Ukraine on Exclusion Zone Management .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "d12f8daa-67f1-430f-aefa-78b61166e3a9",
+      "text": "The Chernobyl disaster occurred in the year 1986.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "worldcrunch.com",
+          "url": "https://worldcrunch.com/this-happened/chernobyl-nuclear-disaster-photo",
+          "quote": "The Chernobyl nuclear disaster was a catastrophic nuclear accident that occurred on this day in 1986, on Ukrainian territory of the Soviet Union.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/event/Chernobyl-disaster",
+          "quote": "The Chernobyl disaster occurred on April 25 and 26, 1986, at the Chernobyl nuclear power station in Ukraine, which was then part of the Soviet Union.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Chernobyl",
+          "quote": "Prior to being evacuated in the aftermath of the Chernobyl disaster in 1986, it was home to approximately 14,000 residents—considerably less than adjacent Pripyat , which was completely abandoned following the incident.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.britannica.com/event/Chernobyl-disaster",
+      "domain": "britannica.com",
+      "published_at": "",
+      "content_hash": "ec15403c50d53abad73df90a06134407c0df3c75027f4e019b26dc566278ae61"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chernobyl",
+      "domain": "wikipedia.org",
+      "published_at": "2001-08-13",
+      "content_hash": "78dba1ee612012989ddce830ba11902770731c0ed34b3de214c7f1ba13100cb9"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chernobyl_Nuclear_Power_Plant",
+      "domain": "wikipedia.org",
+      "published_at": "2004-12-03",
+      "content_hash": "9a567c91143b50511e09c94439ff07003ed8669247bc582cdec17606c60af37c"
+    },
+    {
+      "url": "https://worldcrunch.com/this-happened/chernobyl-nuclear-disaster-photo",
+      "domain": "worldcrunch.com",
+      "published_at": "2024-04-26",
+      "content_hash": "f731474323c6df9c9c0446439e2eb076188bafe6c4d05b9d60a06fa1a31f869d"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 212,
+      "output_tokens": 145,
+      "thinking_tokens": null,
+      "cost_usd": 7.9e-05,
+      "latency_ms": 3787
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3308,
+      "output_tokens": 295,
+      "thinking_tokens": null,
+      "cost_usd": 0.000449,
+      "latency_ms": 2083
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1104,
+      "output_tokens": 196,
+      "thinking_tokens": null,
+      "cost_usd": 0.000189,
+      "latency_ms": 3798
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 662,
+      "output_tokens": 306,
+      "thinking_tokens": null,
+      "cost_usd": 0.000189,
+      "latency_ms": 1800
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 352,
+      "output_tokens": 128,
+      "thinking_tokens": null,
+      "cost_usd": 8.6e-05,
+      "latency_ms": 1613
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 662,
+      "output_tokens": 293,
+      "thinking_tokens": null,
+      "cost_usd": 0.000183,
+      "latency_ms": 1473
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 3,
+    "fetch_failed": 1
+  },
+  "notes": "Verifier re-run on the stored research of live-tavily-quick/q10.json; the report is unchanged. model_calls includes the original calls plus the new verify call."
+}

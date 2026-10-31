@@ -1,0 +1,301 @@
+{
+  "run": {
+    "id": "b3b18464-26e1-4038-97f3-eccb37884c8f",
+    "question": "Where was the inventor of the World Wide Web born, and in what year did he first propose it?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 8196,
+    "cost_usd": 0.001277,
+    "search_calls": 2,
+    "research_wall_seconds": 10.9
+  },
+  "plan": {
+    "brief": "This research brief aims to identify the birthplace of the inventor of the World Wide Web, Tim Berners-Lee, and the year he first proposed the invention.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Where was Tim Berners-Lee born?",
+        "why": "Identifies the birthplace of the inventor of the World Wide Web.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In what year did Tim Berners-Lee first propose the World Wide Web?",
+        "why": "Determines the year the proposal for the World Wide Web was made.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Where was Tim Berners-Lee born?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In what year did Tim Berners-Lee first propose the World Wide Web?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Birthplace and Proposal Year of the Inventor of the World Wide Web\n\n## Birthplace and Proposal\n\nTim Berners-Lee was born in London, England on June 8, 1955. [1][2] One source reports that he wrote the first proposal for the World Wide Web in March 1989. [3] One source also reports that he first proposed his idea to his CERN supervisor, Mike Sendall, in March 1989. [4]\n\n## Sources\n\n1. [Tim Berners-Lee - Wikipedia](https://en.wikipedia.org/wiki/Tim_Berners-Lee) — wikipedia.org, published 2001-05-15, fetched 2026-10-31\n2. [https://medium.com/@vidul1114/tim-berners-lee-bb7bd2f2dd6e](https://medium.com/@vidul1114/tim-berners-lee-bb7bd2f2dd6e) — medium.com, fetched 2026-10-31\n3. [A short history of the Web – Home | CERN](https://home.cern/science/computing/the-birth-of-the-web/short-history-web) — home.cern, fetched 2026-10-31\n4. [On August 6, 1991, Tim Berners-Lee introduced the World Wide Web | Popular Science](https://www.popsci.com/technology/world-wide-web-introduced) — popsci.com, published 2024-08-06, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Birthplace and Proposal",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Tim Berners-Lee was born in London, England on June 8, 1955.",
+            "claim_ids": [
+              "6ae2e114-a2d7-4312-b124-5afd4219e9f6"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that he wrote the first proposal for the World Wide Web in March 1989.",
+            "claim_ids": [
+              "a419f508-41e4-4833-8c0d-d225b835b37b"
+            ]
+          },
+          {
+            "idx": 2,
+            "text": "One source also reports that he first proposed his idea to his CERN supervisor, Mike Sendall, in March 1989.",
+            "claim_ids": [
+              "ff5ccfe9-0e41-4aa6-bee3-33efb422b62b"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Birthplace and Proposal Year of the Inventor of the World Wide Web",
+      "writer": "model",
+      "cited_claims": 3,
+      "cited_disputed": 0,
+      "sentences_kept": 3,
+      "cited_supported": 1,
+      "sentences_total": 3,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "6ae2e114-a2d7-4312-b124-5afd4219e9f6",
+      "text": "Tim Berners-Lee was born in London, England on June 8, 1955.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "medium.com",
+          "url": "https://medium.com/@vidul1114/tim-berners-lee-bb7bd2f2dd6e",
+          "quote": "Tim Berners-Lee was born on the 8th of June 1955 in London, England.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+          "quote": "Berners-Lee was born in London on 8 June 1955",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "a419f508-41e4-4833-8c0d-d225b835b37b",
+      "text": "Tim Berners-Lee wrote the first proposal for the World Wide Web in March 1989.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "home.cern",
+          "url": "https://home.cern/science/computing/the-birth-of-the-web/short-history-web",
+          "quote": "Tim Berners-Lee wrote the first proposal for the World Wide Web in March 1989.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "popsci.com",
+          "url": "https://www.popsci.com/technology/world-wide-web-introduced",
+          "quote": "Berners-Lee had first proposed his idea to his CERN supervisor, Mike Sendall, more than two years before the prophetic post, in March 1989 .",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+          "quote": "Berners-Lee wrote his proposal in March 1989 and redistributed it in 1990.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "ff5ccfe9-0e41-4aa6-bee3-33efb422b62b",
+      "text": "Tim Berners-Lee first proposed his idea to his CERN supervisor, Mike Sendall, in March 1989.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "popsci.com",
+          "url": "https://www.popsci.com/technology/world-wide-web-introduced",
+          "quote": "Berners-Lee had first proposed his idea to his CERN supervisor, Mike Sendall, more than two years before the prophetic post, in March 1989 .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "home.cern",
+          "url": "https://home.cern/science/computing/the-birth-of-the-web/short-history-web",
+          "quote": "Tim Berners-Lee wrote the first proposal for the World Wide Web in March 1989.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+          "quote": "Berners-Lee proposed an information management system on 12 March 1989 and implemented the first successful communication between a Hypertext Transfer Protocol (HTTP) client and server via the Internet in mid-November.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+      "domain": "wikipedia.org",
+      "published_at": "2001-05-15",
+      "content_hash": "5c86f0394767755482655b49d29ecdafea307bb5493ad22430ccff9b266224e6"
+    },
+    {
+      "url": "https://medium.com/@vidul1114/tim-berners-lee-bb7bd2f2dd6e",
+      "domain": "medium.com",
+      "published_at": "",
+      "content_hash": "e3d7f636cebfa770b7af7d7779f4e07dbf4be5e68f43acdae85bb488d23eaa33"
+    },
+    {
+      "url": "https://home.cern/science/computing/the-birth-of-the-web/short-history-web",
+      "domain": "home.cern",
+      "published_at": "",
+      "content_hash": "0217e61d1b78eb08090e77ec3523755fb9c3801ce8f07c70269892122e8ce5eb"
+    },
+    {
+      "url": "https://www.popsci.com/technology/world-wide-web-introduced",
+      "domain": "popsci.com",
+      "published_at": "2024-08-06",
+      "content_hash": "1504a74b154e65c4d308196f7fad8e25bd43136f17ac2aac6ddfa29eecc796f7"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 213,
+      "output_tokens": 203,
+      "thinking_tokens": null,
+      "cost_usd": 0.000102,
+      "latency_ms": 1579
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2056,
+      "output_tokens": 180,
+      "thinking_tokens": null,
+      "cost_usd": 0.000278,
+      "latency_ms": 1309
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2658,
+      "output_tokens": 252,
+      "thinking_tokens": null,
+      "cost_usd": 0.000367,
+      "latency_ms": 1695
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 504,
+      "output_tokens": 257,
+      "thinking_tokens": null,
+      "cost_usd": 0.000153,
+      "latency_ms": 1461
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 374,
+      "output_tokens": 145,
+      "thinking_tokens": null,
+      "cost_usd": 9.5e-05,
+      "latency_ms": 1104
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 867,
+      "output_tokens": 487,
+      "thinking_tokens": null,
+      "cost_usd": 0.000282,
+      "latency_ms": 3127
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 3,
+    "fetch_failed": 1
+  },
+  "notes": "Verifier re-run on the stored research of live-tavily-quick/q01.json; the report is unchanged. model_calls includes the original calls plus the new verify call."
+}

@@ -57,7 +57,7 @@ Two cases:
 There are three layers (`backend/app/research/verifier.py`), cheapest first:
 1. **Verbatim check, no model.** The researcher must quote the page. `web.quote_in_text` checks that the quote
    occurs in the stored page text, ignoring only whitespace, case and quote style. A made-up quote counts for nothing.
-   Live: 100% of the researchers' quotes were found verbatim.
+   Live: 100% of the researchers' quotes were found verbatim, in every configuration.
 2. **Cross-check.** The best-matching sentence from every *other* origin is added as evidence, so a claim can
    gain or lose support beyond the one page the researcher cited.
 3. **LLM judge** on each claim–quote pair: supports, contradicts or insufficient, with a score. On 24 hand-labelled
@@ -68,12 +68,20 @@ Then a rule in plain code (`decide_verdict`): supported means verbatim supportin
 origins and no strong contradiction. The writer only sees claim rows, and `writer.citation_check` drops any
 sentence that cites no real claim.
 
-### Why did 0% of cited claims reach "supported" in your live eval?
-Because the live runs used the keyless **Wikipedia** search fallback: every source is `wikipedia.org`, which is
-one origin, and the rule needs two. That is the rule working, not failing. The report still uses those claims,
-hedged ("one source reports…"), and they are marked *unverified* in the UI. The quote-backed share, which is
-looser (at least one verbatim supporting quote), was 87.5%. With `TAVILY_API_KEY` set, searches return many
-domains. I have not measured that configuration yet.
+### Your "supported" share went from 0% to 33% to 47%. What changed each time?
+- **0% (Wikipedia search, n=10):** every source was `wikipedia.org`, which is one origin, and the rule needs
+  two. The rule worked as designed. The report still used those claims, hedged ("one source reports…") and
+  marked *unverified*.
+- **33% (Tavily, n=6):** searches returned a median of 3 independent sites per report, so the rule could be met.
+- **47% (cross-check v2, same 6 runs):** reading the stored runs showed why claims were still unverified. The
+  researcher quoted one page, and the cross-check missed other pages stating the same fact, because they
+  worded it differently ("828 m (2,717 ft) tall" vs "architectural height … 828 meters"). A sentence now also
+  qualifies if it repeats one of the claim's numbers and shares at least 30% of its words, with units normalised.
+  `evaluation/reverify.py` re-ran only the verifier on identical research: 4 claims moved to supported and
+  none moved down. I checked all 4 by hand.
+
+The roadmap's resume line asks for "% of cited claims supported by quotes". In the latest measurement, 100%
+of cited claims have a verbatim supporting quote, and 47% meet the stricter two-site rule. n=6 is small.
 
 ### What is citation laundering and how do you handle it?
 Many sites republishing one press release are one source. `verifier.origin_map` merges sources by
@@ -131,9 +139,12 @@ constraint, so a double click or a retried request returns the same run (`test_i
 - A run whose every task failed was marked "completed" with an empty report (found live when Wikipedia
   returned 403 to an anonymous User-Agent). Now it fails with `research_failed`, and the User-Agent is configurable.
 - The writer 400 described above.
+- The eval scripts reused the Gemini async client across separate `asyncio.run()` calls, and the client is bound
+  to its first event loop, so the second batch failed. Each batch now runs in one loop. The API was not
+  affected: the scheduler keeps a single long-lived loop.
 
 ### What would you do next?
-1. Add a Tavily key and re-run the live slice, so the two-origin rule can actually be met, and report the supported share.
+1. Run the remaining 16 labelled questions with Tavily, and compare quick against standard depth.
 2. A stronger answer check than string matching (it marked q07 wrong because the report omitted Los Altos, which is correct, but a paraphrase would also have been marked wrong).
 3. Prefer recent sources for time-sensitive questions, using the dates already stored.
 4. Lease-based run claiming so more than one API instance can run.

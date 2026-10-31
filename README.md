@@ -9,10 +9,11 @@ For anyone who needs a cited answer they can audit, not a confident paragraph. B
 
 - **Live link:** none yet. It runs locally end to end. Deployment steps for Render, Neon and Vercel are in [DEPLOYMENT.md](DEPLOYMENT.md) but have not been carried out.
 - **Demo video:** not recorded yet.
-- **Headline number (live, n=10):** 87.5% of cited claims are backed by a verbatim quote the verifier judged
-  as supporting. 0% reached the strict "supported" verdict, because the keyless Wikipedia search gives only
-  one independent origin (see [Evaluation](#evaluation)).
-
+- **Headline numbers (live, Tavily search, n=6):**
+  - 47% of cited claims are "supported": verbatim quotes from 2+ independent sites, with no strong contradiction. Before the cross-check fix it was 33%.
+  - 100% of cited claims are backed by at least one verbatim supporting quote.
+  - About $0.001 and 14 s per report.
+  - See [Evaluation](#evaluation).
 
 ## What it does
 
@@ -59,33 +60,55 @@ Full walkthrough with file paths: [WORKFLOW.md](WORKFLOW.md). Design questions a
 
 Rule from the roadmap: no eval, not done. Mocked tests and live-model runs are kept strictly apart below.
 
-### Live: real Gemini plus real search (`evaluation/results/live-wiki-quick.json`)
+### Live: real Gemini plus real search
 
-Measured on 2026-10-31 with `gemini-3.5-flash-lite`, **Wikipedia search** (no Tavily key yet), quick depth,
-3 workers. **10 of the 22 labelled questions** ran, because the free Gemini quota is shared with another
-project. The runner is resumable, so the rest can follow. Raw records, including every quote and model call,
-are in `evaluation/runs/live-wiki-quick/`.
+All live runs were on 2026-10-31 with `gemini-3.5-flash-lite`, quick depth (the planner made 1–2
+sub-questions, with 2 sources each) and 3 workers. The free Gemini quota is shared with another project,
+so only part of the 22-question set has run. The runner is resumable, so the rest can follow. Raw records,
+including every quote, verdict and model call, are in `evaluation/runs/<name>/`.
 
-| Metric | Result | How it is measured |
-|---|---|---|
-| Answer accuracy | **9 / 10** | an accepted answer string appears in the report (q07 omitted "Los Altos") |
-| Required-fact recall | **0.85** (mean) | share of each question's required facts present in the report |
-| Cited claims backed by a verbatim supporting quote | **87.5%** (14 / 16) | quote found in the stored page **and** judged "supports" |
-| Cited claims with the "supported" verdict | **0%** (0 / 16) | needs 2+ independent origins; Wikipedia is one origin |
-| Researcher quotes found verbatim in the page | **100%** | deterministic substring check |
-| Independent domains per report | 1 (median) | Wikipedia only |
-| Model calls per report | 4.9 (mean) | plan + 1–2 research + verify + write, including retries |
-| Tokens per report | 6,487 (mean) | real usage metadata |
-| Cost per report | **$0.0008** (mean) | tokens × configured list price ($0.10 / $0.40 per 1M in/out); the free tier billed $0. Check current Gemini pricing before quoting it |
-| Wall time per report | p50 10.5 s, max 32.1 s | research start to report |
+| Metric | Wikipedia search<br/>n=10 | Tavily search<br/>n=6 | Tavily + cross-check v2<br/>same 6 runs |
+|---|---|---|---|
+| Answer accuracy (accepted answer string in the report) | 9 / 10 | 6 / 6 | 6 / 6 |
+| Required-fact recall (mean) | 0.85 | 1.00 | 1.00 |
+| Cited claims with a verbatim quote judged "supports" | 87.5% (14/16) | 93% (14/15) | **100%** (15/15) |
+| Cited claims rated **supported** (2+ independent sites) | **0%** (0/16) | 33% (5/15) | **47%** (7/15) |
+| Researcher quotes found verbatim in the stored page | 100% | 100% | 100% |
+| Independent sites per report (median) | 1 | 3 | 3 |
+| Model calls per report (mean) | 4.9 | 5.0 | (+1 verify call) |
+| Tokens per report (mean) | 6,487 | 7,441 | — |
+| Cost per report (mean) | $0.0008 | **$0.0011** | — |
+| Wall time per report | p50 10.5 s, max 32.1 s | **p50 14.3 s**, max 31.5 s | — |
 
-Answer and fact checks are deterministic string matches. They are cheap and reproducible, but a correct
-paraphrase can be scored as wrong, so treat accuracy as a lower bound. With n=10 these are indicative numbers, not benchmarks.
+Results files: `evaluation/results/live-wiki-quick.json`, `live-tavily-quick.json` and `live-tavily-quick-reverified.json`.
 
-Cost and latency across **all 13 completed live runs** (the eval runs plus UI runs, from the in-app dashboard
-over `model_calls`): average cost $0.00081 and 6.3k tokens per report; wall time p50 14.8 s, p95 32.4 s.
-Per-stage p50 latency: plan 1.7 s, research 1.8 s, verify 1.3 s, write 1.2 s. 3 of 63 model calls errored:
-2 writer 400s before the schema fix, and 1 rate limit that was retried successfully.
+**What changed between columns:**
+
+- **Wikipedia → Tavily** changes the search provider. Every Wikipedia page counts as one origin, so nothing
+  could reach "supported" under the two-origin rule.
+- **Cross-check v2** (`backend/app/research/verifier.py: best_sentence`) is the most important measured change.
+  - *The problem:* the cross-check looks in other stored pages for a sentence that confirms or contradicts a claim. It required 60% word overlap with the claim. Real sites word facts differently ("architectural height … 828 meters (2,717 feet)" vs "828 m (2,717 ft) tall"), so it missed them.
+  - *v2:* it also accepts a sentence that repeats one of the claim's numbers and shares at least 30% of its words. Units ("meters"/"m") and number formats ("2,717"/"2717") are normalised.
+  - *How it was measured:* `evaluation/reverify.py` re-ran **only the verifier** on the six stored runs. The research, pages and report were identical; only verdicts could change.
+  - *Result:* 4 claims moved from unverified to supported, and none moved the other way. I read all 4 by hand: each is backed by real quotes from 2–3 independent sites.
+
+**Cost:** tokens × configured list price ($0.10 / $0.40 per 1M input/output tokens). The free tier billed $0, so check current Gemini pricing before quoting a dollar figure. The re-verify column has no cost or time row because it re-ran the verifier only.
+
+**Caveats:**
+
+- Answer and fact checks are deterministic string matches. They are cheap and reproducible, but a correct paraphrase can be scored as wrong, so treat accuracy as a lower bound.
+- With n=6–10 these numbers are indicative, not benchmarks.
+- "Independent" means different sites. It does not judge source quality: an instagram.com page counted as one origin in q12.
+
+**Live call log:** 100 Gemini calls in total; 95 succeeded and 5 errored.
+
+| Errors | What happened |
+|---|---|
+| 2 writer 400s | before the schema fix |
+| 2 rate limits | retried successfully |
+| 1 failed call | an eval-script event-loop bug, now fixed (see below) |
+
+Per-stage p50 latency: plan 1.7 s, research 1.8 s, verify 1.3 s, write 1.2 s.
 
 ### Live: verifier on labelled claim–quote pairs (`evaluation/results/verifier-live.json`)
 
@@ -107,8 +130,8 @@ simulated benchmark is where the speedup is measured; it does not measure Gemini
 
 | Suite | Result |
 |---|---|
-| `pytest` (unit + orchestration + API), SQLite | **42 passed** |
-| same suites on PostgreSQL 16 | **42 passed** |
+| `pytest` (unit + orchestration + API), SQLite | **43 passed** |
+| same suites on PostgreSQL 16 | **43 passed** |
 | Vitest (frontend) | **6 passed** |
 | `ruff` (F, E9, B), `tsc`, `oxlint`, `vite build` | clean |
 
@@ -160,10 +183,11 @@ backend/.venv/Scripts/python evaluation/bench_parallel.py
 - **Plain asyncio, not LangGraph or a queue.** The control flow is a small DAG loop, and keeping it in my
   own code keeps it explainable. Durability comes from Postgres rows plus resume-on-boot. The cost is that
   only one API instance can run; scaling out needs lease-based claiming.
+- **Number-aware cross-check.** Matching on shared words alone was too literal for real pages. Requiring a shared number, plus a smaller word overlap, raised "supported" from 33% to 47% on identical research. The LLM judge still decides what each sentence says.
 - **Verbatim quotes before any LLM judging.** It is cheap, it cannot be argued with, and it catches a
   fabricated quote without spending tokens. The LLM judge only sees quotes that really exist.
 - **A strict two-origin rule.** It makes the "supported" share honest but harsh with a single-publisher
-  search provider, as the 0% above shows. The fix is better search (Tavily), not a looser rule.
+  search provider: Wikipedia alone gave 0%. The fix was better search (Tavily, 33%) and better matching (47%), not a looser rule.
 - **The writer sees claims, not pages, and a deterministic citation check runs last.** A sentence with no
   real claim behind it is dropped, not trusted.
 - **One gateway.** It caught a real provider quirk: Gemini rejected the writer's schema because of its nested
@@ -172,14 +196,16 @@ backend/.venv/Scripts/python evaluation/bench_parallel.py
 What failed, and what I measured from it:
 - Wikipedia returned 403 to an anonymous User-Agent, and the run was wrongly marked "completed". Now such runs fail with `research_failed`, and the User-Agent is configurable.
 - Two parallel researchers storing the same URL raced on a unique constraint (caught by an intermittent test). Fixed.
-- Search sometimes returns the wrong entity (a Liverpool "Shanghai Tower" proposal). At quick depth there is no follow-up search to recover.
+- Wikipedia search sometimes returned the wrong entity (a Liverpool "Shanghai Tower" proposal), and quick depth has no follow-up search to recover. Tavily found the right one.
+- The eval scripts reused the Gemini async client across separate event loops, and the second batch failed with "Event loop is closed". Each batch now runs in one loop. The API was never affected: its scheduler keeps a single loop.
 
 Next, with more time:
-1. Add a Tavily key and re-run all 22 questions at standard depth.
+1. Run the remaining 16 questions with Tavily, and compare quick against standard depth (3 sources per sub-question gives the two-origin rule more to work with).
 2. Answer grading that tolerates paraphrase.
 3. Recency weighting using the stored publish dates.
 4. Lease-based multi-instance workers.
 5. A harder verifier set built from real disagreements.
+6. Source-quality weighting (e.g. a social-media post should not count the same as an official site).
 
 ## Repository
 

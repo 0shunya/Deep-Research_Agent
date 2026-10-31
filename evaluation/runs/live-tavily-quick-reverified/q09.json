@@ -1,0 +1,244 @@
+{
+  "run": {
+    "id": "a2c5cf8f-5e37-4483-878f-3fcb6109111d",
+    "question": "Who won the 2022 FIFA World Cup, and who was the tournament's top scorer?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 9556,
+    "cost_usd": 0.001312,
+    "search_calls": 2,
+    "research_wall_seconds": 15.2
+  },
+  "plan": {
+    "brief": "Identify the winner of the 2022 FIFA World Cup and determine the player who finished as the tournament's top scorer.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who won the 2022 FIFA World Cup?",
+        "why": "Directly answers the first part of the user's question regarding the tournament champion.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "Who was the top scorer of the 2022 FIFA World Cup?",
+        "why": "Directly answers the second part of the user's question regarding the Golden Boot winner.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who won the 2022 FIFA World Cup?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "Who was the top scorer of the 2022 FIFA World Cup?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# 2022 FIFA World Cup Results\n\n## Tournament Results\n\nOne source reports that Argentina won the 2022 FIFA World Cup by defeating France in the final. [1] One source reports that French player Kylian Mbapp&eacute; finished as the tournament's top scorer with eight goals, winning the Golden Boot. [1]\n\n## Sources\n\n1. [2022 FIFA World Cup - Wikipedia](https://en.wikipedia.org/wiki/2022_FIFA_World_Cup) — wikipedia.org, published 2008-06-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Tournament Results",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Argentina won the 2022 FIFA World Cup by defeating France in the final.",
+            "claim_ids": [
+              "9e4906ca-6fbd-4f58-a96d-40d78fdb5c51"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that French player Kylian Mbapp&eacute; finished as the tournament's top scorer with eight goals, winning the Golden Boot.",
+            "claim_ids": [
+              "334aa5b2-c665-47de-a6d7-89d236865b13",
+              "3024d299-17ab-4d9b-bbf8-555da09022c9"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "2022 FIFA World Cup Results",
+      "writer": "model",
+      "cited_claims": 3,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 0,
+      "sentences_total": 2,
+      "cited_unverified": 3,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "3024d299-17ab-4d9b-bbf8-555da09022c9",
+      "text": "Kylian Mbappé finished as the top scorer of the 2022 FIFA World Cup with eight goals.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+          "quote": "French player Kylian Mbappé became the first player to score a hat-trick in a World Cup final since Geoff Hurst in the 1966 final and won the Golden Boot as he scored the most goals (eight) during the tournament.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "334aa5b2-c665-47de-a6d7-89d236865b13",
+      "text": "French player Kylian Mbappé won the Golden Boot as the top scorer of the 2022 FIFA World Cup after scoring eight goals during the tournament.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+          "quote": "French player Kylian Mbappé became the first player to score a hat-trick in a World Cup final since Geoff Hurst in the 1966 final and won the Golden Boot as he scored the most goals (eight) during the tournament.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "9e4906ca-6fbd-4f58-a96d-40d78fdb5c51",
+      "text": "Argentina won the 2022 FIFA World Cup by defeating France in the final.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+          "quote": "Argentina were crowned the champions after winning the final against the title holder France 4–2 on penalties following a 3–3 draw after extra time.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_top_goalscorers",
+      "domain": "wikipedia.org",
+      "published_at": "2014-07-09",
+      "content_hash": "646763e139a2aaa094d0cc250ea1a4b3133ae9b4c8dcd85782ee30d60172e57d"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_final",
+      "domain": "wikipedia.org",
+      "published_at": "2022-03-30",
+      "content_hash": "785d48aeaf6af7af08b0dfddb1cbf488b18f10ffe6f4192eb5205324fbed7d45"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+      "domain": "wikipedia.org",
+      "published_at": "2008-06-03",
+      "content_hash": "c82864f8efb0f4aaa70e386a10435a4b1144e80650c11474b9ef4a72ad7ce339"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 214,
+      "output_tokens": 209,
+      "thinking_tokens": null,
+      "cost_usd": 0.000105,
+      "latency_ms": 1245
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3535,
+      "output_tokens": 184,
+      "thinking_tokens": null,
+      "cost_usd": 0.000427,
+      "latency_ms": 1957
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3241,
+      "output_tokens": 281,
+      "thinking_tokens": null,
+      "cost_usd": 0.000436,
+      "latency_ms": 2059
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 501,
+      "output_tokens": 198,
+      "thinking_tokens": null,
+      "cost_usd": 0.000129,
+      "latency_ms": 1334
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 376,
+      "output_tokens": 115,
+      "thinking_tokens": null,
+      "cost_usd": 8.4e-05,
+      "latency_ms": 1534
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 501,
+      "output_tokens": 201,
+      "thinking_tokens": null,
+      "cost_usd": 0.000131,
+      "latency_ms": 4083
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  },
+  "notes": "Verifier re-run on the stored research of live-tavily-quick/q09.json; the report is unchanged. model_calls includes the original calls plus the new verify call."
+}

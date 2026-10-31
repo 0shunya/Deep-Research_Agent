@@ -136,8 +136,13 @@ Dependent tasks receive their dependencies' compressed `summary`, never raw page
 
 ### Verifier: `backend/app/research/verifier.py`
 1. **Verbatim layer:** evidence with `quote_found = false` becomes `insufficient` with no model call.
-2. **Cross-check layer** (`add_cross_checks`): for each claim, the best-matching sentence from every
-   other origin's stored page (keyword overlap ≥ 0.6) is added as `cross_check` evidence, up to 3 per claim.
+2. **Cross-check layer** (`add_cross_checks`, `best_sentence`): for each claim, the best-matching sentence
+   from every other origin's stored page is added as `cross_check` evidence, up to 3 per claim.
+   A sentence matches when it shares ≥ 60% of the claim's keywords, **or** when it repeats one of the
+   claim's numbers and shares ≥ 30% of the keywords. Units and digit grouping are normalised first
+   ("meters" → "m", "2,717" → "2717"). The number-aware rule was added after live runs showed real sites
+   wording the same fact too differently. On identical research it raised supported claims from 33% to 47%
+   (README, Evaluation).
 3. **LLM judge** (`verify-v1`): pending pairs go out in batches of `VERIFIER_BATCH_SIZE`, in parallel,
    and each returns `supports`, `contradicts` or `insufficient` with a score.
 4. **Verdict rule** (`decide_verdict`, applied per `group_key` so duplicate claims share evidence):
@@ -232,6 +237,7 @@ The roadmap's tables appear as written. The changes:
 | Postgres | `USE_TEST_POSTGRES=1 TEST_DATABASE_URL=… pytest` | the same suites on PostgreSQL |
 | Frontend | `npm test` (Vitest) | plan helpers, the plan editor (edit, remove, cycle blocking), report chips → claim audit |
 | Live eval | `python evaluation/run_eval.py` | real Gemini plus real search on labelled questions; resumable; raw records saved |
+| Re-verify | `python evaluation/reverify.py` | re-runs only the verifier on stored runs, to measure a verifier change on identical research |
 | Verifier eval | `python evaluation/eval_verifier.py` | 24 labelled claim–quote pairs in one batched call |
 | Parallel benchmark | `python evaluation/bench_parallel.py` | **simulated**: the real orchestrator with injected, measured stage latencies |
 

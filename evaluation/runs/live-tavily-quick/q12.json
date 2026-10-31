@@ -1,0 +1,319 @@
+{
+  "run": {
+    "id": "3b55db5b-5b14-4a4d-b150-d8395deaa736",
+    "question": "Who was the first woman to win a Nobel Prize, and in which two fields did she win Nobel Prizes?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 9112,
+    "cost_usd": 0.001365,
+    "search_calls": 2,
+    "research_wall_seconds": 20.6
+  },
+  "plan": {
+    "brief": "This research identifies the first woman to win a Nobel Prize and determines the two distinct scientific fields in which she achieved this honor.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who was the first woman to win a Nobel Prize?",
+        "why": "To identify the individual correctly.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In which two fields did Marie Curie win her Nobel Prizes?",
+        "why": "To determine the specific disciplines associated with her awards.",
+        "depends_on": [
+          "q1"
+        ]
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who was the first woman to win a Nobel Prize?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In which two fields did Marie Curie win her Nobel Prizes?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# First Woman Nobel Laureate\n\n## Overview\n\nMarie Curie was the first woman to win a Nobel Prize, receiving the 1903 physics award. [1][2][3] Marie Curie won her second Nobel Prize, in Chemistry, in 1911. [1][4]\n\n## Sources\n\n1. [List of women Nobel laureates - Wikipedia](https://en.wikipedia.org/wiki/List_of_women_Nobel_laureates) — wikipedia.org, published 2005-06-14, fetched 2026-10-31\n2. [Who Were the First Women to Win Nobel Prizes? | HISTORY](https://www.history.com/articles/who-were-the-first-women-to-win-nobel-prizes) — history.com, published 2014-10-08, fetched 2026-10-31\n3. [Person With Two Masters Degrees Nobel Nomination](https://www.instagram.com/popular/person-with-two-masters-degrees-nobel-nomination) — instagram.com, fetched 2026-10-31\n4. [Scientist Born 1903 Cancer Zodiac](https://www.instagram.com/popular/scientist-born-1903-cancer-zodiac) — instagram.com, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Marie Curie was the first woman to win a Nobel Prize, receiving the 1903 physics award.",
+            "claim_ids": [
+              "4590726f-d158-433b-b3ad-11363ff48913"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "Marie Curie won her second Nobel Prize, in Chemistry, in 1911.",
+            "claim_ids": [
+              "1f77a5b3-f1df-4cb5-a8a1-68d6526d9253"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "First Woman Nobel Laureate",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 2,
+      "sentences_total": 2,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "1d44fe44-9aed-4721-bf14-d589d247ba69",
+      "text": "Marie Curie won the Nobel Prize in Physics in 1903.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/List_of_women_Nobel_laureates",
+          "quote": "The first woman to win a Nobel Prize was Marie Skłodowska-Curie , who won the Nobel Prize in Physics in 1903 with Pierre Curie and Henri Becquerel .",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "instagram.com",
+          "url": "https://www.instagram.com/popular/scientist-born-1903-cancer-zodiac",
+          "quote": "In 1903, the couple, along with Henri Becquerel, won the Nobel Prize in Physics for their work on radioactivity.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.8
+        }
+      ]
+    },
+    {
+      "id": "1f77a5b3-f1df-4cb5-a8a1-68d6526d9253",
+      "text": "Marie Curie won her second Nobel Prize, in Chemistry, in 1911.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/List_of_women_Nobel_laureates",
+          "quote": "As of 2026, according to the Nobel Foundation , 70 Nobel Prizes and the Memorial Prize in Economic Sciences have been awarded to 69 women ( Marie Curie has been honoured twice, first in Physics in 1903, then in Chemistry in 1911).",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "instagram.com",
+          "url": "https://www.instagram.com/popular/scientist-born-1903-cancer-zodiac",
+          "quote": "In 1911, Marie won a second Nobel Prize in Chemistry for her work isolating radium and polonium.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "20656e69-89ce-4124-bc9f-705ab45e4f13",
+      "text": "The first woman to win a Nobel Prize was Marie Skłodowska-Curie, who won the Nobel Prize in Physics in 1903.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "instagram.com",
+          "url": "https://www.instagram.com/popular/scientist-born-1903-cancer-zodiac",
+          "quote": "roseinhistory 17.4M Maria Salomea Skłodowska-Curie (1867–1934) was the first woman to win a Nobel Prize, the first person to win two Nobel Prizes, and the only person ever to win in two different scientific fields: Physics and Chemistry.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.9
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/List_of_women_Nobel_laureates",
+          "quote": "The first woman to win a Nobel Prize was Marie Skłodowska-Curie , who won the Nobel Prize in Physics in 1903 with Pierre Curie and Henri Becquerel .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "4590726f-d158-433b-b3ad-11363ff48913",
+      "text": "Marie Curie was the first woman to win a Nobel Prize, receiving the 1903 physics award.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/List_of_women_Nobel_laureates",
+          "quote": "The first woman to win a Nobel Prize was Marie Skłodowska-Curie , who won the Nobel Prize in Physics in 1903 with Pierre Curie and Henri Becquerel .",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "instagram.com",
+          "url": "https://www.instagram.com/popular/person-with-two-masters-degrees-nobel-nomination",
+          "quote": "Marie Curie was the first woman to win a Nobel Prize and remains the only person to receive Nobel Prizes in two different scientific fields—Physics (1903) and Chemistry (1911).",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "history.com",
+          "url": "https://www.history.com/articles/who-were-the-first-women-to-win-nobel-prizes",
+          "quote": "The Polish-French scientist was the first woman to share a Nobel Prize (the 1903 physics award, with her husband Pierre and fellow French scientist Henri Becquerel, for their pioneering work on radioactivity)",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "d157f414-7e43-457f-a1e6-cd54fc2a78ed",
+      "text": "Marie Curie won Nobel Prizes in the two different scientific fields of Physics and Chemistry.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "instagram.com",
+          "url": "https://www.instagram.com/popular/scientist-born-1903-cancer-zodiac",
+          "quote": "Maria Salomea Skłodowska-Curie (1867–1934) was the first woman to win a Nobel Prize, the first person to win two Nobel Prizes, and the only person ever to win in two different scientific fields: Physics and Chemistry.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_women_Nobel_laureates",
+      "domain": "wikipedia.org",
+      "published_at": "2005-06-14",
+      "content_hash": "c5c88518a7fdf65ea460ce181c9b6eb27bf4c1b41594fb3fecd80a40678ee1c3"
+    },
+    {
+      "url": "https://www.history.com/articles/who-were-the-first-women-to-win-nobel-prizes",
+      "domain": "history.com",
+      "published_at": "2014-10-08",
+      "content_hash": "66082fc31f58b374a52ec38ddec7b9377be310d0278bfcf1f2d8811a62c110a3"
+    },
+    {
+      "url": "https://www.instagram.com/popular/scientist-born-1903-cancer-zodiac",
+      "domain": "instagram.com",
+      "published_at": "",
+      "content_hash": "005e0a38cee213e42d88dd070a121894169b56825a95232f06d4dc276c3be02b"
+    },
+    {
+      "url": "https://www.instagram.com/popular/person-with-two-masters-degrees-nobel-nomination",
+      "domain": "instagram.com",
+      "published_at": "",
+      "content_hash": "ce2a5240c56b2b75f74b0a1a1450093ca11ed84659d5a07acf211de3eae6d8a7"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 214,
+      "output_tokens": 140,
+      "thinking_tokens": null,
+      "cost_usd": 7.7e-05,
+      "latency_ms": 1120
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2622,
+      "output_tokens": 298,
+      "thinking_tokens": null,
+      "cost_usd": 0.000381,
+      "latency_ms": 1855
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3175,
+      "output_tokens": 346,
+      "thinking_tokens": null,
+      "cost_usd": 0.000456,
+      "latency_ms": 1879
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1157,
+      "output_tokens": 641,
+      "thinking_tokens": null,
+      "cost_usd": 0.000372,
+      "latency_ms": 2131
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 429,
+      "output_tokens": 90,
+      "thinking_tokens": null,
+      "cost_usd": 7.9e-05,
+      "latency_ms": 1119
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

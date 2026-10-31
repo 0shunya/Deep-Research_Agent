@@ -1,0 +1,223 @@
+{
+  "run": {
+    "id": "270dccbf-1401-430b-8271-b152f98aec8b",
+    "question": "Which city hosted the 2024 Summer Olympics, and in which country is it?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 5992,
+    "cost_usd": 0.00091,
+    "search_calls": 1,
+    "research_wall_seconds": 31.5
+  },
+  "plan": {
+    "brief": "The user wants to identify the host city and country for the 2024 Summer Olympics.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which city hosted the 2024 Summer Olympics and what country is it in?",
+        "why": "Directly answers the user question regarding the host city and country.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which city hosted the 2024 Summer Olympics and what country is it in?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# 2024 Summer Olympics Host\n\n## Host City and Country\n\nParis was the host city for the 2024 Summer Olympics. [1][2] One source reports that the 2024 Summer Olympics were hosted by Paris, France, from 26 July to 11 August 2024.\n\n## Sources\n\n1. [[Solved] Which country will host the 2024 Summer Olympic Games?](https://testbook.com/question-answer/which-country-will-host-the-2024-summer-olympic-ga--643016feb4912ead7d91d72b) — testbook.com, published 2026-10-28, fetched 2026-10-31\n2. [2024 Summer Olympics - Wikipedia](https://en.wikipedia.org/wiki/2024_Summer_Olympics) — wikipedia.org, published 2006-03-05, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Host City and Country",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Paris was the host city for the 2024 Summer Olympics.",
+            "claim_ids": [
+              "ee62893f-059e-4dc9-ad6e-4bff706cd9c2"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that the 2024 Summer Olympics were hosted by Paris, France, from 26 July to 11 August 2024.",
+            "claim_ids": [
+              "66ac1b81-bb3a-46fc-af9a-cd3a549da7f1"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "2024 Summer Olympics Host",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 1,
+      "sentences_total": 2,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "66ac1b81-bb3a-46fc-af9a-cd3a549da7f1",
+      "text": "The 2024 Summer Olympics were hosted by Paris, France, from 26 July to 11 August 2024.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2024_Summer_Olympics",
+          "quote": "The 2024 Summer Olympics ( French : Les Jeux Olympiques d'été de 2024 ), officially the Games of the XXXIII Olympiad ( French : Jeux de la XXXIIIe olympiade de l'ère moderne ) and branded as Paris 2024 , were an international multi-sport event held in France from 26 July to 11 August 2024, with several events starting from 24 July.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "testbook.com",
+          "url": "https://testbook.com/question-answer/which-country-will-host-the-2024-summer-olympic-ga--643016feb4912ead7d91d72b",
+          "quote": "The host city of the 2024 Summer Olympics is Paris, France .",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.9
+        }
+      ]
+    },
+    {
+      "id": "ee62893f-059e-4dc9-ad6e-4bff706cd9c2",
+      "text": "Paris was the host city for the 2024 Summer Olympics.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2024_Summer_Olympics",
+          "quote": "Paris was the host city, with events (mainly football ) held in 16 additional cities in metropolitan France , including the sailing centre in the second-largest city of France, Marseille , on the Mediterranean Sea , as well as one subsite for surfing in Tahiti , French Polynesia.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "testbook.com",
+          "url": "https://testbook.com/question-answer/which-country-will-host-the-2024-summer-olympic-ga--643016feb4912ead7d91d72b",
+          "quote": "The host city of the 2024 Summer Olympics is Paris, France .",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://testbook.com/question-answer/which-country-will-host-the-2024-summer-olympic-ga--643016feb4912ead7d91d72b",
+      "domain": "testbook.com",
+      "published_at": "2026-10-28",
+      "content_hash": "dbb05998bfbd0b300c891fe94beda4b7315961bc6e8e7e042427b8c827a936dc"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Summer_Olympics",
+      "domain": "wikipedia.org",
+      "published_at": "2006-03-05",
+      "content_hash": "37a5b7ba030a4fc3c0cb58e55898a8fe6fe2dbb8ed393d49c2328ace2a82a59d"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 211,
+      "output_tokens": 102,
+      "thinking_tokens": null,
+      "cost_usd": 6.2e-05,
+      "latency_ms": 1340
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3286,
+      "output_tokens": 335,
+      "thinking_tokens": null,
+      "cost_usd": 0.000463,
+      "latency_ms": 2163
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "error",
+      "error": "rate_limited",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 315
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 526,
+      "output_tokens": 214,
+      "thinking_tokens": null,
+      "cost_usd": 0.000138,
+      "latency_ms": 3836
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 321,
+      "output_tokens": 106,
+      "thinking_tokens": null,
+      "cost_usd": 7.4e-05,
+      "latency_ms": 4245
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 612,
+      "output_tokens": 279,
+      "thinking_tokens": null,
+      "cost_usd": 0.000173,
+      "latency_ms": 1481
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  },
+  "notes": "Verifier re-run on the stored research of live-tavily-quick/q16.json; the report is unchanged. model_calls includes the original calls plus the new verify call."
+}
