@@ -20,6 +20,22 @@ def _plan_and_approve(env, run_id, edit=None):
         approve_plan(db, run, plan)
 
 
+async def _wait_until(condition, timeout: float = 15.0) -> None:
+    """Poll a database condition instead of sleeping a fixed time: CI runners can be faster or slower."""
+    deadline = asyncio.get_running_loop().time() + timeout
+    while not condition():
+        if asyncio.get_running_loop().time() > deadline:
+            raise AssertionError("condition not reached in time")
+        await asyncio.sleep(0.01)
+
+
+def _source_stored_while_research_running(run_id) -> bool:
+    with session_scope() as db:
+        sources = db.scalar(select(func.count(Source.id)).where(Source.run_id == run_id))
+        running = db.scalar(select(func.count(Task.id)).where(Task.run_id == run_id, Task.status == "running"))
+        return bool(sources) and bool(running)
+
+
 def test_full_run_produces_verified_cited_report(make_env, new_run):
     env = make_env()
     run_id = new_run()
@@ -157,7 +173,8 @@ def test_cancel_keeps_partial_results(make_env, new_run):
 
     async def go():
         job = asyncio.create_task(execute_run(env, run_id))
-        await asyncio.sleep(0.6)  # research is under way
+        # A page is stored and a researcher is still waiting on its (slow, 0.3 s) model call.
+        await _wait_until(lambda: _source_stored_while_research_running(run_id))
         with session_scope() as db:  # what POST /runs/:id/cancel does before cancelling the job
             db.get(Run, run_id).cancel_requested = True
         job.cancel()
@@ -240,7 +257,7 @@ def test_shutdown_mid_run_leaves_it_resumable(make_env, new_run):
 
     async def interrupted():
         job = asyncio.create_task(execute_run(env, run_id))
-        await asyncio.sleep(0.6)
+        await _wait_until(lambda: _source_stored_while_research_running(run_id))
         job.cancel()
         await asyncio.gather(job, return_exceptions=True)
 
