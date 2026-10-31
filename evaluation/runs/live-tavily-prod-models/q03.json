@@ -1,0 +1,279 @@
+{
+  "run": {
+    "id": "db2b39e7-6c36-4af5-95e4-f26fdb45f2cd",
+    "question": "Who designed the Sydney Opera House and in what year did it open?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 7348,
+    "cost_usd": 0.001297,
+    "search_calls": 2,
+    "research_wall_seconds": 38.6
+  },
+  "plan": {
+    "brief": "This research aims to identify the architect responsible for the design of the Sydney Opera House and determine the official year the building was opened to the public.",
+    "report": {
+      "max_words": 200,
+      "must_cite": true
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who was the architect that designed the Sydney Opera House?",
+        "why": "To identify the primary designer of the structure.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In what year did the Sydney Opera House officially open?",
+        "why": "To establish the timeline of the building's completion and opening.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who was the architect that designed the Sydney Opera House?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In what year did the Sydney Opera House officially open?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Sydney Opera House: Design and Opening\n\n## Overview\n\nThe Sydney Opera House was designed by Danish architect Jørn Utzon and officially opened on October 20, 1973. [1][2][3][4]\n\n## Completion Details\n\nOne source reports that after Jørn Utzon resigned in 1966, an Australian architectural team consisting of Peter Hall, David Littlemore, and Lionel Todd completed the building. [4]\n\n## Sources\n\n1. [Sydney Opera House Opens | Drama and Theater Arts | Research Starters | EBSCOhost](https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens) — ebsco.com, fetched 2026-10-31\n2. [Sydney Opera House - Wikipedia](https://en.wikipedia.org/wiki/Sydney_Opera_House) — wikipedia.org, published 2001-09-24, fetched 2026-10-31\n3. [Opening of the Sydney Opera House](https://mhnsw.au/opening-of-the-sydney-opera-house) — mhnsw.au, fetched 2026-10-31\n4. [https://www.britannica.com/topic/Sydney-Opera-House](https://www.britannica.com/topic/Sydney-Opera-House) — britannica.com, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The Sydney Opera House was designed by Danish architect Jørn Utzon and officially opened on October 20, 1973.",
+            "claim_ids": [
+              "6d5b978f-bb75-4a61-96ef-e9fac471cd04",
+              "082e10cc-f65b-4f0e-93fd-fbe179112e3b"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Completion Details",
+        "sentences": [
+          {
+            "idx": 1,
+            "text": "One source reports that after Jørn Utzon resigned in 1966, an Australian architectural team consisting of Peter Hall, David Littlemore, and Lionel Todd completed the building.",
+            "claim_ids": [
+              "2d674b37-9423-4bd3-924a-fdbc3798cb55"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Sydney Opera House: Design and Opening",
+      "writer": "model",
+      "cited_claims": 3,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 2,
+      "sentences_total": 2,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "082e10cc-f65b-4f0e-93fd-fbe179112e3b",
+      "text": "The Sydney Opera House was designed by the Danish architect Jørn Utzon.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+          "quote": "Designed by Danish architect Jørn Utzon and completed by an Australian architectural team headed by Peter Hall , the building was formally opened by Queen Elizabeth II on 20 October 1973, 16 years after Utzon's 1957 selection as winner of an international design competition.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "ebsco.com",
+          "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+          "quote": "The modernist design of Danish architect Jorn Utzon was the winner, with radical roof shells that have become the opera house's most familiar feature.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/topic/Sydney-Opera-House",
+          "quote": "The Sydney Opera House was designed by Danish architect Jørn Utzon, who won an international competition in 1957 sponsored by the New South Wales government.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "2d674b37-9423-4bd3-924a-fdbc3798cb55",
+      "text": "Following Jørn Utzon's resignation in 1966, the Sydney Opera House was completed by an Australian architectural team that included Peter Hall, David Littlemore, and Lionel Todd.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/topic/Sydney-Opera-House",
+          "quote": "Construction continued until September 1973 under the supervision of the structural engineering firm Ove Arup and Partners and three Sydney architects—Peter Hall, David Littlemore, and Lionel Todd.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "6d5b978f-bb75-4a61-96ef-e9fac471cd04",
+      "text": "The Sydney Opera House officially opened on October 20, 1973.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+          "quote": "The Sydney Opera House was formally opened by Queen Elizabeth II , on 20 October 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "mhnsw.au",
+          "url": "https://mhnsw.au/opening-of-the-sydney-opera-house",
+          "quote": "The Opera House was officially opened by Her Majesty the Queen on 20 October 1973.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "ebsco.com",
+          "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+          "quote": "The Sydney Opera House, an iconic architectural marvel, officially opened on October 20, 1973.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+      "domain": "ebsco.com",
+      "published_at": "",
+      "content_hash": "c316bbccf5aef96a28946d75c6089dfb530028d7774587b0da52a0853f606be0"
+    },
+    {
+      "url": "https://www.britannica.com/topic/Sydney-Opera-House",
+      "domain": "britannica.com",
+      "published_at": "",
+      "content_hash": "91ef8a8631e42b7a6ea85593d6ec4164d9fb2d741212832bb04a28426cea1f78"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+      "domain": "wikipedia.org",
+      "published_at": "2001-09-24",
+      "content_hash": "934199229f893e74317a51253fbffd13285a53e41991d38795dbd3fbdda00120"
+    },
+    {
+      "url": "https://mhnsw.au/opening-of-the-sydney-opera-house",
+      "domain": "mhnsw.au",
+      "published_at": "",
+      "content_hash": "1c8e54d4e9eedc2e3574c5e17d4f138c2b527fe4913fa193d09d5e65741bfde8"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 206,
+      "output_tokens": 192,
+      "thinking_tokens": 115,
+      "cost_usd": 0.000143,
+      "latency_ms": 10862
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2096,
+      "output_tokens": 177,
+      "thinking_tokens": 90,
+      "cost_usd": 0.000316,
+      "latency_ms": 11772
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2029,
+      "output_tokens": 382,
+      "thinking_tokens": 92,
+      "cost_usd": 0.000392,
+      "latency_ms": 12222
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 772,
+      "output_tokens": 398,
+      "thinking_tokens": 124,
+      "cost_usd": 0.000286,
+      "latency_ms": 8735
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 365,
+      "output_tokens": 202,
+      "thinking_tokens": 108,
+      "cost_usd": 0.00016,
+      "latency_ms": 12482
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 3,
+    "fetch_failed": 1
+  }
+}

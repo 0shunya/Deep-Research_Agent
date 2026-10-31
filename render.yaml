@@ -1,0 +1,49 @@
+# Render Blueprint for the API. The database is external (Neon recommended) and the frontend is on
+# Vercel; see DEPLOYMENT.md. Secrets are marked sync: false and are entered in the Render dashboard.
+services:
+  - type: web
+    name: deep-research-agent-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: DEMO_ACCESS_CODE
+        sync: false
+      # Models that neither the Expense Scanner (gemini-3.5-flash-lite) nor the phone receptionist uses, so the
+      # three demos never compete for one model's free-tier quota. Both were tested with this key on 2026-10-31.
+      - key: GEMINI_MODELS
+        value: gemini-3.1-flash-lite-preview,gemini-3-flash-preview
+      - key: WORKER_MODE
+        value: inline
+      - key: SEARCH_PROVIDER
+        value: auto
+      # Free-tier key: ~20 requests/day per model. Keep 15 per model, 30 in total, and at most 10 per report
+      # (retries included), so one run cannot drain the day: about 5 quick reports per day (3 in the worst case).
+      - key: DAILY_CALLS_PER_MODEL
+        value: "15"
+      - key: DAILY_MODEL_CALL_LIMIT
+        value: "30"
+      - key: MAX_MODEL_CALLS_PER_RUN
+        value: "10"
+      # The preview model sometimes hangs before a 5xx; fail fast and fall back to the second model.
+      - key: MODEL_TIMEOUT_SECONDS
+        value: "30"
+      - key: RUNS_PER_HOUR_PER_CLIENT
+        value: "3"
+      - key: DEFAULT_BUDGET_TOKENS
+        value: "60000"
+      - key: MAX_BUDGET_TOKENS
+        value: "120000"

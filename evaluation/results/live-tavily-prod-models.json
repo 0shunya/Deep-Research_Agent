@@ -1,0 +1,79 @@
+{
+  "name": "live-tavily-prod-models",
+  "aggregate": {
+    "questions": 2,
+    "with_report": 2,
+    "answer_accuracy": 1.0,
+    "fact_recall_mean": 1.0,
+    "cited_claims": 5,
+    "cited_quote_backed_share": 0.8,
+    "cited_supported_verdict_share": 0.4,
+    "extracted_quote_verbatim_rate": 1.0,
+    "domains_median": 3.5,
+    "cost_usd_mean": 0.001351,
+    "tokens_mean": 8041,
+    "model_calls_mean": 6,
+    "wall_seconds_p50": 31.15,
+    "wall_seconds_max": 38.6
+  },
+  "per_question": [
+    {
+      "id": "q03",
+      "category": "multi-hop",
+      "status": "completed",
+      "has_report": true,
+      "answer_correct": true,
+      "fact_recall": 1.0,
+      "cited_claims": 3,
+      "cited_quote_backed": 3,
+      "cited_supported_verdict": 2,
+      "claims": 3,
+      "extracted_quotes": 5,
+      "extracted_quotes_verbatim": 5,
+      "domains": 4,
+      "sources": 4,
+      "model_calls": 5,
+      "model_call_errors": 0,
+      "tokens": 7348,
+      "cost_usd": 0.001297,
+      "wall_seconds": 38.6,
+      "sentences_dropped_uncited": 0
+    },
+    {
+      "id": "q09",
+      "category": "recent",
+      "status": "completed",
+      "has_report": true,
+      "answer_correct": true,
+      "fact_recall": 1.0,
+      "cited_claims": 2,
+      "cited_quote_backed": 1,
+      "cited_supported_verdict": 0,
+      "claims": 2,
+      "extracted_quotes": 4,
+      "extracted_quotes_verbatim": 4,
+      "domains": 3,
+      "sources": 4,
+      "model_calls": 7,
+      "model_call_errors": 2,
+      "tokens": 8734,
+      "cost_usd": 0.001406,
+      "wall_seconds": 23.7,
+      "sentences_dropped_uncited": 0
+    }
+  ],
+  "config": {
+    "depth": "quick",
+    "workers": 3,
+    "models": [
+      "gemini-3.1-flash-lite-preview",
+      "gemini-3-flash-preview"
+    ],
+    "search_provider": "tavily",
+    "min_independent_domains": 2,
+    "price_per_mtok": [
+      0.1,
+      0.4
+    ]
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "run": {
+    "id": "63b931c8-eaa8-4cd5-90d6-8b585a441041",
+    "question": "Who won the 2022 FIFA World Cup, and who was the tournament's top scorer?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 8734,
+    "cost_usd": 0.001406,
+    "search_calls": 2,
+    "research_wall_seconds": 23.7
+  },
+  "plan": {
+    "brief": "This research aims to identify the winner of the 2022 FIFA World Cup and determine the player who scored the most goals during the tournament to provide a concise summary of the event's key outcomes.",
+    "report": {
+      "max_words": 200,
+      "must_cite": true
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who won the 2022 FIFA World Cup final match?",
+        "why": "To identify the champion of the tournament.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "Who was the top scorer (Golden Boot winner) of the 2022 FIFA World Cup?",
+        "why": "To identify the individual player with the most goals scored in the tournament.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who won the 2022 FIFA World Cup final match?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "Who was the top scorer (Golden Boot winner) of the 2022 FIFA World Cup?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# 2022 FIFA World Cup Outcomes\n\n## Tournament Results\n\nOne source reports that Argentina won the 2022 FIFA World Cup final against France following a penalty shoot-out, while another source indicates that Kylian Mbappé was the top scorer with eight goals. [1]\n\n## Sources\n\n1. [World Cup Golden Boot: Full List of Winners](https://www.si.com/soccer/world-cup-golden-boot-full-list-winners) — si.com, published 2026-07-15, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Tournament Results",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Argentina won the 2022 FIFA World Cup final against France following a penalty shoot-out, while another source indicates that Kylian Mbappé was the top scorer with eight goals.",
+            "claim_ids": [
+              "79b1ea18-7599-4059-af21-8236045435b1",
+              "fe611c99-aab8-4700-b4b6-ca57d75b194c"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "2022 FIFA World Cup Outcomes",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "79b1ea18-7599-4059-af21-8236045435b1",
+      "text": "Kylian Mbappé was the top scorer (Golden Boot winner) of the 2022 FIFA World Cup, scoring eight goals.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_final",
+          "quote": "\"World Cup 2022 top goalscorers: Mbappe pips Messi to Golden Boot in unbelievable final\" .",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 1.0
+        },
+        {
+          "domain": "foxsports.com",
+          "url": "https://www.foxsports.com/stories/soccer/frances-kylian-mbappe-wins-golden-boot-world-cups-top-goalscorer",
+          "quote": "He scored eight goals at the 2022 FIFA World Cup and 10 in 2026.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.9
+        },
+        {
+          "domain": "si.com",
+          "url": "https://www.si.com/soccer/world-cup-golden-boot-full-list-winners",
+          "quote": "The 2022 and 2026 World Cups were all about Kylian Mbappé. Not only did the Frenchman win the Golden Boot on both occasions—eight scored in 2022",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 0.95
+        }
+      ]
+    },
+    {
+      "id": "fe611c99-aab8-4700-b4b6-ca57d75b194c",
+      "text": "Argentina won the 2022 FIFA World Cup final match against France after a penalty shoot-out.",
+      "verdict": "unverified",
+      "support_domains": 0,
+      "reason": "No verbatim quote supports this claim.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://simple.wikipedia.org/wiki/2022_FIFA_World_Cup_Final",
+          "quote": "Eventually, Argentina won the penalty shoot-out 4-2, securing their third World Cup title and their first since 1986.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_final",
+          "quote": "Argentina won the ensuing penalty shoot-out 4–2 to win their third World Cup, and their first since 1986.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_final",
+      "domain": "wikipedia.org",
+      "published_at": "2022-03-30",
+      "content_hash": "785d48aeaf6af7af08b0dfddb1cbf488b18f10ffe6f4192eb5205324fbed7d45"
+    },
+    {
+      "url": "https://www.si.com/soccer/world-cup-golden-boot-full-list-winners",
+      "domain": "si.com",
+      "published_at": "2026-07-15",
+      "content_hash": "0b520e5ebeb5722548a3e07a1bb060198cc5a6cfaaadbb4b54a9eea1678fc10f"
+    },
+    {
+      "url": "https://simple.wikipedia.org/wiki/2022_FIFA_World_Cup_Final",
+      "domain": "wikipedia.org",
+      "published_at": "2021-03-22",
+      "content_hash": "7e318cdf50bb4f98a6a2b6ca6553f4ab0b868a7b86a89d60d12837f4c0a6f1f2"
+    },
+    {
+      "url": "https://www.foxsports.com/stories/soccer/frances-kylian-mbappe-wins-golden-boot-world-cups-top-goalscorer",
+      "domain": "foxsports.com",
+      "published_at": "2026-07-19",
+      "content_hash": "c0a8016b7c684cfe12d56eb4c6149fad2f10c84d10bea75a61e286125c5c5899"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "error",
+      "error": "server_error",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 87834
+    },
+    {
+      "feature": "plan",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "error",
+      "error": "server_error",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 4671
+    },
+    {
+      "feature": "plan",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 214,
+      "output_tokens": 218,
+      "thinking_tokens": 155,
+      "cost_usd": 0.000171,
+      "latency_ms": 9145
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3573,
+      "output_tokens": 211,
+      "thinking_tokens": 100,
+      "cost_usd": 0.000482,
+      "latency_ms": 7736
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2171,
+      "output_tokens": 220,
+      "thinking_tokens": 119,
+      "cost_usd": 0.000353,
+      "latency_ms": 7754
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 652,
+      "output_tokens": 399,
+      "thinking_tokens": 115,
+      "cost_usd": 0.000271,
+      "latency_ms": 6000
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": "success",
+      "error": null,
+      "input_tokens": 352,
+      "output_tokens": 129,
+      "thinking_tokens": 106,
+      "cost_usd": 0.000129,
+      "latency_ms": 4972
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}
