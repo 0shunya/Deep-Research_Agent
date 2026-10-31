@@ -35,9 +35,18 @@ jobs:
       - name: Migrations apply to an empty database and match the models
         run: DATABASE_URL=$TEST_DATABASE_URL python -m alembic upgrade head && DATABASE_URL=$TEST_DATABASE_URL python -m alembic check
       - name: Unit, orchestration and API tests (SQLite, scripted model, offline web)
-        run: python -m pytest
+        run: |
+          set -o pipefail
+          python -m pytest -rfE --tb=short 2>&1 | tee pytest-sqlite.log
       - name: Full suite on PostgreSQL
-        run: USE_TEST_POSTGRES=1 python -m pytest
+        run: |
+          set -o pipefail
+          USE_TEST_POSTGRES=1 python -m pytest -rfE --tb=short 2>&1 | tee pytest-postgres.log
+      # Job logs need a GitHub login even on a public repo; annotations are public (checks API), so the
+      # failing tests and their error lines are published as annotations.
+      - name: Report test failures as annotations
+        if: failure()
+        run: grep -hE "^(FAILED|ERROR) |^E  " pytest-*.log 2>/dev/null | head -40 | sed 's/^/::error title=pytest::/' || true
 
   frontend:
     runs-on: ubuntu-latest

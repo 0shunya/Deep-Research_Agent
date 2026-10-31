@@ -50,11 +50,6 @@ def create_app(scheduler: RunScheduler | None = None, start_worker: bool | None 
     app = FastAPI(title="Deep Research Agent API", version=__version__, lifespan=lifespan,
                   docs_url="/docs" if settings.app_env != "production" else None)
     install_error_handlers(app)
-    app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=False,
-                       allow_methods=["GET", "POST"],
-                       allow_headers=["Content-Type", "Idempotency-Key", "X-Access-Code", "X-Request-Id",
-                                      "Last-Event-ID"],
-                       expose_headers=["X-Request-Id"], max_age=600)
 
     @app.middleware("http")
     async def request_context(request: Request, call_next):
@@ -77,6 +72,16 @@ def create_app(scheduler: RunScheduler | None = None, start_worker: bool | None 
                                        "status": response.status_code,
                                        "duration_ms": round((time.perf_counter() - started) * 1000)})
         return response
+
+    # Registered last so it is the OUTERMOST middleware: it then adds CORS headers to every response,
+    # including the 401 the access-code check returns before reaching the routes. Registered first, it sat
+    # inside that check, so the cross-origin browser (Vercel -> Render) saw the 401 as a network error and
+    # the access-code screen never appeared.
+    app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=False,
+                       allow_methods=["GET", "POST"],
+                       allow_headers=["Content-Type", "Idempotency-Key", "X-Access-Code", "X-Request-Id",
+                                      "Last-Event-ID"],
+                       expose_headers=["X-Request-Id"], max_age=600)
 
     app.include_router(router)
 

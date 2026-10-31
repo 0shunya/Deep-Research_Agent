@@ -154,3 +154,24 @@ def test_unfinished_runs_resume_when_the_server_starts(make_env, new_run):
     with TestClient(create_app(scheduler=RunScheduler(env_factory=make_env))) as c:
         run = wait_for(c, str(run_id), {"completed", "failed"})
         assert run["status"] == "completed", run["error_message"]
+
+
+def test_access_code_401_is_readable_cross_origin(make_env, settings_override):
+    """Vercel -> Render is cross-origin: without CORS headers on the 401 the browser reports a network error
+    and the access-code screen never appears. CORS must wrap the access-code middleware."""
+    from app.main import create_app
+    from app.research.scheduler import RunScheduler
+
+    origin = "https://deep-research.example.app"
+    settings_override(demo_access_code="letmein", frontend_origin=origin)
+    with TestClient(create_app(scheduler=RunScheduler(env_factory=make_env))) as c:
+        denied = c.get("/api/runs", headers={"Origin": origin})
+        assert denied.status_code == 401 and denied.json()["error"]["code"] == "access_code_required"
+        assert denied.headers.get("access-control-allow-origin") == origin
+        stream = c.get("/api/runs/00000000-0000-0000-0000-000000000000/events", headers={"Origin": origin})
+        assert stream.status_code == 401 and stream.headers.get("access-control-allow-origin") == origin
+        allowed = c.get("/api/runs?access_code=letmein", headers={"Origin": origin})
+        assert allowed.status_code == 200 and allowed.headers.get("access-control-allow-origin") == origin
+        preflight = c.options("/api/runs", headers={"Origin": origin, "Access-Control-Request-Method": "POST",
+                                                     "Access-Control-Request-Headers": "content-type,x-access-code"})
+        assert preflight.status_code == 200 and preflight.headers.get("access-control-allow-origin") == origin
