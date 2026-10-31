@@ -1,0 +1,207 @@
+{
+  "run": {
+    "id": "31f4d271-6ebb-4e05-80c0-c11269d856f0",
+    "question": "Which metal has the highest melting point, and what is that melting point in degrees Celsius?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 6915,
+    "cost_usd": 0.000876,
+    "search_calls": 2,
+    "research_wall_seconds": 11.5
+  },
+  "plan": {
+    "brief": "Identify the metal with the highest melting point and provide its exact melting point in degrees Celsius.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which metal has the highest melting point?",
+        "why": "Identifies the specific element needed to answer the core question.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What is the melting point of tungsten in degrees Celsius?",
+        "why": "Provides the precise temperature value required for the final answer.",
+        "depends_on": [
+          "q1"
+        ]
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which metal has the highest melting point?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What is the melting point of tungsten in degrees Celsius?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Highest Melting Point Metal\n\n## Overview\n\nOne source reports that tungsten and rhenium have the highest melting points of all elements among the refractory metals. [1]\n\n## Sources\n\n1. [Refractory metals - Wikipedia](https://en.wikipedia.org/wiki/Refractory_metals) — wikipedia.org, published 2004-04-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that tungsten and rhenium have the highest melting points of all elements among the refractory metals.",
+            "claim_ids": [
+              "ea0f5f2e-5d49-4fe0-ab82-bc59be6ecdcf"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Highest Melting Point Metal",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "ea0f5f2e-5d49-4fe0-ab82-bc59be6ecdcf",
+      "text": "Tungsten and rhenium have the highest melting points of all elements among the refractory metals.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Refractory_metals",
+          "quote": "Refractory metals have high melting points, with tungsten and rhenium the highest of all elements, and the others' melting points exceeded only by osmium and iridium , and the sublimation of carbon .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brazing",
+      "domain": "wikipedia.org",
+      "published_at": "2003-09-30",
+      "content_hash": "8ee6c929a18e09dfbe71cfa27ca0edcb2e001e623b2cea31c17e0da5b9c6f76c"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Refractory_metals",
+      "domain": "wikipedia.org",
+      "published_at": "2004-04-03",
+      "content_hash": "9601ec367d9d009a47d47a3d78c7c4cc820fc3cf94b779ab886c758035120331"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thermodynamic_temperature",
+      "domain": "wikipedia.org",
+      "published_at": "2002-02-26",
+      "content_hash": "bdcfb1e810736a8811f11aa17f3aeb67dabc1daaf49457a84b9292b2a2f8336b"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Temperature",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-21",
+      "content_hash": "568aa39eca650a8d2b35efcedeeba53eea826f5905007f5a81b9e304b5a858e7"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "error",
+      "error": "rate_limited",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 404
+    },
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 210,
+      "output_tokens": 188,
+      "thinking_tokens": null,
+      "cost_usd": 9.6e-05,
+      "latency_ms": 1362
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2770,
+      "output_tokens": 157,
+      "thinking_tokens": null,
+      "cost_usd": 0.00034,
+      "latency_ms": 1541
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2771,
+      "output_tokens": 45,
+      "thinking_tokens": 97,
+      "cost_usd": 0.000334,
+      "latency_ms": 1170
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 275,
+      "output_tokens": 71,
+      "thinking_tokens": null,
+      "cost_usd": 5.6e-05,
+      "latency_ms": 841
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 275,
+      "output_tokens": 56,
+      "thinking_tokens": null,
+      "cost_usd": 5e-05,
+      "latency_ms": 842
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

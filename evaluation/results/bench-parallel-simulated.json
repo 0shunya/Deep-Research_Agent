@@ -1,0 +1,39 @@
+{
+  "kind": "SIMULATED (scripted model with injected stage latencies; offline web)",
+  "sub_questions": 4,
+  "web_latency_s": 0.4,
+  "model_latency_s": {
+    "plan": 2.0,
+    "research": 2.16,
+    "verify": 1.33,
+    "write": 2.23
+  },
+  "results": {
+    "1": {
+      "runs_seconds": [
+        16.91,
+        16.56
+      ],
+      "best_seconds": 16.56
+    },
+    "2": {
+      "runs_seconds": [
+        10.44,
+        10.41
+      ],
+      "best_seconds": 10.41
+    },
+    "4": {
+      "runs_seconds": [
+        7.44,
+        7.48
+      ],
+      "best_seconds": 7.44
+    }
+  },
+  "speedup_vs_1_worker": {
+    "1": 1.0,
+    "2": 1.59,
+    "4": 2.23
+  }
+}

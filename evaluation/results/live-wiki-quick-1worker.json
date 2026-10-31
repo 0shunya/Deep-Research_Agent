@@ -1,0 +1,79 @@
+{
+  "name": "live-wiki-quick-1worker",
+  "aggregate": {
+    "questions": 2,
+    "with_report": 2,
+    "answer_accuracy": 0.5,
+    "fact_recall_mean": 0.75,
+    "cited_claims": 3,
+    "cited_quote_backed_share": 1.0,
+    "cited_supported_verdict_share": 0.0,
+    "extracted_quote_verbatim_rate": 1.0,
+    "domains_median": 1.0,
+    "cost_usd_mean": 0.00061,
+    "tokens_mean": 4506,
+    "model_calls_mean": 4,
+    "wall_seconds_p50": 11.55,
+    "wall_seconds_max": 14.2
+  },
+  "per_question": [
+    {
+      "id": "q07",
+      "category": "multi-hop",
+      "status": "completed",
+      "has_report": true,
+      "answer_correct": false,
+      "fact_recall": 0.5,
+      "cited_claims": 1,
+      "cited_quote_backed": 1,
+      "cited_supported_verdict": 0,
+      "claims": 1,
+      "extracted_quotes": 1,
+      "extracted_quotes_verbatim": 1,
+      "domains": 1,
+      "sources": 2,
+      "model_calls": 4,
+      "model_call_errors": 0,
+      "tokens": 4376,
+      "cost_usd": 0.000566,
+      "wall_seconds": 8.9,
+      "sentences_dropped_uncited": 0
+    },
+    {
+      "id": "q20",
+      "category": "fact",
+      "status": "completed",
+      "has_report": true,
+      "answer_correct": true,
+      "fact_recall": 1.0,
+      "cited_claims": 2,
+      "cited_quote_backed": 2,
+      "cited_supported_verdict": 0,
+      "claims": 2,
+      "extracted_quotes": 2,
+      "extracted_quotes_verbatim": 2,
+      "domains": 1,
+      "sources": 2,
+      "model_calls": 4,
+      "model_call_errors": 0,
+      "tokens": 4635,
+      "cost_usd": 0.000653,
+      "wall_seconds": 14.2,
+      "sentences_dropped_uncited": 0
+    }
+  ],
+  "config": {
+    "depth": "quick",
+    "workers": 1,
+    "models": [
+      "gemini-3.5-flash-lite",
+      "gemini-3.1-flash-lite"
+    ],
+    "search_provider": "wikipedia",
+    "min_independent_domains": 2,
+    "price_per_mtok": [
+      0.1,
+      0.4
+    ]
+  }
+}

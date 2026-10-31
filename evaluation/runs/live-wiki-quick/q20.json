@@ -1,0 +1,166 @@
+{
+  "run": {
+    "id": "bcb220a1-2452-4b8a-bd35-2bdb26cf5119",
+    "question": "Which mission first landed humans on the Moon, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 4538,
+    "cost_usd": 0.000624,
+    "search_calls": 1,
+    "research_wall_seconds": 8.8
+  },
+  "plan": {
+    "brief": "Identify the specific lunar landing mission that first carried humans to the surface of the Moon and the corresponding year of occurrence.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which Apollo mission first landed humans on the Moon and in what year did it occur?",
+        "why": "Directly answers the core user question about the first human Moon landing mission and year.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which Apollo mission first landed humans on the Moon and in what year did it occur?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Moon Landing Mission\n\n## Introduction\n\nOne source reports that the Apollo 11 mission first landed humans on the Moon in the year 1969. [1][2]\n\n## Sources\n\n1. [Neil Armstrong - Wikipedia](https://en.wikipedia.org/wiki/Neil_Armstrong) — wikipedia.org, published 2001-10-16, fetched 2026-10-31\n2. [Moon - Wikipedia](https://en.wikipedia.org/wiki/Moon) — wikipedia.org, published 2001-11-05, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Introduction",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that the Apollo 11 mission first landed humans on the Moon in the year 1969.",
+            "claim_ids": [
+              "ff58532f-5647-4c72-bf45-7eaa66982a6e"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Moon Landing Mission",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "ff58532f-5647-4c72-bf45-7eaa66982a6e",
+      "text": "The Apollo 11 mission first landed humans on the Moon in the year 1969.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Neil_Armstrong",
+          "quote": "On July 20, 1969, Armstrong and Apollo 11 Lunar Module (LM) pilot Buzz Aldrin became the first people to land on the Moon",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Moon",
+          "quote": "and then on the surface with Apollo 11 on July 20, 1969, making the Moon the only celestial body beyond Earth that humans have visited.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Neil_Armstrong",
+      "domain": "wikipedia.org",
+      "published_at": "2001-10-16",
+      "content_hash": "bca47880422ccdea4a5d03a23b6cc7ef05b6e2e3c0ffd8f89a63bce064da3a86"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Moon",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-05",
+      "content_hash": "439d0b6fc0cd20f51509a19a4d849ab3e891df93028542467268cfb246e4919d"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 206,
+      "output_tokens": 141,
+      "thinking_tokens": null,
+      "cost_usd": 7.7e-05,
+      "latency_ms": 1634
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3115,
+      "output_tokens": 221,
+      "thinking_tokens": null,
+      "cost_usd": 0.0004,
+      "latency_ms": 1595
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 370,
+      "output_tokens": 145,
+      "thinking_tokens": null,
+      "cost_usd": 9.5e-05,
+      "latency_ms": 1135
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 280,
+      "output_tokens": 60,
+      "thinking_tokens": null,
+      "cost_usd": 5.2e-05,
+      "latency_ms": 889
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

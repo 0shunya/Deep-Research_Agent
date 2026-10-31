@@ -1,0 +1,170 @@
+{
+  "output": {
+    "judgements": [
+      {
+        "pair": 0,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote directly states the tower was completed in March 1889."
+      },
+      {
+        "pair": 1,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote states completion in 1889, contradicting 1899."
+      },
+      {
+        "pair": 2,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote gives the height of the tower in Paris, but does not state it is the tallest."
+      },
+      {
+        "pair": 3,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote directly matches the claim about Carbon-14 half-life."
+      },
+      {
+        "pair": 4,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote states 5,730 years, contradicting 1,000 years."
+      },
+      {
+        "pair": 5,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote states the method was developed by Willard Libby."
+      },
+      {
+        "pair": 6,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote says it was developed at the University of Chicago, contradicting Harvard."
+      },
+      {
+        "pair": 7,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote mentions Libby developing the method, but says nothing about a Nobel Prize."
+      },
+      {
+        "pair": 8,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote states tungsten has the highest melting point of all known metals."
+      },
+      {
+        "pair": 9,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote gives the melting point as 3,422 C, contradicting 1,500 C."
+      },
+      {
+        "pair": 10,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote mentions melting point, but does not mention density."
+      },
+      {
+        "pair": 11,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote confirms Apple was founded on April 1, 1976."
+      },
+      {
+        "pair": 12,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote lists Jobs, Wozniak, and Wayne as founders, contradicting that Jobs founded it alone."
+      },
+      {
+        "pair": 13,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote gives founding details but does not mention the first product."
+      },
+      {
+        "pair": 14,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote states Webb was launched on 25 December 2021."
+      },
+      {
+        "pair": 15,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote states it launched on an Ariane 5 rocket, contradicting Falcon 9."
+      },
+      {
+        "pair": 16,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote mentions the launch date and rocket, but not the orbit."
+      },
+      {
+        "pair": 17,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote states Argentina won the final against France, implying Argentina won the World Cup."
+      },
+      {
+        "pair": 18,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote states Argentina won the final against France, contradicting a France win."
+      },
+      {
+        "pair": 19,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote mentions the final match outcome but not the city it was played in."
+      },
+      {
+        "pair": 20,
+        "stance": "supports",
+        "score": 1.0,
+        "rationale": "The quote states the treaty was signed on 7 February 1992."
+      },
+      {
+        "pair": 21,
+        "stance": "contradicts",
+        "score": 1.0,
+        "rationale": "The quote states it was signed in 1992, contradicting 1993."
+      },
+      {
+        "pair": 22,
+        "stance": "insufficient",
+        "score": 0.8,
+        "rationale": "The quote mentions the signing date, but says nothing about the creation of the euro."
+      },
+      {
+        "pair": 23,
+        "stance": "insufficient",
+        "score": 0.9,
+        "rationale": "The quote mentions system instructions about weather and marking, completely unrelated to the claim text."
+      }
+    ]
+  },
+  "model_calls": [
+    {
+      "trace_id": "46c5edcfb436432290f654a493291de6",
+      "run_id": null,
+      "task_id": null,
+      "feature": "verify",
+      "provider": "google",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": "verify-v1",
+      "attempt": 1,
+      "status": "success",
+      "latency_ms": 4759,
+      "cost_usd": 0.00072,
+      "error_category": null,
+      "error_message": null,
+      "input_tokens": 1680,
+      "output_tokens": 1381,
+      "thinking_tokens": null
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "run": {
+    "id": "c7d89387-33d5-4990-9d47-b18e4e936a82",
+    "question": "Where was the inventor of the World Wide Web born, and in what year did he first propose it?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 8206,
+    "cost_usd": 0.001109,
+    "search_calls": 2,
+    "research_wall_seconds": 12.7
+  },
+  "plan": {
+    "brief": "This research aims to identify the birthplace of the inventor of the World Wide Web, Sir Tim Berners-Lee, and the year he first proposed the invention.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Where was Tim Berners-Lee born?",
+        "why": "To identify the birthplace of the inventor of the World Wide Web.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In what year did Tim Berners-Lee first propose the World Wide Web?",
+        "why": "To find the specific year the proposal was made.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Where was Tim Berners-Lee born?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In what year did Tim Berners-Lee first propose the World Wide Web?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Birthplace and Proposal Year of the Inventor of the World Wide Web\n\n## Overview\n\nOne source reports that the inventor of the World Wide Web, Tim Berners-Lee, was born in London and first proposed the system in 1989. [1] Specifically, one source reports that he submitted his proposal for the World Wide Web to CERN in March 1989. [2]\n\n## Sources\n\n1. [Tim Berners-Lee - Wikipedia](https://en.wikipedia.org/wiki/Tim_Berners-Lee) — wikipedia.org, published 2001-05-15, fetched 2026-10-31\n2. [World Wide Web - Wikipedia](https://en.wikipedia.org/wiki/World_Wide_Web) — wikipedia.org, published 2001-11-01, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that the inventor of the World Wide Web, Tim Berners-Lee, was born in London and first proposed the system in 1989.",
+            "claim_ids": [
+              "2e10888a-c75f-447e-8ff6-7bf65cc70d8b",
+              "52c54909-12b8-4cb3-819b-930f7acc95c7"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "Specifically, one source reports that he submitted his proposal for the World Wide Web to CERN in March 1989.",
+            "claim_ids": [
+              "edfe6818-c32f-4c66-a96b-bba8b23ce57a"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Birthplace and Proposal Year of the Inventor of the World Wide Web",
+      "writer": "model",
+      "cited_claims": 3,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 0,
+      "sentences_total": 2,
+      "cited_unverified": 3,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "2e10888a-c75f-447e-8ff6-7bf65cc70d8b",
+      "text": "Tim Berners-Lee was born in London on 8 June 1955.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+          "quote": "Berners-Lee was born in London on 8 June 1955, the son of the mathematicians and computer scientists Mary Lee Berners-Lee ( née Woods; 1924–2017) and Conway Berners-Lee (1921–2019).",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "52c54909-12b8-4cb3-819b-930f7acc95c7",
+      "text": "Tim Berners-Lee proposed an information management system, which became the World Wide Web, on 12 March 1989.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+          "quote": "Berners-Lee proposed an information management system on 12 March 1989 and implemented the first successful communication between a Hypertext Transfer Protocol (HTTP) client and server via the Internet in mid-November.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "edfe6818-c32f-4c66-a96b-bba8b23ce57a",
+      "text": "Tim Berners-Lee submitted a proposal for the World Wide Web to CERN in March 1989.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/World_Wide_Web",
+          "quote": "Berners-Lee submitted a proposal to CERN in March 1989, without giving the system a name.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+      "domain": "wikipedia.org",
+      "published_at": "2001-05-15",
+      "content_hash": "5c86f0394767755482655b49d29ecdafea307bb5493ad22430ccff9b266224e6"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Conway_Berners-Lee",
+      "domain": "wikipedia.org",
+      "published_at": "2005-10-15",
+      "content_hash": "0c9e9ad0e2d4e0d02605fb8406f1a776fe46a4df41fbb43dfa43578c04bb54f3"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Wide_Web",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-01",
+      "content_hash": "8ad78e17b302dd0464b67b20a32466aff14576015115e9c1ce88b3e7ee710c47"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 213,
+      "output_tokens": 153,
+      "thinking_tokens": null,
+      "cost_usd": 8.2e-05,
+      "latency_ms": 1929
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3152,
+      "output_tokens": 174,
+      "thinking_tokens": null,
+      "cost_usd": 0.000385,
+      "latency_ms": 2061
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3007,
+      "output_tokens": 265,
+      "thinking_tokens": null,
+      "cost_usd": 0.000407,
+      "latency_ms": 2262
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 497,
+      "output_tokens": 205,
+      "thinking_tokens": null,
+      "cost_usd": 0.000132,
+      "latency_ms": 1329
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "error",
+      "error": "bad_request",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 492
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "error",
+      "error": "bad_request",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 1205
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 376,
+      "output_tokens": 164,
+      "thinking_tokens": null,
+      "cost_usd": 0.000103,
+      "latency_ms": 2231
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  },
+  "notes": "The first write call returned HTTP 400 (provider rejected the schema's size limits) and the run fell back to the no-model report. After the gateway fix the writer was re-run once on the same stored claims; all calls, including the failed ones, are in model_calls and in the cost."
+}

@@ -1,0 +1,182 @@
+{
+  "run": {
+    "id": "24865b65-ec35-473b-8179-9eff8556f935",
+    "question": "Who discovered penicillin, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 4431,
+    "cost_usd": 0.000633,
+    "search_calls": 1,
+    "research_wall_seconds": 6.7
+  },
+  "plan": {
+    "brief": "The research aims to accurately identify the discoverer of penicillin and the specific year in which the discovery was made.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who discovered penicillin and in what year?",
+        "why": "This directly answers the core user question.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who discovered penicillin and in what year?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Discovery of Penicillin\n\n## Overview\n\nOne source reports that penicillin was discovered in 1928 by the Scottish physician Alexander Fleming. [1] It is also reported that Fleming was the first to experimentally demonstrate that a Penicillium mould secretes this antibacterial substance while working at St Mary's Hospital in London in 1928. [2]\n\n## Sources\n\n1. [Penicillin - Wikipedia](https://en.wikipedia.org/wiki/Penicillin) — wikipedia.org, published 2001-09-28, fetched 2026-10-31\n2. [Discovery of penicillin - Wikipedia](https://en.wikipedia.org/wiki/Discovery_of_penicillin) — wikipedia.org, published 2009-09-13, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that penicillin was discovered in 1928 by the Scottish physician Alexander Fleming.",
+            "claim_ids": [
+              "3b95c29a-cbf6-4605-9b7b-b58f10dc40b6"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "It is also reported that Fleming was the first to experimentally demonstrate that a Penicillium mould secretes this antibacterial substance while working at St Mary's Hospital in London in 1928.",
+            "claim_ids": [
+              "edd0303e-b8bc-466d-8f6f-3822a6c1ea53"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Discovery of Penicillin",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 0,
+      "sentences_total": 2,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "3b95c29a-cbf6-4605-9b7b-b58f10dc40b6",
+      "text": "Penicillin was discovered in 1928 by the Scottish physician Alexander Fleming.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Penicillin",
+          "quote": "Penicillin was discovered in 1928 by the Scottish physician Alexander Fleming as a crude extract of P. rubens .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "edd0303e-b8bc-466d-8f6f-3822a6c1ea53",
+      "text": "Alexander Fleming was the first to experimentally demonstrate that a Penicillium mould secretes an antibacterial substance, which he named penicillin, while working at St Mary's Hospital in London in 1928.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Discovery_of_penicillin",
+          "quote": "While working at St Mary's Hospital in London in 1928, Scottish physician Alexander Fleming was the first to experimentally demonstrate that a Penicillium mould secretes an antibacterial substance, which he named \"penicillin\".",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Discovery_of_penicillin",
+      "domain": "wikipedia.org",
+      "published_at": "2009-09-13",
+      "content_hash": "ed0505cd8bc80828999edc362ef03bf9cceddea147bda7c4ef51250bd8d9ae9f"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Penicillin",
+      "domain": "wikipedia.org",
+      "published_at": "2001-09-28",
+      "content_hash": "4e621ed99cca9df5852f31becf4c13f3857e489076703ef604b71eb53197b938"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 201,
+      "output_tokens": 89,
+      "thinking_tokens": null,
+      "cost_usd": 5.6e-05,
+      "latency_ms": 1433
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2888,
+      "output_tokens": 268,
+      "thinking_tokens": null,
+      "cost_usd": 0.000396,
+      "latency_ms": 1836
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 385,
+      "output_tokens": 111,
+      "thinking_tokens": null,
+      "cost_usd": 8.3e-05,
+      "latency_ms": 1015
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 326,
+      "output_tokens": 163,
+      "thinking_tokens": null,
+      "cost_usd": 9.8e-05,
+      "latency_ms": 1031
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

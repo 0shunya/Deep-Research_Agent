@@ -1,0 +1,157 @@
+{
+  "run": {
+    "id": "f251483b-5146-499f-b733-cfb9c1b9f000",
+    "question": "In which town's garage was Apple founded, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 4339,
+    "cost_usd": 0.000546,
+    "search_calls": 1,
+    "research_wall_seconds": 9.4
+  },
+  "plan": {
+    "brief": "This research aims to identify the specific town and year in which Apple was founded, focusing on the historical details of the garage where the company started.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "In which town was Apple founded and in what year?",
+        "why": "Directly answers the user's question regarding the founding location and year.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "In which town was Apple founded and in what year?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Apple Foundation Details\n\n## Introduction\n\nOne source reports that Apple Computer Company was founded in 1976 on April 1, 1976. [1]\n\n## Sources\n\n1. [Apple Inc. - Wikipedia](https://en.wikipedia.org/wiki/Apple_Inc.) — wikipedia.org, published 2001-11-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Introduction",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Apple Computer Company was founded in 1976 on April 1, 1976.",
+            "claim_ids": [
+              "a1d0d5b6-abce-4bbf-b174-221aef8cccba"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Apple Foundation Details",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "a1d0d5b6-abce-4bbf-b174-221aef8cccba",
+      "text": "Apple Computer Company was founded in 1976 on April 1, 1976.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Apple_Inc.",
+          "quote": "Apple Computer Company was founded as a partnership on April 1, 1976, by Steve Jobs , Steve Wozniak , and Ronald Wayne .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Steve_Jobs",
+      "domain": "wikipedia.org",
+      "published_at": "2001-08-16",
+      "content_hash": "e40a5a45350a32ee1b9b39f5637a60f3e4901317512665406aa41d89513ea928"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Apple_Inc.",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-03",
+      "content_hash": "62a2a7ad45f26ac6e62ae502905ecf647f2cfd0397235a46db6f6d51b5174f4f"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 207,
+      "output_tokens": 106,
+      "thinking_tokens": null,
+      "cost_usd": 6.3e-05,
+      "latency_ms": 1055
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3196,
+      "output_tokens": 158,
+      "thinking_tokens": null,
+      "cost_usd": 0.000383,
+      "latency_ms": 1279
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 273,
+      "output_tokens": 50,
+      "thinking_tokens": null,
+      "cost_usd": 4.7e-05,
+      "latency_ms": 1981
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 288,
+      "output_tokens": 61,
+      "thinking_tokens": null,
+      "cost_usd": 5.3e-05,
+      "latency_ms": 824
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

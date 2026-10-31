@@ -1,0 +1,157 @@
+{
+  "run": {
+    "id": "3874fb1d-9d93-4b81-9311-d9eff3138743",
+    "question": "Which city hosted the 2024 Summer Olympics, and in which country is it?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 4511,
+    "cost_usd": 0.000574,
+    "search_calls": 1,
+    "research_wall_seconds": 14.9
+  },
+  "plan": {
+    "brief": "Identify the host city and country for the 2024 Summer Olympics.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which city hosted the 2024 Summer Olympics and in what country is it located?",
+        "why": "Directly answers the core user question.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which city hosted the 2024 Summer Olympics and in what country is it located?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# 2024 Summer Olympics Host\n\n## Overview\n\nOne source reports that Paris was the host city for the 2024 Summer Olympics, which were held in France. [1]\n\n## Sources\n\n1. [2024 Summer Olympics - Wikipedia](https://en.wikipedia.org/wiki/2024_Summer_Olympics) — wikipedia.org, published 2006-03-05, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Paris was the host city for the 2024 Summer Olympics, which were held in France.",
+            "claim_ids": [
+              "9222a0a0-b671-4948-bef4-39a12ae6adef"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "2024 Summer Olympics Host",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "9222a0a0-b671-4948-bef4-39a12ae6adef",
+      "text": "Paris was the host city for the 2024 Summer Olympics, which were held in France.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2024_Summer_Olympics",
+          "quote": "Paris was the host city, with events (mainly football ) held in 16 additional cities in metropolitan France , including the sailing centre in the second-largest city of France, Marseille , on the Mediterranean Sea , as well as one subsite for surfing in Tahiti , French Polynesia.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2028_Summer_Olympics",
+      "domain": "wikipedia.org",
+      "published_at": "2006-03-27",
+      "content_hash": "7d412c4bd02d7641e773e393a0408bbb48ffdb28d2c5a5bf60592eea6757aba4"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Summer_Olympics",
+      "domain": "wikipedia.org",
+      "published_at": "2006-03-05",
+      "content_hash": "37a5b7ba030a4fc3c0cb58e55898a8fe6fe2dbb8ed393d49c2328ace2a82a59d"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 211,
+      "output_tokens": 127,
+      "thinking_tokens": null,
+      "cost_usd": 7.2e-05,
+      "latency_ms": 2067
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3315,
+      "output_tokens": 178,
+      "thinking_tokens": null,
+      "cost_usd": 0.000403,
+      "latency_ms": 1508
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 297,
+      "output_tokens": 49,
+      "thinking_tokens": null,
+      "cost_usd": 4.9e-05,
+      "latency_ms": 1522
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 278,
+      "output_tokens": 56,
+      "thinking_tokens": null,
+      "cost_usd": 5e-05,
+      "latency_ms": 1228
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

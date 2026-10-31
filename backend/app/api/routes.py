@@ -40,6 +40,8 @@ router = APIRouter(prefix="/api")
 PIPELINE_VERSION = "dra-1"
 SSE_POLL_SECONDS = 0.5
 SSE_HEARTBEAT_SECONDS = 15
+SIMULATED_PROVIDER = "scripted"  # app/research/simulated.py
+SIMULATED_SEARCH = "static"
 
 
 def _get_run(db: Session, run_id: uuid.UUID) -> Run:
@@ -308,10 +310,13 @@ def _pct(values: list[float], q: float) -> float | None:
 
 @router.get("/metrics")
 def metrics(db: Session = Depends(get_db)):
-    """The cost dashboard: per-feature model usage and per-run cost and wall time, from model_calls."""
+    """The cost dashboard: per-feature model usage and per-run cost and wall time, from model_calls.
+
+    Offline demo data (scripted model, static web) is excluded so it never mixes with measured numbers."""
     calls = db.execute(select(ModelCall.feature, ModelCall.model, ModelCall.status, ModelCall.error_category,
                               ModelCall.input_tokens, ModelCall.output_tokens, ModelCall.thinking_tokens,
-                              ModelCall.cost_usd, ModelCall.latency_ms)).all()
+                              ModelCall.cost_usd, ModelCall.latency_ms)
+                       .where(ModelCall.provider != SIMULATED_PROVIDER)).all()
     features: dict[str, dict] = defaultdict(lambda: {"calls": 0, "errors": 0, "input_tokens": 0, "output_tokens": 0,
                                                      "cost_usd": 0.0, "latencies": []})
     errors: Counter = Counter()
@@ -331,14 +336,16 @@ def metrics(db: Session = Depends(get_db)):
     by_feature = {k: {**{x: y for x, y in v.items() if x != "latencies"}, "cost_usd": round(v["cost_usd"], 6),
                       "p50_latency_ms": _pct(v["latencies"], 50), "p95_latency_ms": _pct(v["latencies"], 95)}
                   for k, v in features.items()}
-    runs = list(db.scalars(select(Run).where(Run.status == RunStatus.completed.value)))
+    real = Run.search_provider != SIMULATED_SEARCH
+    runs = list(db.scalars(select(Run).where(Run.status == RunStatus.completed.value, real)))
     walls = [w for r in runs if (w := _wall_seconds(r)) is not None]
     costs = [float(r.cost_usd) for r in runs]
-    reports = [r.stats for r in db.scalars(select(Report))]
+    reports = [r.stats for r in db.scalars(select(Report).join(Run, Run.id == Report.run_id).where(real))]
     cited = sum(s.get("cited_claims", 0) for s in reports)
     cited_supported = sum(s.get("cited_supported", 0) for s in reports)
-    tools = dict(db.execute(select(ToolCall.tool, func.count()).group_by(ToolCall.tool)).all())
-    status_counts = dict(db.execute(select(Run.status, func.count()).group_by(Run.status)).all())
+    tools = dict(db.execute(select(ToolCall.tool, func.count()).where(ToolCall.provider != SIMULATED_SEARCH)
+                            .group_by(ToolCall.tool)).all())
+    status_counts = dict(db.execute(select(Run.status, func.count()).where(real).group_by(Run.status)).all())
     settings = get_settings()
     return {
         "model_calls": len(calls), "by_feature": by_feature, "errors": dict(errors), "by_model": dict(models),

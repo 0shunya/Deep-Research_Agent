@@ -1,0 +1,213 @@
+{
+  "run": {
+    "id": "a64dc26d-f5ee-4cfe-90fd-025a65549008",
+    "question": "Who was the first woman to win a Nobel Prize, and in which two fields did she win Nobel Prizes?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 7609,
+    "cost_usd": 0.000953,
+    "search_calls": 2,
+    "research_wall_seconds": 14.5
+  },
+  "plan": {
+    "brief": "Identify the first woman to win a Nobel Prize and the two distinct scientific fields in which she achieved this honor.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who was the first woman to win a Nobel Prize?",
+        "why": "Directly answers the first part of the user's question.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What are the two fields in which Marie Curie won her Nobel Prizes?",
+        "why": "Identifies the specific disciplines for the second part of the user's question.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who was the first woman to win a Nobel Prize?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What are the two fields in which Marie Curie won her Nobel Prizes?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# First Woman Nobel Laureate\n\n## Overview\n\nOne source reports that Marie Curie was the first woman to win a Nobel Prize, achieving this honor in the fields of physics and chemistry. [1]\n\n## Sources\n\n1. [Marie Curie - Wikipedia](https://en.wikipedia.org/wiki/Marie_Curie) — wikipedia.org, published 2001-10-29, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Marie Curie was the first woman to win a Nobel Prize, achieving this honor in the fields of physics and chemistry.",
+            "claim_ids": [
+              "f8054d14-cafe-4ae6-acb8-fecfb46afdaa",
+              "86b5f5fc-3fc5-4c3b-9a12-5883816f1b5c"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "First Woman Nobel Laureate",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "f8054d14-cafe-4ae6-acb8-fecfb46afdaa",
+      "text": "Marie Curie won the 1903 Nobel Prize in Physics.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+          "quote": "She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie , \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel \".",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "86b5f5fc-3fc5-4c3b-9a12-5883816f1b5c",
+      "text": "Marie Curie won the 1911 Nobel Prize in Chemistry.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+          "quote": "She won the 1911 Nobel Prize in Chemistry \"[for] the discovery of the elements radium and polonium , by the isolation of radium and the study of the nature and compounds of this remarkable element\".",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Literature",
+      "domain": "wikipedia.org",
+      "published_at": "2023-10-19",
+      "content_hash": "c7f59408e23eff7d4e8360e02c4de4b3b716f8e92c74869202654b8ad9d7f88e"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_Nobel_Peace_Prize",
+      "domain": "wikipedia.org",
+      "published_at": "2025-07-30",
+      "content_hash": "e0581be05a9020239242f2b603eeaef81f7710674ed6d325a3cb7e41f289ddc8"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ir%C3%A8ne_Joliot-Curie",
+      "domain": "wikipedia.org",
+      "published_at": "2002-07-14",
+      "content_hash": "c84f5822e135c5a21b2e02f38389f781c0fdccd1efdb10c77128f96913f9b2d9"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+      "domain": "wikipedia.org",
+      "published_at": "2001-10-29",
+      "content_hash": "3e2dceb4dc6ee8f6aea49e560a2f99bfd94b979516dba3ee89561b7e2f837204"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 214,
+      "output_tokens": 149,
+      "thinking_tokens": null,
+      "cost_usd": 8.1e-05,
+      "latency_ms": 1395
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2997,
+      "output_tokens": 52,
+      "thinking_tokens": null,
+      "cost_usd": 0.00032,
+      "latency_ms": 2208
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3081,
+      "output_tokens": 248,
+      "thinking_tokens": null,
+      "cost_usd": 0.000407,
+      "latency_ms": 2162
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 363,
+      "output_tokens": 128,
+      "thinking_tokens": null,
+      "cost_usd": 8.7e-05,
+      "latency_ms": 1089
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 309,
+      "output_tokens": 68,
+      "thinking_tokens": null,
+      "cost_usd": 5.8e-05,
+      "latency_ms": 2717
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

@@ -65,8 +65,9 @@ def test_full_flow_plan_approve_report_and_claim_audit(client):
 
     metrics = client.get("/api/metrics").json()
     assert metrics["completed_runs"] == 1
-    assert set(metrics["by_feature"]) == {"plan", "research", "verify", "write"}
     assert 0 <= metrics["cited_supported_share"] <= 1
+    # Scripted (offline) model calls never mix into the measured cost dashboard.
+    assert metrics["model_calls"] == 0 and metrics["by_feature"] == {}
 
 
 def test_idempotency_key_returns_same_run(client):

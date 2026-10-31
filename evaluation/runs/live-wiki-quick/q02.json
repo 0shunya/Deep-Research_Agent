@@ -1,0 +1,188 @@
+{
+  "run": {
+    "id": "3451c007-58f2-4ef4-9866-e07c911ad47b",
+    "question": "Which is taller, the Burj Khalifa or the Shanghai Tower, and what are their heights?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 7978,
+    "cost_usd": 0.000955,
+    "search_calls": 2,
+    "research_wall_seconds": 7.5
+  },
+  "plan": {
+    "brief": "This research aims to determine and compare the exact heights of the Burj Khalifa and the Shanghai Tower to definitively answer which structure is taller.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What is the official height of the Burj Khalifa in meters and feet?",
+        "why": "To get the exact height measurement for the Burj Khalifa.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What is the official height of the Shanghai Tower in meters and feet?",
+        "why": "To get the exact height measurement for the Shanghai Tower.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What is the official height of the Burj Khalifa in meters and feet?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What is the official height of the Shanghai Tower in meters and feet?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Height Comparison of the Burj Khalifa and the Shanghai Tower\n\n## Height Comparison\n\nOne source reports that the Burj Khalifa stands at a height of 828 meters. [1]\n\n## Sources\n\n1. [History of the world's tallest buildings - Wikipedia](https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_buildings) — wikipedia.org, published 2009-07-11, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Height Comparison",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that the Burj Khalifa stands at a height of 828 meters.",
+            "claim_ids": [
+              "9e5dd100-21dc-4797-8a47-c69c0e5d4b37"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Height Comparison of the Burj Khalifa and the Shanghai Tower",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "9e5dd100-21dc-4797-8a47-c69c0e5d4b37",
+      "text": "The Burj Khalifa is 828 meters tall.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_buildings",
+          "quote": "Taipei 101 was the next to hold the record; the building's status as the world's tallest building lasted from 2004 to 2009, when it was transferred to the Burj Khalifa , the current record-holder of 828 meters tall, upon its completion in the United Arab Emirates.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jin_Mao_Tower",
+      "domain": "wikipedia.org",
+      "published_at": "2003-12-30",
+      "content_hash": "2e614caacb683833b58042bf50d718ab35d6e794d437ac8cd12bbbdca5a36370"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jeddah_Tower",
+      "domain": "wikipedia.org",
+      "published_at": "2008-04-03",
+      "content_hash": "dc5e250a815ad83032b62a918ee1937430e517b4e1ca94ec33cacdae0aa5e2af"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_buildings",
+      "domain": "wikipedia.org",
+      "published_at": "2009-07-11",
+      "content_hash": "45d64c434ae28371cc5f579e11f8e7d65fc4e0e3f09763f51c3266c61776f6ff"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 210,
+      "output_tokens": 149,
+      "thinking_tokens": null,
+      "cost_usd": 8.1e-05,
+      "latency_ms": 1312
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3429,
+      "output_tokens": 66,
+      "thinking_tokens": null,
+      "cost_usd": 0.000369,
+      "latency_ms": 1304
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3238,
+      "output_tokens": 183,
+      "thinking_tokens": null,
+      "cost_usd": 0.000397,
+      "latency_ms": 1682
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 300,
+      "output_tokens": 73,
+      "thinking_tokens": null,
+      "cost_usd": 5.9e-05,
+      "latency_ms": 920
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 277,
+      "output_tokens": 53,
+      "thinking_tokens": null,
+      "cost_usd": 4.9e-05,
+      "latency_ms": 938
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

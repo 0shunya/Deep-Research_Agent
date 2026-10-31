@@ -1,0 +1,176 @@
+{
+  "run": {
+    "id": "8be8b764-82b7-4e24-ab4e-cc61bf48991e",
+    "question": "Which mission first landed humans on the Moon, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 1,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 4635,
+    "cost_usd": 0.000653,
+    "search_calls": 1,
+    "research_wall_seconds": 14.2
+  },
+  "plan": {
+    "brief": "The user is asking for the specific historical space mission and the year in which humans first landed on the Moon.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which space mission first landed humans on the Moon and in what year did it happen?",
+        "why": "Directly answers the user's core question regarding the first human Moon landing.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which space mission first landed humans on the Moon and in what year did it happen?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# First Moon Landing\n\n## Mission and Year\n\nOne source reports that humans first landed on the surface of the Moon with the Apollo 11 mission in July 1969. [1][2]\n\n## Sources\n\n1. [Moon - Wikipedia](https://en.wikipedia.org/wiki/Moon) — wikipedia.org, published 2001-11-05, fetched 2026-10-31\n2. [Space Race - Wikipedia](https://en.wikipedia.org/wiki/Space_Race) — wikipedia.org, published 2002-09-12, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Mission and Year",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that humans first landed on the surface of the Moon with the Apollo 11 mission in July 1969.",
+            "claim_ids": [
+              "2e43c912-0a76-4799-bf54-7a68c501a8c2",
+              "af86c542-46dd-4326-b7c0-b14fe746ef46"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "First Moon Landing",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "2e43c912-0a76-4799-bf54-7a68c501a8c2",
+      "text": "Humans first landed on the surface of the Moon with the Apollo 11 mission on July 20, 1969.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Moon",
+          "quote": "Humans first arrived in orbit with Apollo 8 (sent by the United States ) on December 24, 1968, and then on the surface with Apollo 11 on July 20, 1969, making the Moon the only celestial body beyond Earth that humans have visited.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "af86c542-46dd-4326-b7c0-b14fe746ef46",
+      "text": "The United States achieved the Moon landing goal in July 1969 with the flight of Apollo 11.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Space_Race",
+          "quote": "Kennedy's Moon landing goal was achieved in July 1969, with the flight of Apollo 11 .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Moon",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-05",
+      "content_hash": "439d0b6fc0cd20f51509a19a4d849ab3e891df93028542467268cfb246e4919d"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Space_Race",
+      "domain": "wikipedia.org",
+      "published_at": "2002-09-12",
+      "content_hash": "0da989be6655b65268db38a138369f65fc4932d1b5f5e9cb305f5506b6724af9"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 206,
+      "output_tokens": 106,
+      "thinking_tokens": null,
+      "cost_usd": 6.3e-05,
+      "latency_ms": 2766
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3075,
+      "output_tokens": 297,
+      "thinking_tokens": null,
+      "cost_usd": 0.000426,
+      "latency_ms": 3302
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 397,
+      "output_tokens": 160,
+      "thinking_tokens": null,
+      "cost_usd": 0.000104,
+      "latency_ms": 2507
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 325,
+      "output_tokens": 69,
+      "thinking_tokens": null,
+      "cost_usd": 6e-05,
+      "latency_ms": 2040
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

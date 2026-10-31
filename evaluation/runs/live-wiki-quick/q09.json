@@ -1,0 +1,219 @@
+{
+  "run": {
+    "id": "ac72395b-0aff-4ed9-a514-732f1295eade",
+    "question": "Who won the 2022 FIFA World Cup, and who was the tournament's top scorer?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 8965,
+    "cost_usd": 0.001114,
+    "search_calls": 2,
+    "research_wall_seconds": 32.1
+  },
+  "plan": {
+    "brief": "Identify the winner of the 2022 FIFA World Cup and the player who achieved the status of top scorer in the tournament.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who won the 2022 FIFA World Cup?",
+        "why": "Directly answers the first part of the user's question.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "Who was the top scorer of the 2022 FIFA World Cup?",
+        "why": "Directly answers the second part of the user's question.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who won the 2022 FIFA World Cup?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "Who was the top scorer of the 2022 FIFA World Cup?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# 2022 FIFA World Cup Results\n\n## Tournament Results\n\nOne source reports that Argentina won the 2022 FIFA World Cup by defeating France in the final. [1] One source reports that Kylian Mbappé was the top scorer of the tournament.\n\n## Sources\n\n1. [2022 FIFA World Cup - Wikipedia](https://en.wikipedia.org/wiki/2022_FIFA_World_Cup) — wikipedia.org, published 2008-06-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Tournament Results",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Argentina won the 2022 FIFA World Cup by defeating France in the final.",
+            "claim_ids": [
+              "ac203f98-b851-47f1-84fa-ba3c52046055"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that Kylian Mbappé was the top scorer of the tournament.",
+            "claim_ids": [
+              "3508879d-4ed4-4dc1-87d4-0c85cf689cd2"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "2022 FIFA World Cup Results",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 0,
+      "sentences_total": 2,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "ac203f98-b851-47f1-84fa-ba3c52046055",
+      "text": "Argentina won the 2022 FIFA World Cup by defeating France in the final.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+          "quote": "Argentina were crowned the champions after winning the final against the title holder France 4–2 on penalties following a 3–3 draw after extra time.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "3508879d-4ed4-4dc1-87d4-0c85cf689cd2",
+      "text": "Kylian Mbappé was the top scorer of the 2022 FIFA World Cup.",
+      "verdict": "unverified",
+      "support_domains": 0,
+      "reason": "No verbatim quote supports this claim.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_top_goalscorers",
+          "quote": "Across the 23 tournaments of the World Cup, 31 footballers have been credited as the tournament top scorer; Mbappé is the only player to achieve this feat twice, in 2022 and 2026.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.9
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_knockout_stage",
+      "domain": "wikipedia.org",
+      "published_at": "2025-11-23",
+      "content_hash": "6b51ac40779ccbc691ae3e1a5fa93f64540a5b10d70b700985011a67b299b933"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_Group_D",
+      "domain": "wikipedia.org",
+      "published_at": "2025-11-22",
+      "content_hash": "da7d28fca6c70ecda7156ade5ab512b96c1abfb99e1002f0eddc2d27dc39cd6e"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_top_goalscorers",
+      "domain": "wikipedia.org",
+      "published_at": "2014-07-09",
+      "content_hash": "646763e139a2aaa094d0cc250ea1a4b3133ae9b4c8dcd85782ee30d60172e57d"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+      "domain": "wikipedia.org",
+      "published_at": "2008-06-03",
+      "content_hash": "c82864f8efb0f4aaa70e386a10435a4b1144e80650c11474b9ef4a72ad7ce339"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 214,
+      "output_tokens": 200,
+      "thinking_tokens": null,
+      "cost_usd": 0.000101,
+      "latency_ms": 3172
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3544,
+      "output_tokens": 136,
+      "thinking_tokens": null,
+      "cost_usd": 0.000409,
+      "latency_ms": 1704
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3783,
+      "output_tokens": 164,
+      "thinking_tokens": null,
+      "cost_usd": 0.000444,
+      "latency_ms": 1939
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 375,
+      "output_tokens": 143,
+      "thinking_tokens": null,
+      "cost_usd": 9.5e-05,
+      "latency_ms": 2339
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 324,
+      "output_tokens": 82,
+      "thinking_tokens": null,
+      "cost_usd": 6.5e-05,
+      "latency_ms": 1261
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

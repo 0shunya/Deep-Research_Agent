@@ -1,0 +1,219 @@
+{
+  "run": {
+    "id": "68377b00-34a6-448c-9aff-d4e4371203c1",
+    "question": "In what year did the Chernobyl disaster happen, and in which present-day country is the plant?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "wikipedia",
+    "budget_tokens": 120000,
+    "spent_tokens": 7376,
+    "cost_usd": 0.000936,
+    "search_calls": 2,
+    "research_wall_seconds": 8.1
+  },
+  "plan": {
+    "brief": "This research brief aims to identify the exact year of the Chernobyl disaster and determine the present-day country where the Chernobyl nuclear power plant is located.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "In what year did the Chernobyl disaster happen?",
+        "why": "To find the precise year the accident occurred.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In which present-day country is the Chernobyl nuclear power plant located?",
+        "why": "To identify the modern nation that currently encompasses the site of the plant.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "In what year did the Chernobyl disaster happen?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In which present-day country is the Chernobyl nuclear power plant located?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Chernobyl Disaster Overview\n\n## Overview\n\nOne source reports that the Chernobyl disaster occurred on April 26, 1986. [1] Additionally, one source reports that the Chernobyl Nuclear Power Plant is located in Ukraine.\n\n## Sources\n\n1. [Chernobyl disaster - Wikipedia](https://en.wikipedia.org/wiki/Chernobyl_disaster) — wikipedia.org, published 2002-09-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that the Chernobyl disaster occurred on April 26, 1986.",
+            "claim_ids": [
+              "5d969aad-f06a-403b-91c2-6755f0354610"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "Additionally, one source reports that the Chernobyl Nuclear Power Plant is located in Ukraine.",
+            "claim_ids": [
+              "9a598432-7967-4660-a625-da3c0a4b30d1"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Chernobyl Disaster Overview",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 0,
+      "sentences_total": 2,
+      "cited_unverified": 2,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "5d969aad-f06a-403b-91c2-6755f0354610",
+      "text": "The Chernobyl disaster occurred on April 26, 1986.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Chernobyl_disaster",
+          "quote": "On 26 April 1986, reactor 4 of the Chernobyl Nuclear Power Plant , located near Pripyat in the Ukrainian SSR of the Soviet Union , exploded.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "9a598432-7967-4660-a625-da3c0a4b30d1",
+      "text": "The Chernobyl Nuclear Power Plant is located in Ukraine.",
+      "verdict": "unverified",
+      "support_domains": 0,
+      "reason": "No verbatim quote supports this claim.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Chernobyl_exclusion_zone",
+          "quote": "Its borders have since been altered to cover a larger area of Ukraine including the northernmost part of Vyshhorod Raion in Kyiv Oblast , and adjoins the Polesie State Radioecological Reserve in neighbouring Belarus .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.5
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Effects_of_the_Chernobyl_disaster",
+      "domain": "wikipedia.org",
+      "published_at": "2006-02-22",
+      "content_hash": "ec19cdb64d41f628dfd84f87a196186e83a914689e0ec8b13a29188f92f14f31"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chernobyl_disaster",
+      "domain": "wikipedia.org",
+      "published_at": "2002-09-03",
+      "content_hash": "dd635c3f7ce0bac35052c5d7b2a9b57ba4fc572e8188cfbc1bc125c03222b0b5"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Capture_of_Chernobyl",
+      "domain": "wikipedia.org",
+      "published_at": "2022-02-24",
+      "content_hash": "352911befbf4c6517d3ad753928e12fb58bc3d87f160c292503f92777df11466"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chernobyl_exclusion_zone",
+      "domain": "wikipedia.org",
+      "published_at": "2004-09-27",
+      "content_hash": "678f69f10e88542142eafef1f62ca8623df9141ce5936380182ed963302a4d46"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 212,
+      "output_tokens": 195,
+      "thinking_tokens": null,
+      "cost_usd": 9.9e-05,
+      "latency_ms": 1498
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2940,
+      "output_tokens": 153,
+      "thinking_tokens": null,
+      "cost_usd": 0.000355,
+      "latency_ms": 1396
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2884,
+      "output_tokens": 135,
+      "thinking_tokens": null,
+      "cost_usd": 0.000342,
+      "latency_ms": 1606
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 362,
+      "output_tokens": 98,
+      "thinking_tokens": null,
+      "cost_usd": 7.5e-05,
+      "latency_ms": 1085
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 312,
+      "output_tokens": 85,
+      "thinking_tokens": null,
+      "cost_usd": 6.5e-05,
+      "latency_ms": 791
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}
