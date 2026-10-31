@@ -126,7 +126,7 @@ prices those tokens would cost on a paid key. The free tier actually billed $0. 
 
 ### How do you share a free-tier quota between three demos?
 The key allows about 20 requests a day per model, so each demo gets its own models. This one uses
-`gemini-3.1-flash-lite-preview` with `gemini-3-flash-preview` as fallback; I probed the key's models with a real
+`gemini-3.1-flash-lite-preview` with `gemini-3.5-flash` as fallback; I probed the key's models with a real
 structured call before choosing. Caps (per model, per day, per report) are enforced from this app's own
 `model_calls` table. One quick report averages 5 calls, so the demo can serve about 5 reports a day. When the
 allowance is gone, the API says so up front instead of failing halfway through a run.

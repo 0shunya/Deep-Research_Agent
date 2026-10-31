@@ -24,8 +24,8 @@ Each demo uses its own models so they never compete:
 | App | Models |
 |---|---|
 | AI Expense Scanner | `gemini-3.5-flash-lite` |
-| AI Phone Receptionist | its own model, chosen by that project |
-| **Deep Research Agent** | `gemini-3.1-flash-lite-preview`, falling back to `gemini-3-flash-preview` |
+| AI Phone Receptionist | `gemini-3-flash-preview` |
+| **Deep Research Agent** | `gemini-3.1-flash-lite-preview`, falling back to `gemini-3.5-flash` |
 
 Both of this app's models were tested with the key on 2026-10-31: two full reports ran on
 `gemini-3.1-flash-lite-preview` (`evaluation/runs/live-tavily-prod-models/`). It is slower than flash-lite,
@@ -109,7 +109,7 @@ curl -s https://deep-research-agent-api.onrender.com/api/health
 ```
 
 Expect `"status":"ok"`, `"database":"ok"`, `"model_configured":true`, `"search_provider":"tavily"`,
-`"models":["gemini-3.1-flash-lite-preview","gemini-3-flash-preview"]`, `"access_code_required":true`, and a
+`"models":["gemini-3.1-flash-lite-preview","gemini-3.5-flash"]`, `"access_code_required":true`, and a
 `model_calls_left_today` number.
 
 ```bash
