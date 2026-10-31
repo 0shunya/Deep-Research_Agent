@@ -189,11 +189,19 @@ async def _research_phase(env: ResearchEnv, run_id: uuid.UUID) -> str | None:
                     log.error("worker crashed", exc_info=job.exception())
     finally:
         if running:
-            final = TaskStatus.cancelled if stop_reason == "cancelled" or stop_reason is None else TaskStatus.skipped
-            for job, task_id in running.items():
+            if stop_reason is None and not _cancel_requested(run_id):
+                # Interrupted by a shutdown (deploy, instance sleep), not by the user: the workers go back to
+                # pending so resume_active_runs() continues them on the next boot.
+                final, error, finished = TaskStatus.pending, None, None
+            elif stop_reason in (None, "cancelled"):
+                final, error, finished = TaskStatus.cancelled, "cancelled", utcnow()
+            else:
+                final, error, finished = TaskStatus.skipped, stop_reason, utcnow()
+            for job in running:
                 job.cancel()
-                _set_task(task_id, status=final.value, error=stop_reason or "cancelled", finished_at=utcnow())
             await asyncio.gather(*running, return_exceptions=True)
+            for task_id in running.values():
+                _set_task(task_id, status=final.value, error=error, finished_at=finished)
     if stop_reason == "cancelled":
         with session_scope() as db:
             db.execute(update(Task).where(Task.run_id == run_id, Task.status == TaskStatus.pending.value)
@@ -254,7 +262,12 @@ async def execute_run(env: ResearchEnv, run_id: uuid.UUID) -> None:
                                reason="" if budget_left(run_id) else "run budget (tokens or model calls) used up")
             set_status(run_id, RunStatus.completed)
     except asyncio.CancelledError:
-        await finish_cancelled(env, run_id)
+        if _cancel_requested(run_id):
+            await finish_cancelled(env, run_id)
+            return
+        # Shutdown, not a user cancel: leave the run in its current state; it resumes on the next start.
+        log.info("run interrupted by shutdown; it will resume on restart", extra={"run_id": str(run_id)})
+        raise
     except ModelCallFailed as exc:
         fail_run(run_id, exc.category, exc.message)
     except Exception as exc:  # noqa: BLE001

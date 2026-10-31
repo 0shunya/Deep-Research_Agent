@@ -62,6 +62,12 @@ def test_full_flow_plan_approve_report_and_claim_audit(client):
     events = client.get(f"/api/runs/{run_id}/events")
     assert events.status_code == 200
     assert "task_started" in events.text and "report_ready" in events.text and "event: end" in events.text
+    # Proxies (Render, nginx) must not buffer the stream; each event carries an id for Last-Event-ID resume.
+    assert events.headers["content-type"].startswith("text/event-stream")
+    assert events.headers["x-accel-buffering"] == "no" and events.headers["cache-control"] == "no-cache"
+    first_id = int(events.text.split("id: ")[1].splitlines()[0])
+    resumed = client.get(f"/api/runs/{run_id}/events", headers={"Last-Event-ID": str(first_id)})
+    assert f"id: {first_id}" not in resumed.text.splitlines() and "event: end" in resumed.text
 
     metrics = client.get("/api/metrics").json()
     assert metrics["completed_runs"] == 1
@@ -125,3 +131,26 @@ def test_new_runs_are_refused_when_todays_calls_are_used_up(client, settings_ove
     assert client.get("/api/health").json()["model_calls_left_today"] == 1
     response = client.post("/api/runs", json={"question": "When was the Eiffel Tower completed?"})
     assert response.status_code == 429 and response.json()["error"]["code"] == "daily_quota_reached"
+
+
+def test_unfinished_runs_resume_when_the_server_starts(make_env, new_run):
+    """Boot path on Render after a sleep or deploy: lifespan -> resume_active_runs()."""
+    from app.db import session_scope
+    from app.llm.schemas import Plan
+    from app.main import create_app
+    from app.models import Run
+    from app.research.orchestrator import approve_plan
+    from app.research.scheduler import RunScheduler
+
+    run_id = new_run()
+    plan = {"brief": "Answer from sources.", "sub_questions": [
+        {"id": "q1", "ask": "When was the Eiffel Tower completed?", "depends_on": []},
+        {"id": "q2", "ask": "How tall is the Eiffel Tower?", "depends_on": []}]}
+    with session_scope() as db:
+        run = db.get(Run, run_id)
+        run.plan = plan
+        tasks = approve_plan(db, run, Plan.model_validate(plan))
+        tasks[0].status = "running"  # left behind by the process that went away
+    with TestClient(create_app(scheduler=RunScheduler(env_factory=make_env))) as c:
+        run = wait_for(c, str(run_id), {"completed", "failed"})
+        assert run["status"] == "completed", run["error_message"]

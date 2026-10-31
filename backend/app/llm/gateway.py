@@ -224,8 +224,12 @@ class ModelGateway:
                                      response.input_tokens or 0,
                                      (response.output_tokens or 0) + (response.thinking_tokens or 0))
             else:
-                # retries on this provider ran out without a quota switch: do not try other models
-                break
+                # Retries on this model ran out on transient errors (5xx "high demand", timeouts): a preview
+                # model can stay overloaded for minutes, so try the next configured model instead of failing.
+                log.warning("model kept failing; trying next model",
+                            extra={"trace_id": ctx.trace_id, "model": provider.model,
+                                   "error_category": last.category if last else None})
+                continue
         assert last is not None
         raise last
 

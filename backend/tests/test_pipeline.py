@@ -158,6 +158,8 @@ def test_cancel_keeps_partial_results(make_env, new_run):
     async def go():
         job = asyncio.create_task(execute_run(env, run_id))
         await asyncio.sleep(0.6)  # research is under way
+        with session_scope() as db:  # what POST /runs/:id/cancel does before cancelling the job
+            db.get(Run, run_id).cancel_requested = True
         job.cancel()
         await asyncio.gather(job, return_exceptions=True)
 
@@ -223,3 +225,30 @@ def test_run_with_no_claims_fails_visibly(make_env, new_run):
     with session_scope() as db:
         run = db.get(Run, run_id)
         assert run.status == "failed" and run.error_code == "no_claims"
+
+
+def test_shutdown_mid_run_leaves_it_resumable(make_env, new_run):
+    """A deploy or instance sleep cancels the job without a user cancel: nothing may end up 'cancelled'."""
+    from app.research.simulated import scripted_provider, static_web
+
+    env = make_env(provider=scripted_provider(latency=0.3), web=static_web(latency=0.05))
+    run_id = new_run()
+    asyncio.run(plan_run(env, run_id))
+    with session_scope() as db:
+        run = db.get(Run, run_id)
+        approve_plan(db, run, Plan.model_validate(run.plan))
+
+    async def interrupted():
+        job = asyncio.create_task(execute_run(env, run_id))
+        await asyncio.sleep(0.6)
+        job.cancel()
+        await asyncio.gather(job, return_exceptions=True)
+
+    asyncio.run(interrupted())
+    with session_scope() as db:
+        run = db.get(Run, run_id)
+        assert run.status == "researching"
+        assert all(t.status in ("pending", "done") for t in run.tasks)
+    asyncio.run(execute_run(make_env(), run_id))  # the next boot
+    with session_scope() as db:
+        assert db.get(Run, run_id).status == "completed"

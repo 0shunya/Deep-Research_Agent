@@ -238,3 +238,13 @@ def test_aggregate_counts_missing_reports_as_wrong():
               dict(base, has_report=False, answer_correct=False, fact_recall=0.5)]
     agg = aggregate(scores)
     assert agg["answer_accuracy"] == 0.5 and agg["fact_recall_mean"] == 0.5
+
+
+def test_gateway_falls_back_when_a_model_keeps_failing_with_server_errors():
+    busy = ProviderError("server_error", "503 high demand", retryable=True)
+    first = _queue(busy, busy, busy, model="m1")
+    second = _queue(OK, model="m2")
+    gateway, records = _gateway(first, second)
+    result = asyncio.run(gateway.generate(PROMPT, VerifierOutput))
+    assert result.model == "m2"
+    assert [(r.model, r.status) for r in records] == [("m1", "error")] * 3 + [("m2", "success")]

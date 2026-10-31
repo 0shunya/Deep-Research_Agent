@@ -40,11 +40,22 @@ class RunScheduler:
         self._thread = threading.Thread(target=self._loop.run_forever, name="run-scheduler", daemon=True)
         self._thread.start()
 
-    def stop(self) -> None:
+    def stop(self, timeout: float = 10.0) -> None:
+        """Shutdown (SIGTERM on deploy or instance sleep): cancel in-flight jobs and let them put their tasks
+        back to pending before the loop stops. Runs keep their status and resume on the next start."""
         if self._loop is None:
             return
-        for job in list(self._jobs.values()):
-            self._loop.call_soon_threadsafe(job.cancel)
+
+        async def drain() -> None:
+            jobs = list(self._jobs.values())
+            for job in jobs:
+                job.cancel()
+            await asyncio.gather(*jobs, return_exceptions=True)
+
+        try:
+            asyncio.run_coroutine_threadsafe(drain(), self._loop).result(timeout=timeout)
+        except Exception:  # noqa: BLE001 — shutting down regardless
+            log.warning("scheduler did not drain cleanly before shutdown")
         self._loop.call_soon_threadsafe(self._loop.stop)
         if self._thread:
             self._thread.join(timeout=5)
