@@ -1,0 +1,18 @@
+{
+  "depth": "quick",
+  "workers": 3,
+  "models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite"
+  ],
+  "search_provider": "tavily",
+  "min_independent_domains": 2,
+  "price_per_mtok": [
+    0.1,
+    0.4
+  ],
+  "combined_from": [
+    "live-tavily-quick-reverified:live-tavily-quick",
+    "live-tavily-v2"
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "run": {
+    "id": "76fa103a-21c9-485d-a1db-231a4a0b4374",
+    "question": "Which metal has the highest melting point, and what is that melting point in degrees Celsius?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 6372,
+    "cost_usd": 0.000795,
+    "search_calls": 2,
+    "research_wall_seconds": 17.7
+  },
+  "plan": {
+    "brief": "Identify the metal with the highest melting point and determine its exact melting point in degrees Celsius.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which metal has the highest melting point?",
+        "why": "Identifies the specific metal needed to answer the primary question.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What is the melting point of tungsten in degrees Celsius?",
+        "why": "Provides the precise temperature value for the metal with the highest melting point.",
+        "depends_on": [
+          "q1"
+        ]
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which metal has the highest melting point?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What is the melting point of tungsten in degrees Celsius?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Highest Melting Point Metal\n\n## Overview\n\nOne source reports that the highest melting point metal known is tungsten, which melts at 3,422 degrees Celsius. [1]\n\n## Sources\n\n1. [Highest Melting Point Metal & Its Role in Extreme Environments](https://www.amazemet.com/highest-melting-point-metal-and-its-role) — amazemet.com, published 2025-06-11, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that the highest melting point metal known is tungsten, which melts at 3,422 degrees Celsius.",
+            "claim_ids": [
+              "65f16d02-ed6a-4723-8f78-77f5dd770398"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Highest Melting Point Metal",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "65f16d02-ed6a-4723-8f78-77f5dd770398",
+      "text": "The highest melting point metal known is tungsten (W), which melts at 3,422 degrees Celsius.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "amazemet.com",
+          "url": "https://www.amazemet.com/highest-melting-point-metal-and-its-role",
+          "quote": "The highest melting point metal known is tungsten (W) , which melts at an extraordinary 3,422 °C (6,192 °F) .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.chemistrylearner.com/melting.html",
+      "domain": "chemistrylearner.com",
+      "published_at": "2025-05-02",
+      "content_hash": "21e8439df85eea15c8f4e300c7b7f7fea5a005699ea5f655b200bfdbcf2429c5"
+    },
+    {
+      "url": "https://www.samaterials.com/blog/what-is-the-highest-melting-point-metal.html",
+      "domain": "samaterials.com",
+      "published_at": "2025-09-05",
+      "content_hash": "cd296261f30ec47fbb2230595d7c1a467efc50db2a46a7804c3fc010c067bf62"
+    },
+    {
+      "url": "https://www.amazemet.com/highest-melting-point-metal-and-its-role",
+      "domain": "amazemet.com",
+      "published_at": "2025-06-11",
+      "content_hash": "630ce97849f4b4ab6912c7ae6e74649e2b1833c36ebf271821ae545e63ba22b3"
+    },
+    {
+      "url": "https://chem.libretexts.org/Bookshelves/Introductory_Chemistry/Introductory_Chemistry_(CK-12)/13:_States_of_Matter/13.11:_Melting",
+      "domain": "libretexts.org",
+      "published_at": "2016-06-27",
+      "content_hash": "d7fc9ce2d6711c0de7417d677759c5539c4b995541a83226d52a5d7c3bde6863"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 210,
+      "output_tokens": 186,
+      "thinking_tokens": null,
+      "cost_usd": 9.5e-05,
+      "latency_ms": 1059
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3291,
+      "output_tokens": 152,
+      "thinking_tokens": null,
+      "cost_usd": 0.00039,
+      "latency_ms": 1412
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1786,
+      "output_tokens": 43,
+      "thinking_tokens": null,
+      "cost_usd": 0.000196,
+      "latency_ms": 1067
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 278,
+      "output_tokens": 84,
+      "thinking_tokens": null,
+      "cost_usd": 6.1e-05,
+      "latency_ms": 1106
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 281,
+      "output_tokens": 61,
+      "thinking_tokens": null,
+      "cost_usd": 5.3e-05,
+      "latency_ms": 955
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

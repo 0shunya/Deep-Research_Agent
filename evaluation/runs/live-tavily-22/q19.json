@@ -1,0 +1,281 @@
+{
+  "run": {
+    "id": "d7b9d5d0-d31b-43a3-b58c-f7f95923af53",
+    "question": "Which programming language was released first, Python or Java, and in which years were they first released?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 7144,
+    "cost_usd": 0.001038,
+    "search_calls": 2,
+    "research_wall_seconds": 12.4
+  },
+  "plan": {
+    "brief": "Determine the initial release years of Python and Java to establish which language was released first.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What was the initial release year of Python?",
+        "why": "Needed to find the release date of Python for comparison.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What was the initial release year of Java?",
+        "why": "Needed to find the release date of Java for comparison.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What was the initial release year of Python?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What was the initial release year of Java?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Programming Language Release Order\n\n## Release Order and Years\n\nPython was released first, in 1991. [1][2] One source reports that Java was released in May 1995. [3] Another source reports that the first public implementation of Java 1.0 was released in 1996. [3]\n\n## Sources\n\n1. [About Python](https://pythoninstitute.org/about-python) — pythoninstitute.org, fetched 2026-10-31\n2. [A Brief History of the Python Language | Judge Group blog](https://www.judge.com/resources/blogs/a-brief-history-of-the-python-programming-language) — judge.com, published 2021-02-12, fetched 2026-10-31\n3. [Java (programming language) - Wikipedia](https://en.wikipedia.org/wiki/Java_(programming_language)) — wikipedia.org, published 2001-11-13, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Release Order and Years",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Python was released first, in 1991.",
+            "claim_ids": [
+              "850806ca-292b-4246-b470-e78348f34ce2",
+              "0ffcf7ec-c4a6-4c56-a9bd-45f1757a6457"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that Java was released in May 1995.",
+            "claim_ids": [
+              "109c5dc6-8639-4f59-9457-27cc82bf48b2"
+            ]
+          },
+          {
+            "idx": 2,
+            "text": "Another source reports that the first public implementation of Java 1.0 was released in 1996.",
+            "claim_ids": [
+              "8f0e80a8-7377-40ee-ba4c-e39073e7ca84"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Programming Language Release Order",
+      "writer": "model",
+      "cited_claims": 4,
+      "cited_disputed": 0,
+      "sentences_kept": 3,
+      "cited_supported": 1,
+      "sentences_total": 3,
+      "cited_unverified": 3,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "0ffcf7ec-c4a6-4c56-a9bd-45f1757a6457",
+      "text": "Python was created by Guido van Rossum and first released on February 20, 1991.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "pythoninstitute.org",
+          "url": "https://pythoninstitute.org/about-python",
+          "quote": "Python was created by Guido van Rossum and first released on February 20, 1991.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "judge.com",
+          "url": "https://www.judge.com/resources/blogs/a-brief-history-of-the-python-programming-language",
+          "quote": "Guido van Rossum formally released the Python language in 1991.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        }
+      ]
+    },
+    {
+      "id": "109c5dc6-8639-4f59-9457-27cc82bf48b2",
+      "text": "Java was released in May 1995 as a core component of Sun's Java platform.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+          "quote": "It was released in May 1995 as a core component of Sun's Java platform .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "850806ca-292b-4246-b470-e78348f34ce2",
+      "text": "Python was formally released by Guido van Rossum in 1991.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "pythoninstitute.org",
+          "url": "https://pythoninstitute.org/about-python",
+          "quote": "Python was created by Guido van Rossum and first released on February 20, 1991.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "judge.com",
+          "url": "https://www.judge.com/resources/blogs/a-brief-history-of-the-python-programming-language",
+          "quote": "Guido van Rossum formally released the Python language in 1991.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "8f0e80a8-7377-40ee-ba4c-e39073e7ca84",
+      "text": "Sun Microsystems released the first public implementation as Java 1.0 in 1996.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+          "quote": "Sun Microsystems released the first public implementation as Java 1.0 in 1996.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-13",
+      "content_hash": "7b0b431b3c4cd1a0379f9029a6a46bb7a04aba95223706e5e276ca6b01f9e71e"
+    },
+    {
+      "url": "https://pythoninstitute.org/about-python",
+      "domain": "pythoninstitute.org",
+      "published_at": "",
+      "content_hash": "742dd5bd6f05091f0f0aa8e881396e10858ced0b4bc5f87a054c68f104b680e0"
+    },
+    {
+      "url": "https://www.geeksforgeeks.org/java/the-complete-history-of-java-programming-language",
+      "domain": "geeksforgeeks.org",
+      "published_at": "2019-05-02",
+      "content_hash": "84a55ed2ee68a7d2ae2fe5f1e6d930b7a5e499ab5723f027da47643cb53b6573"
+    },
+    {
+      "url": "https://www.judge.com/resources/blogs/a-brief-history-of-the-python-programming-language",
+      "domain": "judge.com",
+      "published_at": "2021-02-12",
+      "content_hash": "975358df8a0e0ae4ab4f6ba393b418933a910ec6381d5cb73b532150712ee808"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 212,
+      "output_tokens": 176,
+      "thinking_tokens": null,
+      "cost_usd": 9.2e-05,
+      "latency_ms": 1341
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2589,
+      "output_tokens": 230,
+      "thinking_tokens": null,
+      "cost_usd": 0.000351,
+      "latency_ms": 1566
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2255,
+      "output_tokens": 230,
+      "thinking_tokens": null,
+      "cost_usd": 0.000318,
+      "latency_ms": 1480
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 628,
+      "output_tokens": 336,
+      "thinking_tokens": null,
+      "cost_usd": 0.000197,
+      "latency_ms": 1504
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 384,
+      "output_tokens": 104,
+      "thinking_tokens": null,
+      "cost_usd": 8e-05,
+      "latency_ms": 1197
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "run": {
+    "id": "f2024226-7848-40ad-8634-dfa9a9ff8311",
+    "question": "Which is longer according to most reference sources, the Nile or the Amazon, and how long is the Nile in kilometres?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 5577,
+    "cost_usd": 0.000855,
+    "search_calls": 2,
+    "research_wall_seconds": 39.4
+  },
+  "plan": {
+    "brief": "This research aims to determine the current consensus among standard geographical reference sources regarding whether the Nile or the Amazon is the longer river, and to find the accepted length of the Nile in kilometres.",
+    "report": {
+      "max_words": 200,
+      "must_cite": true
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which river is considered longer by most major reference sources, the Nile or the Amazon?",
+        "why": "Directly answers the first part of the user's question regarding the consensus on river lengths.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What is the accepted length of the Nile river in kilometres according to standard geographic authorities?",
+        "why": "Provides the specific measurement requested for the length of the Nile.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which river is considered longer by most major reference sources, the Nile or the Amazon?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What is the accepted length of the Nile river in kilometres according to standard geographic authorities?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Length of the Nile and Amazon\n\n## Main Findings\n\nMost major reference sources still consider the Nile to be the world's longest river rather than the Amazon. [1][2] One source reports that geography textbooks have called the Nile the world's longest river for over a century with a traditional length of 6,650 km. [2]\n\n## Sources\n\n1. [https://iere.org/which-river-is-longer-nile-or-amazon](https://iere.org/which-river-is-longer-nile-or-amazon) — iere.org, fetched 2026-10-31\n2. [Is the Nile Longer Than the Amazon? The Surprising Geographic Debate | Geography Worlds](https://geographyworlds.com/blog/is-the-nile-longer-than-the-amazon) — geographyworlds.com, published 2026-03-30, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Main Findings",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Most major reference sources still consider the Nile to be the world's longest river rather than the Amazon.",
+            "claim_ids": [
+              "7f0ceaf5-2768-41e9-9f23-53a994c6ea11"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that geography textbooks have called the Nile the world's longest river for over a century with a traditional length of 6,650 km.",
+            "claim_ids": [
+              "bdc75317-f63e-4e31-83e0-dd5d4a84b2c6"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Length of the Nile and Amazon",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 1,
+      "sentences_total": 2,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "7f0ceaf5-2768-41e9-9f23-53a994c6ea11",
+      "text": "Most major reference sources still consider the Nile to be the world's longest river.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "geographyworlds.com",
+          "url": "https://geographyworlds.com/blog/is-the-nile-longer-than-the-amazon",
+          "quote": "The debate remains unresolved, and most major sources still call the Nile the world's longest river.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "iere.org",
+          "url": "https://iere.org/which-river-is-longer-nile-or-amazon",
+          "quote": "The debate remains unresolved, and most major sources still call the Nile the world's longest river .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdc75317-f63e-4e31-83e0-dd5d4a84b2c6",
+      "text": "For over a century, geography textbooks have called the Nile the world's longest river with a traditional length of 6,650 km.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "iere.org",
+          "url": "https://iere.org/which-river-is-longer-nile-or-amazon",
+          "quote": "The 10 longest rivers in the world ranked by length: the Nile (6,650 km), Amazon , Yangtze, Mississippi and more, with countries, discharge and basin facts.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        },
+        {
+          "domain": "geographyworlds.com",
+          "url": "https://geographyworlds.com/blog/is-the-nile-longer-than-the-amazon",
+          "quote": "For over a century, geography textbooks have called the Nile the world's longest river. Its 6,650-km length from Lake Victoria in East Africa to the Mediterranean Sea has been the standard answer.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.dictionary.com/browse/accepted",
+      "domain": "dictionary.com",
+      "published_at": "",
+      "content_hash": "865d24c854389b3cac3ed39b591ac6ed64fe7bb2575fac2edad9e9c8a9462d6d"
+    },
+    {
+      "url": "https://www.merriam-webster.com/dictionary/accepted",
+      "domain": "merriam-webster.com",
+      "published_at": "",
+      "content_hash": "5eacc502990486fef5602f7dcd863784135e4369f9d892136d2c0eaed2617e81"
+    },
+    {
+      "url": "https://iere.org/which-river-is-longer-nile-or-amazon",
+      "domain": "iere.org",
+      "published_at": "",
+      "content_hash": "dabedc9d070ebe67309c19aaabb2497d93cc3ba3d58e082bd1b9c174a809b52b"
+    },
+    {
+      "url": "https://geographyworlds.com/blog/is-the-nile-longer-than-the-amazon",
+      "domain": "geographyworlds.com",
+      "published_at": "2026-03-30",
+      "content_hash": "227986c2a59a924dad092e5bbddec08a869d56419e0a5e31d860777c73ec26b6"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 216,
+      "output_tokens": 221,
+      "thinking_tokens": null,
+      "cost_usd": 0.00011,
+      "latency_ms": 1248
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "error",
+      "error": "rate_limited",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 372
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "error",
+      "error": "rate_limited",
+      "input_tokens": null,
+      "output_tokens": null,
+      "thinking_tokens": null,
+      "cost_usd": 0.0,
+      "latency_ms": 305
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1159,
+      "output_tokens": 67,
+      "thinking_tokens": null,
+      "cost_usd": 0.000143,
+      "latency_ms": 905
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2335,
+      "output_tokens": 306,
+      "thinking_tokens": null,
+      "cost_usd": 0.000356,
+      "latency_ms": 1550
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 533,
+      "output_tokens": 290,
+      "thinking_tokens": null,
+      "cost_usd": 0.000169,
+      "latency_ms": 1439
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 344,
+      "output_tokens": 106,
+      "thinking_tokens": null,
+      "cost_usd": 7.7e-05,
+      "latency_ms": 973
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 1,
+    "fetch_failed": 3
+  }
+}

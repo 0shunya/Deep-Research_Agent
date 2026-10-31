@@ -1,0 +1,248 @@
+{
+  "run": {
+    "id": "3f09ab37-97eb-4df1-8e42-003b13845062",
+    "question": "In which town's garage was Apple founded, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 6294,
+    "cost_usd": 0.000873,
+    "search_calls": 2,
+    "research_wall_seconds": 11.7
+  },
+  "plan": {
+    "brief": "Identify the specific town where Apple was founded in a garage and the exact year it took place.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "In which town was the garage where Apple was founded located?",
+        "why": "To identify the specific town name required by the user.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In what year was Apple founded?",
+        "why": "To determine the exact year of Apple's founding.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "In which town was the garage where Apple was founded located?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In what year was Apple founded?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Apple's Founding Details\n\n## Introduction\n\nApple was founded in the town of Los Altos, California in the year 1976. [1][2][3][4]\n\n## Sources\n\n1. [Apple History: Founded 1976, Full Timeline](https://corpdigest.com/company/apple/company-history) — corpdigest.com, fetched 2026-10-31\n2. [Garage | all about Steve Jobs.com](https://allaboutstevejobs.com/pics/pics_places/garage) — allaboutstevejobs.com, fetched 2026-10-31\n3. [The Apple Garage in Los Altos - Atlas Obscura](https://www.atlasobscura.com/places/apple-garage) — atlasobscura.com, published 2017-03-09, fetched 2026-10-31\n4. [Apple Inc. - Wikipedia](https://en.wikipedia.org/wiki/Apple_Inc.) — wikipedia.org, published 2001-11-03, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Introduction",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Apple was founded in the town of Los Altos, California in the year 1976.",
+            "claim_ids": [
+              "8885ab1d-c4fd-4a55-a2d4-2423d2524992",
+              "d31a7e74-7ef3-49fa-b644-aaca0fd59c8f"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Apple's Founding Details",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 2,
+      "sentences_total": 1,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "8885ab1d-c4fd-4a55-a2d4-2423d2524992",
+      "text": "The garage where Apple was founded was located in Los Altos, California.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "allaboutstevejobs.com",
+          "url": "https://allaboutstevejobs.com/pics/pics_places/garage",
+          "quote": "Steve Jobs's parents' garage in Los Altos, where Apple Computer was started.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "atlasobscura.com",
+          "url": "https://www.atlasobscura.com/places/apple-garage",
+          "quote": "The plain old suburban garage at 2066 Crist Drive in Los Altos, California, is said to be the birthplace of Apple computers.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "corpdigest.com",
+          "url": "https://corpdigest.com/company/apple/company-history",
+          "quote": "They sold Jobs' VW Microbus and Wozniak's HP calculator to fund the first batch and founded Apple Computer in the garage of Jobs' parents' house in Los Altos, California.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "d31a7e74-7ef3-49fa-b644-aaca0fd59c8f",
+      "text": "Apple was founded in 1976 by Steve Jobs, Steve Wozniak, and Ronald Wayne.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "corpdigest.com",
+          "url": "https://corpdigest.com/company/apple/company-history",
+          "quote": "Apple Computer was founded on April 1, 1976, by Steve Jobs, Steve Wozniak, and Ronald Wayne, who sold his 10% stake back to his partners for $800 twelve days later.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "allaboutstevejobs.com",
+          "url": "https://allaboutstevejobs.com/pics/pics_places/garage",
+          "quote": "Anyway, it was in this suburban garage that Steve Jobs and Woz put together the boards of their first computer, the Apple I, starting in 1976.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.7
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Apple_Inc.",
+          "quote": "Founded in 1976 as Apple Computer Company by Steve Jobs , Steve Wozniak and Ronald Wayne , the company was incorporated by Jobs and Wozniak as Apple Computer, Inc.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://corpdigest.com/company/apple/company-history",
+      "domain": "corpdigest.com",
+      "published_at": "",
+      "content_hash": "3167ae1e5dced272f5996d978d81c7cf7b115959387b187e8b7db610073d2a95"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Apple_Inc.",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-03",
+      "content_hash": "62a2a7ad45f26ac6e62ae502905ecf647f2cfd0397235a46db6f6d51b5174f4f"
+    },
+    {
+      "url": "https://allaboutstevejobs.com/pics/pics_places/garage",
+      "domain": "allaboutstevejobs.com",
+      "published_at": "",
+      "content_hash": "34423871dac0dc576b6e8d7dad423b6cbaa5abde28db9f2c0b6256b1e39729ab"
+    },
+    {
+      "url": "https://www.atlasobscura.com/places/apple-garage",
+      "domain": "atlasobscura.com",
+      "published_at": "2017-03-09",
+      "content_hash": "00cec9cded8e718d826838bbabf87d55c61dde210a8ac1b6baa4befe16bbf2e1"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 207,
+      "output_tokens": 163,
+      "thinking_tokens": null,
+      "cost_usd": 8.6e-05,
+      "latency_ms": 1119
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1178,
+      "output_tokens": 173,
+      "thinking_tokens": null,
+      "cost_usd": 0.000187,
+      "latency_ms": 1319
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3099,
+      "output_tokens": 152,
+      "thinking_tokens": null,
+      "cost_usd": 0.000371,
+      "latency_ms": 1466
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 696,
+      "output_tokens": 260,
+      "thinking_tokens": null,
+      "cost_usd": 0.000174,
+      "latency_ms": 1506
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 305,
+      "output_tokens": 61,
+      "thinking_tokens": null,
+      "cost_usd": 5.5e-05,
+      "latency_ms": 890
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "run": {
+    "id": "caa7b8c8-4298-4685-8fc5-01fd5f49485c",
+    "question": "Who designed the Sydney Opera House and in what year did it open?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 7323,
+    "cost_usd": 0.001195,
+    "search_calls": 2,
+    "research_wall_seconds": 12.9
+  },
+  "plan": {
+    "brief": "This research brief aims to identify the architect who designed the Sydney Opera House and the exact year the building officially opened to the public.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who is the architect that designed the Sydney Opera House?",
+        "why": "Directly answers the first part of the user's question.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In what year did the Sydney Opera House officially open?",
+        "why": "Directly answers the second part of the user's question.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who is the architect that designed the Sydney Opera House?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In what year did the Sydney Opera House officially open?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Sydney Opera House Architect and Opening Year\n\n## Architect and Opening\n\nThe Sydney Opera House was designed by the Danish architect Jørn Utzon in 1957. [1][2] The building officially opened on October 20, 1973. [2][3][4]\n\n## Sources\n\n1. [https://www.britannica.com/topic/Sydney-Opera-House](https://www.britannica.com/topic/Sydney-Opera-House) — britannica.com, fetched 2026-10-31\n2. [Sydney Opera House - Wikipedia](https://en.wikipedia.org/wiki/Sydney_Opera_House) — wikipedia.org, published 2001-09-24, fetched 2026-10-31\n3. [Sydney Opera House Opens | Drama and Theater Arts | Research Starters | EBSCOhost](https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens) — ebsco.com, fetched 2026-10-31\n4. [Opening of the Sydney Opera House](https://mhnsw.au/opening-of-the-sydney-opera-house) — mhnsw.au, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Architect and Opening",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The Sydney Opera House was designed by the Danish architect Jørn Utzon in 1957.",
+            "claim_ids": [
+              "79bd46f0-da86-4bb2-a067-97fa0a38210e"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "The building officially opened on October 20, 1973.",
+            "claim_ids": [
+              "79caa065-d206-47d2-89dc-9aa0174909a1"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Sydney Opera House Architect and Opening Year",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 2,
+      "sentences_total": 2,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "79caa065-d206-47d2-89dc-9aa0174909a1",
+      "text": "The Sydney Opera House officially opened on October 20, 1973.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+          "quote": "The Sydney Opera House was formally opened by Queen Elizabeth II , on 20 October 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "mhnsw.au",
+          "url": "https://mhnsw.au/opening-of-the-sydney-opera-house",
+          "quote": "The Opera House was officially opened by Her Majesty the Queen on 20 October 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "ebsco.com",
+          "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+          "quote": "The Sydney Opera House, an iconic architectural marvel, officially opened on October 20, 1973.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "53875bea-1be1-4e61-aba0-ed37a622c19c",
+      "text": "Queen Elizabeth II dedicated the Sydney Opera House on October 20, 1973.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "mhnsw.au",
+          "url": "https://mhnsw.au/opening-of-the-sydney-opera-house",
+          "quote": "The Opera House was officially opened by Her Majesty the Queen on 20 October 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        },
+        {
+          "domain": "ebsco.com",
+          "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+          "quote": "Queen Elizabeth II, nominal sovereign of Australia, dedicated the new Sydney Opera House on October 20, 1973.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+          "quote": "The Sydney Opera House was formally opened by Queen Elizabeth II , on 20 October 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.8
+        }
+      ]
+    },
+    {
+      "id": "6099d6f6-9e97-4a56-a0c8-8c52607f5e46",
+      "text": "The Sydney Opera House was officially opened by Queen Elizabeth II on 20 October 1973.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "mhnsw.au",
+          "url": "https://mhnsw.au/opening-of-the-sydney-opera-house",
+          "quote": "The Opera House was officially opened by Her Majesty the Queen on 20 October 1973.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.8
+        },
+        {
+          "domain": "ebsco.com",
+          "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+          "quote": "Queen Elizabeth II, nominal sovereign of Australia, dedicated the new Sydney Opera House on October 20, 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+          "quote": "The Sydney Opera House was formally opened by Queen Elizabeth II , on 20 October 1973.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "79bd46f0-da86-4bb2-a067-97fa0a38210e",
+      "text": "The Sydney Opera House was designed by the Danish architect Jørn Utzon in 1957.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/topic/Sydney-Opera-House",
+          "quote": "The Sydney Opera House was designed by Danish architect Jørn Utzon, who won an international competition in 1957 sponsored by the New South Wales government.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+          "quote": "Designed by Danish architect Jørn Utzon and completed by an Australian architectural team headed by Peter Hall , the building was formally opened by Queen Elizabeth II on 20 October 1973, 16 years after Utzon's 1957 selection as winner of an international design competition.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.britannica.com/topic/Sydney-Opera-House",
+      "domain": "britannica.com",
+      "published_at": "",
+      "content_hash": "91ef8a8631e42b7a6ea85593d6ec4164d9fb2d741212832bb04a28426cea1f78"
+    },
+    {
+      "url": "https://www.ebsco.com/research-starters/drama-and-theater-arts/sydney-opera-house-opens",
+      "domain": "ebsco.com",
+      "published_at": "",
+      "content_hash": "c316bbccf5aef96a28946d75c6089dfb530028d7774587b0da52a0853f606be0"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sydney_Opera_House",
+      "domain": "wikipedia.org",
+      "published_at": "2001-09-24",
+      "content_hash": "934199229f893e74317a51253fbffd13285a53e41991d38795dbd3fbdda00120"
+    },
+    {
+      "url": "https://mhnsw.au/opening-of-the-sydney-opera-house",
+      "domain": "mhnsw.au",
+      "published_at": "",
+      "content_hash": "1c8e54d4e9eedc2e3574c5e17d4f138c2b527fe4913fa193d09d5e65741bfde8"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 206,
+      "output_tokens": 147,
+      "thinking_tokens": null,
+      "cost_usd": 7.9e-05,
+      "latency_ms": 1482
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2026,
+      "output_tokens": 241,
+      "thinking_tokens": null,
+      "cost_usd": 0.000299,
+      "latency_ms": 1700
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2093,
+      "output_tokens": 328,
+      "thinking_tokens": null,
+      "cost_usd": 0.00034,
+      "latency_ms": 1671
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1068,
+      "output_tokens": 732,
+      "thinking_tokens": null,
+      "cost_usd": 0.0004,
+      "latency_ms": 2144
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 385,
+      "output_tokens": 97,
+      "thinking_tokens": null,
+      "cost_usd": 7.7e-05,
+      "latency_ms": 1514
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 3,
+    "fetch_failed": 1
+  }
+}

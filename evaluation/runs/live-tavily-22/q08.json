@@ -1,0 +1,230 @@
+{
+  "run": {
+    "id": "ccc55fba-48fd-4bbe-b70c-ef8a9d9a4155",
+    "question": "When did the James Webb Space Telescope launch, and at which Lagrange point does it operate?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 6497,
+    "cost_usd": 0.00092,
+    "search_calls": 2,
+    "research_wall_seconds": 11.0
+  },
+  "plan": {
+    "brief": "This research aims to identify the exact launch date of the James Webb Space Telescope and determine the specific Lagrange point where it is currently positioned for its operations.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What is the launch date of the James Webb Space Telescope?",
+        "why": "To find the precise date the telescope was sent into space.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "Which Lagrange point does the James Webb Space Telescope operate at?",
+        "why": "To identify the orbital location and operational environment of the telescope.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What is the launch date of the James Webb Space Telescope?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "Which Lagrange point does the James Webb Space Telescope operate at?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# James Webb Space Telescope Launch and Orbit\n\n## Launch and Operational Location\n\nThe James Webb Space Telescope launched on December 25, 2021. [1][2] It operates near the Sun-Earth L2 Lagrange point, which is about 1.5 million kilometers away from Earth. [1][3]\n\n## Sources\n\n1. [James Webb Space Telescope - Wikipedia](https://en.wikipedia.org/wiki/James_Webb_Space_Telescope) — wikipedia.org, published 2004-01-18, fetched 2026-10-31\n2. [https://www.youtube.com/watch?v=9tXlqWldVVk](https://www.youtube.com/watch?v=9tXlqWldVVk) — youtube.com, fetched 2026-10-31\n3. [James Webb Space Telescope: Current Location and Orbit | Orbital Radar](https://orbitalradar.com/blog/jwst-location-explained) — orbitalradar.com, published 2026-07-30, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Launch and Operational Location",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The James Webb Space Telescope launched on December 25, 2021.",
+            "claim_ids": [
+              "02d650bc-cb5a-42d6-a756-287d75eb4694"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "It operates near the Sun-Earth L2 Lagrange point, which is about 1.5 million kilometers away from Earth.",
+            "claim_ids": [
+              "30bf4060-b0e8-4938-bec5-ddcff66ae9f1"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "James Webb Space Telescope Launch and Orbit",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 2,
+      "sentences_total": 2,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "02d650bc-cb5a-42d6-a756-287d75eb4694",
+      "text": "The James Webb Space Telescope was launched on December 25, 2021.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "youtube.com",
+          "url": "https://www.youtube.com/watch?v=9tXlqWldVVk",
+          "quote": "On December 25, 2021, and 7:20 AM ET (12:20 UTC), the James Webb Space Telescope was launched by an ArianeSpace Ariane 5 rocket from Europe's Spaceport in French Guiana.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/James_Webb_Space_Telescope",
+          "quote": "The Webb was launched on 25 December 2021 on an Ariane 5 rocket from Kourou , French Guiana.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "30bf4060-b0e8-4938-bec5-ddcff66ae9f1",
+      "text": "The James Webb Space Telescope operates near the Sun–Earth L2 Lagrange point, approximately 1.5 million kilometers from Earth.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/James_Webb_Space_Telescope",
+          "quote": "In January 2022, it arrived at its destination, a solar orbit near the Sun–Earth L 2 Lagrange point , about 1.5 million kilometers (930,000 mi) from Earth.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "orbitalradar.com",
+          "url": "https://orbitalradar.com/blog/jwst-location-explained",
+          "quote": "The James Webb Space Telescope is positioned at the second Lagrange point (L2), approximately 1.5 million kilometres from Earth, providing a stable environment for deep space observations.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://orbitalradar.com/blog/jwst-location-explained",
+      "domain": "orbitalradar.com",
+      "published_at": "2026-07-30",
+      "content_hash": "67fa2ed9bd2f4c99fef06c21de7b9841a3075de5aa0d24484926d4fe74b7c98c"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/James_Webb_Space_Telescope",
+      "domain": "wikipedia.org",
+      "published_at": "2004-01-18",
+      "content_hash": "28023777e957f4c0129b8b109ac2713b4f19f61f8c2d661935a12e5a5af5ff07"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=9tXlqWldVVk",
+      "domain": "youtube.com",
+      "published_at": "",
+      "content_hash": "791bf905742283c45e2e4c046f479e8987c3f061e64d9c23fc564253e17cf84a"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 210,
+      "output_tokens": 197,
+      "thinking_tokens": null,
+      "cost_usd": 0.0001,
+      "latency_ms": 1450
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1976,
+      "output_tokens": 216,
+      "thinking_tokens": null,
+      "cost_usd": 0.000284,
+      "latency_ms": 1456
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2502,
+      "output_tokens": 229,
+      "thinking_tokens": null,
+      "cost_usd": 0.000342,
+      "latency_ms": 1540
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 581,
+      "output_tokens": 160,
+      "thinking_tokens": null,
+      "cost_usd": 0.000122,
+      "latency_ms": 1157
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 328,
+      "output_tokens": 98,
+      "thinking_tokens": null,
+      "cost_usd": 7.2e-05,
+      "latency_ms": 1131
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 3,
+    "fetch_failed": 1
+  }
+}

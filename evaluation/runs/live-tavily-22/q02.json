@@ -1,0 +1,266 @@
+{
+  "run": {
+    "id": "d3977ef4-be8b-45e7-a573-c38678576015",
+    "question": "Which is taller, the Burj Khalifa or the Shanghai Tower, and what are their heights?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 8028,
+    "cost_usd": 0.001105,
+    "search_calls": 2,
+    "research_wall_seconds": 12.0
+  },
+  "plan": {
+    "brief": "Compare the heights of the Burj Khalifa and the Shanghai Tower to determine which one is taller and provide their exact measurements.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What is the height of the Burj Khalifa in meters and feet?",
+        "why": "To obtain the precise height of the Burj Khalifa for comparison.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What is the height of the Shanghai Tower in meters and feet?",
+        "why": "To obtain the precise height of the Shanghai Tower for comparison.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What is the height of the Burj Khalifa in meters and feet?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What is the height of the Shanghai Tower in meters and feet?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Height Comparison of Burj Khalifa and Shanghai Tower\n\n## Height Comparison\n\nThe Burj Khalifa is taller than the Shanghai Tower, with one source reporting its total height as 829.8 meters or 2,722 feet and its architectural height as 828 meters or 2,717 feet. [1] One source reports that the Shanghai Tower has a height of 632 meters or 2,073 feet. [2]\n\n## Sources\n\n1. [Burj Khalifa - Wikipedia](https://en.wikipedia.org/wiki/Burj_Khalifa) — wikipedia.org, published 2004-07-07, fetched 2026-10-31\n2. [25 Interesting Facts about Shanghai Tower - Fact Bud](https://factbud.com?p=8158) — factbud.com, published 2024-08-22, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Height Comparison",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The Burj Khalifa is taller than the Shanghai Tower, with one source reporting its total height as 829.8 meters or 2,722 feet and its architectural height as 828 meters or 2,717 feet.",
+            "claim_ids": [
+              "19f4053c-1b31-4178-8d6b-591a32dd7f58",
+              "c4a57dc4-b8a6-4e5a-9bda-356ae6a80393"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that the Shanghai Tower has a height of 632 meters or 2,073 feet.",
+            "claim_ids": [
+              "54983f71-ec9a-44d2-82ee-5c5847292fda"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Height Comparison of Burj Khalifa and Shanghai Tower",
+      "writer": "model",
+      "cited_claims": 3,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 0,
+      "sentences_total": 2,
+      "cited_unverified": 3,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "19f4053c-1b31-4178-8d6b-591a32dd7f58",
+      "text": "The total height of the Burj Khalifa is 829.8 meters or 2,722 feet.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Burj_Khalifa",
+          "quote": "it is the world's tallest structure , with a total height of 829.8 m (2,722 ft, or just over half a mile) and a roof height (excluding the antenna, but including a 242.6 m spire) of 828 m (2,717 ft).",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "factbud.com",
+          "url": "https://factbud.com?p=8158",
+          "quote": "Height: The Shanghai Tower reaches an impressive height of 632 meters (2,073 feet), making it not only the tallest building in China but also the second tallest in the world, surpassed only by the Burj Khalifa in Dubai.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "54983f71-ec9a-44d2-82ee-5c5847292fda",
+      "text": "The Shanghai Tower has a height of 632 meters (2,073 feet).",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "factbud.com",
+          "url": "https://factbud.com?p=8158",
+          "quote": "With its striking design and impressive height of 632 meters (2,073 feet), it has become an iconic feature of Shanghai’s skyline.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "c4a57dc4-b8a6-4e5a-9bda-356ae6a80393",
+      "text": "The architectural height of the Burj Khalifa (excluding the antenna, but including the spire) is 828 meters or 2,717 feet.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Burj_Khalifa",
+          "quote": "and a roof height (excluding the antenna, but including a 242.6 m spire) of 828 m (2,717 ft).",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "skyscraperday.com",
+          "url": "https://www.skyscraperday.com/burj-khalifa",
+          "quote": "The Burj Khalifa is 828 m (2,717 ft) tall and has 163 floors.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 0.9
+        },
+        {
+          "domain": "factbud.com",
+          "url": "https://factbud.com?p=8158",
+          "quote": "Global Ranking: As of October 2023, the Shanghai Tower holds the title of the second tallest building in the world, standing at 632 meters (2,073 feet), just behind the Burj Khalifa in Dubai, which reaches 828 meters (2,717 feet).",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 0.9
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Burj_Khalifa",
+      "domain": "wikipedia.org",
+      "published_at": "2004-07-07",
+      "content_hash": "6255daa492cbdcb224ddeec49788f2a1405c9f0c20024c585dd884a50cc3e4af"
+    },
+    {
+      "url": "https://www.skyscraperday.com/burj-khalifa",
+      "domain": "skyscraperday.com",
+      "published_at": "",
+      "content_hash": "ca154299efae77784078ca20af8c054ca3f71769d9f30756436fd637be28fabb"
+    },
+    {
+      "url": "https://factbud.com?p=8158",
+      "domain": "factbud.com",
+      "published_at": "2024-08-22",
+      "content_hash": "fa45c18d21082332951f2042f28d24bc1a8b5fafca60154fea01a6ce2453166a"
+    },
+    {
+      "url": "https://factbud.com/25-interesting-facts-about-shanghai-tower",
+      "domain": "factbud.com",
+      "published_at": "2024-08-22",
+      "content_hash": "fa45c18d21082332951f2042f28d24bc1a8b5fafca60154fea01a6ce2453166a"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 210,
+      "output_tokens": 120,
+      "thinking_tokens": null,
+      "cost_usd": 6.9e-05,
+      "latency_ms": 1813
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3142,
+      "output_tokens": 324,
+      "thinking_tokens": null,
+      "cost_usd": 0.000444,
+      "latency_ms": 1566
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2681,
+      "output_tokens": 147,
+      "thinking_tokens": null,
+      "cost_usd": 0.000327,
+      "latency_ms": 2008
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 621,
+      "output_tokens": 279,
+      "thinking_tokens": null,
+      "cost_usd": 0.000174,
+      "latency_ms": 1790
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 369,
+      "output_tokens": 135,
+      "thinking_tokens": null,
+      "cost_usd": 9.1e-05,
+      "latency_ms": 1042
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  },
+  "notes": "verdicts from live-tavily-quick-reverified; run cost/time/model calls from live-tavily-quick (one pipeline pass)"
+}

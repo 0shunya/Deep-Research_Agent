@@ -1,0 +1,157 @@
+{
+  "run": {
+    "id": "53787238-cbf7-4a60-9604-bb07f53ed26b",
+    "question": "Which mission first landed humans on the Moon, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 3657,
+    "cost_usd": 0.000481,
+    "search_calls": 1,
+    "research_wall_seconds": 13.9
+  },
+  "plan": {
+    "brief": "Identify the specific Apollo mission that achieved the first human moon landing and the calendar year in which it occurred.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which Apollo mission first landed humans on the Moon and in what year did it happen?",
+        "why": "Directly answers the core user question about the mission and year.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which Apollo mission first landed humans on the Moon and in what year did it happen?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# First Human Moon Landing\n\n## Mission Details\n\nOne source reports that Apollo 11 was the American spaceflight that first landed humans on the Moon in the calendar year 1969. [1]\n\n## Sources\n\n1. [Apollo 11 - Wikipedia](https://en.wikipedia.org/wiki/Apollo_11) — wikipedia.org, published 2001-09-24, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Mission Details",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "One source reports that Apollo 11 was the American spaceflight that first landed humans on the Moon in the calendar year 1969.",
+            "claim_ids": [
+              "9d35c169-aa80-4ce6-8b8c-a49035315e0c"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "First Human Moon Landing",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 0,
+      "sentences_total": 1,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "9d35c169-aa80-4ce6-8b8c-a49035315e0c",
+      "text": "Apollo 11 was the American spaceflight that first landed humans on the Moon in the calendar year 1969.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Apollo_11",
+          "quote": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon , and the fifth crewed mission of NASA 's Apollo program .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+      "domain": "si.edu",
+      "published_at": "",
+      "content_hash": "99176af904ec80615fc2cfc8458360c84ac0bd207778bbb795e561e51e388db0"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Apollo_11",
+      "domain": "wikipedia.org",
+      "published_at": "2001-09-24",
+      "content_hash": "b832d09af237b4d563e1dbe2be27d86f6296f2dcdb1c7ebcd77f369755ebbe8a"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 206,
+      "output_tokens": 92,
+      "thinking_tokens": null,
+      "cost_usd": 5.7e-05,
+      "latency_ms": 992
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2494,
+      "output_tokens": 166,
+      "thinking_tokens": null,
+      "cost_usd": 0.000316,
+      "latency_ms": 1246
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 290,
+      "output_tokens": 67,
+      "thinking_tokens": null,
+      "cost_usd": 5.6e-05,
+      "latency_ms": 2534
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 283,
+      "output_tokens": 59,
+      "thinking_tokens": null,
+      "cost_usd": 5.2e-05,
+      "latency_ms": 985
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

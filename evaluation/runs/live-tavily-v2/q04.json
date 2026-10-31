@@ -1,0 +1,273 @@
+{
+  "run": {
+    "id": "bcd89f3d-e900-426a-8c1b-ad2a11dbe041",
+    "question": "What is the half-life of carbon-14, and who developed radiocarbon dating?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 6210,
+    "cost_usd": 0.00095,
+    "search_calls": 2,
+    "research_wall_seconds": 10.7
+  },
+  "plan": {
+    "brief": "The user is asking for two specific factual pieces of information: the half-life of carbon-14 and the inventor of radiocarbon dating. These are independent historical and scientific facts that can be gathered through direct searches.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What is the accepted half-life of carbon-14?",
+        "why": "Directly answers the first part of the user's question.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "Who developed radiocarbon dating and when?",
+        "why": "Directly answers the second part of the user's question regarding the inventor of the technique.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What is the accepted half-life of carbon-14?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "Who developed radiocarbon dating and when?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Radiocarbon Dating and Carbon-14\n\n## Introduction\n\nThe method of radiocarbon dating was developed in the late 1940s at the University of Chicago by Willard Libby. [1][2] One source reports that carbon-14 has an accepted half-life of 5,730 \u0017 40 years. [3]\n\n## Sources\n\n1. [https://www.acs.org/education/whatischemistry/landmarks/radiocarbon-dating.html](https://www.acs.org/education/whatischemistry/landmarks/radiocarbon-dating.html) — acs.org, fetched 2026-10-31\n2. [Radiocarbon dating - Wikipedia](https://en.wikipedia.org/wiki/Radiocarbon_dating) — wikipedia.org, published 2001-11-17, fetched 2026-10-31\n3. [https://www.britannica.com/science/carbon-14](https://www.britannica.com/science/carbon-14) — britannica.com, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Introduction",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The method of radiocarbon dating was developed in the late 1940s at the University of Chicago by Willard Libby.",
+            "claim_ids": [
+              "b222eeb7-f85f-4f3f-9f67-0666bd3f5bc6"
+            ]
+          },
+          {
+            "idx": 1,
+            "text": "One source reports that carbon-14 has an accepted half-life of 5,730 \u0017 40 years.",
+            "claim_ids": [
+              "4f215109-7428-4932-9e03-b217ed0156a2"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Radiocarbon Dating and Carbon-14",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 1,
+      "sentences_total": 2,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "030e8746-e06c-48e7-8258-9c2a39f6fc5a",
+      "text": "Willard Libby developed radiocarbon dating in 1946.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "acs.org",
+          "url": "https://www.acs.org/education/whatischemistry/landmarks/radiocarbon-dating.html",
+          "quote": "In 1946, Willard Libby (1908–1980) developed a method for dating organic materials by measuring their content of carbon-14, a radioactive isotope of carbon.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+          "quote": "At some time during World War II , Willard Libby , who was then at Berkeley, learned of Korff's research and conceived the idea that it might be possible to use radiocarbon for dating.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.9
+        }
+      ]
+    },
+    {
+      "id": "4f215109-7428-4932-9e03-b217ed0156a2",
+      "text": "Carbon-14 has an accepted half-life of 5,730 ± 40 years.",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/science/carbon-14",
+          "quote": "Carbon-14 has a half-life of 5,730 ± 40 years—i.e., half the amount of the radioisotope present at any given time will undergo spontaneous disintegration during the succeeding 5,730 years.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "chemteam.info",
+          "url": "https://www.chemteam.info/Radioactivity/Radioactivity-Half-life-C14only.html",
+          "quote": "Half-life problems involving carbon-14",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+          "quote": "The definition of radiocarbon years is as follows: the age is calculated by using the following standards : a) using the Libby half-life of 5568 years, rather than the currently accepted actual half-life of 5730 years; (b) the use of an NIST standard known as HOxII to define the activity of radiocarbon in 1950; (c) the use of 1950 as the date from which years \"before present\" are counted; (d) a correction for fractionation , based on a standard isotope ratio, and (e) the assumption that the 14 C / 12 C ratio has not changed over time.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "insufficient",
+          "score": 0.9
+        }
+      ]
+    },
+    {
+      "id": "b222eeb7-f85f-4f3f-9f67-0666bd3f5bc6",
+      "text": "The method of radiocarbon dating was developed in the late 1940s at the University of Chicago by Willard Libby.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+          "quote": "The method was developed in the late 1940s at the University of Chicago by Willard Libby .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "acs.org",
+          "url": "https://www.acs.org/education/whatischemistry/landmarks/radiocarbon-dating.html",
+          "quote": "Libby’s discovery of radiocarbon dating provides objective estimates of artifact ages, in contrast to previous methods that relied on comparisons with other objects [...] Willard Libby (1908–1980), a professor of chemistry at the University of Chicago, began the research that led him to radiocarbon dating in 1945.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.britannica.com/science/carbon-14",
+      "domain": "britannica.com",
+      "published_at": "",
+      "content_hash": "3de77fc09206ce97cebe42bf47865b0e78ac48332f7679122852f0b093349b3f"
+    },
+    {
+      "url": "https://www.acs.org/education/whatischemistry/landmarks/radiocarbon-dating.html",
+      "domain": "acs.org",
+      "published_at": "",
+      "content_hash": "8abc9ed85641f79eba9e39c1046f3704d8094a016ce0bf6ef13ac2b1c1afe435"
+    },
+    {
+      "url": "https://www.chemteam.info/Radioactivity/Radioactivity-Half-life-C14only.html",
+      "domain": "chemteam.info",
+      "published_at": "",
+      "content_hash": "0bc40abbcc2eec46c93e2539ff0686aa55bea73835614fcb2a23eda52ff9222e"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-17",
+      "content_hash": "2589b92dd577b73636da8e0e2652dff6d98f7e9944fd27f5cdba24befdd225d8"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 211,
+      "output_tokens": 216,
+      "thinking_tokens": null,
+      "cost_usd": 0.000107,
+      "latency_ms": 1292
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 1573,
+      "output_tokens": 171,
+      "thinking_tokens": null,
+      "cost_usd": 0.000226,
+      "latency_ms": 1610
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2021,
+      "output_tokens": 276,
+      "thinking_tokens": null,
+      "cost_usd": 0.000313,
+      "latency_ms": 1413
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 933,
+      "output_tokens": 322,
+      "thinking_tokens": null,
+      "cost_usd": 0.000222,
+      "latency_ms": 1406
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 376,
+      "output_tokens": 111,
+      "thinking_tokens": null,
+      "cost_usd": 8.2e-05,
+      "latency_ms": 983
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 2,
+    "fetch_failed": 2
+  }
+}

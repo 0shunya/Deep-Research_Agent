@@ -1,0 +1,248 @@
+{
+  "run": {
+    "id": "4391d18a-e09f-4f25-995b-ab2c7918be3c",
+    "question": "In which year did the author of One Hundred Years of Solitude win the Nobel Prize in Literature, and what was his nationality?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 6625,
+    "cost_usd": 0.000884,
+    "search_calls": 2,
+    "research_wall_seconds": 16.2
+  },
+  "plan": {
+    "brief": "Find the year Gabriel Garcia Marquez, author of One Hundred Years of Solitude, won the Nobel Prize in Literature and his nationality.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "In what year did Gabriel Garcia Marquez win the Nobel Prize in Literature?",
+        "why": "To determine the specific year of the award.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "What was Gabriel Garcia Marquez's nationality?",
+        "why": "To identify the nationality of the author.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "In what year did Gabriel Garcia Marquez win the Nobel Prize in Literature?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "What was Gabriel Garcia Marquez's nationality?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Gabriel Garcia Marquez Nobel Prize and Nationality\n\n## Overview\n\nGabriel Garcia Marquez, the author of One Hundred Years of Solitude, was a Colombian novelist who won the Nobel Prize in Literature in 1982. [1][2][3][4]\n\n## Sources\n\n1. [Gabriel García Márquez - Ethnicity of Celebs | EthniCelebs.com](https://ethnicelebs.com/gabriel-garcia-marquez) — ethnicelebs.com, published 2016-11-28, fetched 2026-10-31\n2. [https://www.britannica.com/biography/Gabriel-Garcia-Marquez](https://www.britannica.com/biography/Gabriel-Garcia-Marquez) — britannica.com, fetched 2026-10-31\n3. [Gabriel García Márquez - Simple English Wikipedia, the free encyclopedia](https://simple.wikipedia.org/wiki/Gabriel_García_Márquez) — wikipedia.org, published 2008-02-19, fetched 2026-10-31\n4. [Gabriel García Márquez - Wikipedia](https://en.wikipedia.org/wiki/Gabriel_García_Márquez) — wikipedia.org, published 2001-09-01, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Gabriel Garcia Marquez, the author of One Hundred Years of Solitude, was a Colombian novelist who won the Nobel Prize in Literature in 1982.",
+            "claim_ids": [
+              "1a9625a6-172c-494b-bc01-777adb92132b",
+              "4bd70eea-d498-4e1e-ac43-5c73db610fec"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Gabriel Garcia Marquez Nobel Prize and Nationality",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 2,
+      "sentences_total": 1,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "1a9625a6-172c-494b-bc01-777adb92132b",
+      "text": "Gabriel Garcia Marquez was a Colombian novelist.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "ethnicelebs.com",
+          "url": "https://ethnicelebs.com/gabriel-garcia-marquez",
+          "quote": "Gabriel García Márquez was a Colombian novelist, short story writer, screenwriter, and journalist.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/biography/Gabriel-Garcia-Marquez",
+          "quote": "Gabriel García Márquez (born March 6, 1927, Aracataca, Colombia—died April 17, 2014, Mexico City, Mexico) was a Colombian novelist and one of the greatest writers of the 20th century.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://simple.wikipedia.org/wiki/Gabriel_García_Márquez",
+          "quote": "Gabriel José de la Concordia García Márquez , also known as Gabo (March 6, 1927 – April 17, 2014) was a Colombian novelist , short-story writer, screenwriter , and journalist .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "4bd70eea-d498-4e1e-ac43-5c73db610fec",
+      "text": "Gabriel Garcia Marquez won the Nobel Prize in Literature in 1982.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "ethnicelebs.com",
+          "url": "https://ethnicelebs.com/gabriel-garcia-marquez",
+          "quote": "He was awarded the 1972 Neustadt International Prize for Literature, and the 1982 Nobel Prize in Literature.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Gabriel_García_Márquez",
+          "quote": "In 1982, he was awarded the Nobel Prize in Literature, \"for his novels and short stories, in which the fantastic and the realistic are combined in a richly composed world of imagination, reflecting a continent's life and conflicts\".",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "britannica.com",
+          "url": "https://www.britannica.com/biography/Gabriel-Garcia-Marquez",
+          "quote": "He was awarded the Nobel Prize for Literature in 1982, mostly for his masterpiece Cien años de soledad (1967; One Hundred Years of Solitude).",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://simple.wikipedia.org/wiki/Gabriel_García_Márquez",
+      "domain": "wikipedia.org",
+      "published_at": "2008-02-19",
+      "content_hash": "311636a0fc3ddd3856b5569dbfec36682a731614ae93dde93738e025afadf0a3"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Gabriel-Garcia-Marquez",
+      "domain": "britannica.com",
+      "published_at": "",
+      "content_hash": "9e509212198fc492bdaf1691ffeadbddf84ac0159a236a4156959a19bd2862e1"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gabriel_García_Márquez",
+      "domain": "wikipedia.org",
+      "published_at": "2001-09-01",
+      "content_hash": "f037f0577b48e9b9ffae6ebd69af9dfbe3c4fbab68cb43036147090b41604a56"
+    },
+    {
+      "url": "https://ethnicelebs.com/gabriel-garcia-marquez",
+      "domain": "ethnicelebs.com",
+      "published_at": "2016-11-28",
+      "content_hash": "2134503dd507a87bdee8504769b239f6eb9765071c1711c708114814f2a040e5"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 218,
+      "output_tokens": 113,
+      "thinking_tokens": null,
+      "cost_usd": 6.7e-05,
+      "latency_ms": 1366
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2547,
+      "output_tokens": 134,
+      "thinking_tokens": null,
+      "cost_usd": 0.000308,
+      "latency_ms": 1561
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2106,
+      "output_tokens": 217,
+      "thinking_tokens": null,
+      "cost_usd": 0.000297,
+      "latency_ms": 4165
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 705,
+      "output_tokens": 208,
+      "thinking_tokens": null,
+      "cost_usd": 0.000154,
+      "latency_ms": 1137
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 311,
+      "output_tokens": 66,
+      "thinking_tokens": null,
+      "cost_usd": 5.8e-05,
+      "latency_ms": 839
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 3,
+    "fetch_failed": 1
+  }
+}

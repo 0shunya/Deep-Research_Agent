@@ -1,0 +1,205 @@
+{
+  "run": {
+    "id": "3f8d46f4-684b-4b83-9004-a46f0e1691cd",
+    "question": "What is the deepest known point in the ocean, and roughly how deep is it in metres?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 4341,
+    "cost_usd": 0.00072,
+    "search_calls": 1,
+    "research_wall_seconds": 14.3
+  },
+  "plan": {
+    "brief": "Identify the deepest known point in the world's oceans and determine its approximate depth in meters.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What is the deepest known point in the ocean and what is its depth in meters?",
+        "why": "Directly answers the core user question about the ocean's deepest point and its metric depth.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What is the deepest known point in the ocean and what is its depth in meters?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Ocean Depth Report\n\n## Deepest Ocean Point\n\nThe deepest known point in the world's oceans is Challenger Deep in the Mariana Trench, which has an estimated depth of approximately 10,935 meters. [1][2]\n\n## Disputed or uncertain\n\nOne source reports that a study estimated the depth of the eastern basin of Challenger Deep to be approximately 10,927 meters. [2]\n\n## Sources\n\n1. [The Deepest Point In The Ocean](https://www.worldatlas.com/oceans/the-deepest-point-in-the-ocean.html) — worldatlas.com, published 2026-10-06, fetched 2026-10-31\n2. [https://www.iflscience.com/why-we-still-dont-truly-know-the-exact-depth-of-the-oceans-deepest-point-84713](https://www.iflscience.com/why-we-still-dont-truly-know-the-exact-depth-of-the-oceans-deepest-point-84713) — iflscience.com, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Deepest Ocean Point",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The deepest known point in the world's oceans is Challenger Deep in the Mariana Trench, which has an estimated depth of approximately 10,935 meters.",
+            "claim_ids": [
+              "b4502cb8-80a6-4315-be14-fe605ec066bf"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Disputed or uncertain",
+        "sentences": [
+          {
+            "idx": 1,
+            "text": "One source reports that a study estimated the depth of the eastern basin of Challenger Deep to be approximately 10,927 meters.",
+            "claim_ids": [
+              "09725545-2642-40b6-9e48-1263639dedf1"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Ocean Depth Report",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 2,
+      "cited_supported": 1,
+      "sentences_total": 2,
+      "cited_unverified": 1,
+      "invalid_claim_ids": 0,
+      "sentences_on_unverified_only": 1
+    }
+  },
+  "claims": [
+    {
+      "id": "09725545-2642-40b6-9e48-1263639dedf1",
+      "text": "A study estimated the depth of the eastern basin of Challenger Deep to be approximately 10,927 meters (35,849 feet).",
+      "verdict": "unverified",
+      "support_domains": 1,
+      "reason": "Supported by only 1 independent origin(s); 2 required.",
+      "evidence": [
+        {
+          "domain": "iflscience.com",
+          "url": "https://www.iflscience.com/why-we-still-dont-truly-know-the-exact-depth-of-the-oceans-deepest-point-84713",
+          "quote": "In sum, the extra bits of data gave them an estimate of 10,927 meters (35,849 feet) depth for the eastern basin of Challenger Deep.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "b4502cb8-80a6-4315-be14-fe605ec066bf",
+      "text": "The deepest known point in the world's oceans is Challenger Deep, located in the Mariana Trench, with an estimated depth of approximately 10,935 meters (35,876 feet).",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "worldatlas.com",
+          "url": "https://www.worldatlas.com/oceans/the-deepest-point-in-the-ocean.html",
+          "quote": "NOAA places the estimated depth of Challenger Deep at 35,876 ft (10,935 m).",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "iflscience.com",
+          "url": "https://www.iflscience.com/why-we-still-dont-truly-know-the-exact-depth-of-the-oceans-deepest-point-84713",
+          "quote": "[...] Give it a quick Google and you’ll probably get an AI overview telling you that Challenger Deep is “approximately 10,935 meters (35,876 feet) or about 6.8 miles below the ocean surface.” The figure is likely taken from a 2021 study by NOAA oceanographers (although it's not immediately clear since LLMs are not keen on crediting the information they \"summarise\").",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "worldatlas.com",
+          "url": "https://www.worldatlas.com/oceans/the-deepest-point-in-the-ocean.html",
+          "quote": "The deepest section of the Mariana Trench, and therefore the deepest point in the ocean, is Challenger Deep , itself located southwest of the US territory of Guam .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.9
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.worldatlas.com/oceans/the-deepest-point-in-the-ocean.html",
+      "domain": "worldatlas.com",
+      "published_at": "2026-10-06",
+      "content_hash": "a7e5356cf2c3701d30bf2c7c785f10563f0a4bf8eaa7e2d615c40dd105c2c119"
+    },
+    {
+      "url": "https://www.iflscience.com/why-we-still-dont-truly-know-the-exact-depth-of-the-oceans-deepest-point-84713",
+      "domain": "iflscience.com",
+      "published_at": "",
+      "content_hash": "855b118d46a2d339e407d2b2c2ad48c6c810f3631b1451d62ded23a1fc16470c"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 211,
+      "output_tokens": 139,
+      "thinking_tokens": null,
+      "cost_usd": 7.7e-05,
+      "latency_ms": 1958
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2164,
+      "output_tokens": 388,
+      "thinking_tokens": null,
+      "cost_usd": 0.000372,
+      "latency_ms": 3622
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 666,
+      "output_tokens": 298,
+      "thinking_tokens": null,
+      "cost_usd": 0.000186,
+      "latency_ms": 2368
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 349,
+      "output_tokens": 126,
+      "thinking_tokens": null,
+      "cost_usd": 8.5e-05,
+      "latency_ms": 2143
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 1,
+    "fetch_failed": 1
+  }
+}

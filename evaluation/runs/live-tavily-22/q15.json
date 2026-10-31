@@ -1,0 +1,104 @@
+{
+  "run": {
+    "id": "3775c9b1-bad2-423b-942f-9dbd6dd7b4db",
+    "question": "Which treaty established the European Union, and in what year was it signed?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 3316,
+    "cost_usd": 0.000384,
+    "search_calls": 1,
+    "research_wall_seconds": 9.5
+  },
+  "plan": {
+    "brief": "Identify the treaty that established the European Union and the year it was signed to directly answer the user's historical query.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Which treaty established the European Union and what year was it signed?",
+        "why": "This is the core fact required to answer the user's question.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Which treaty established the European Union and what year was it signed?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Findings (no model)\n",
+    "sections": [],
+    "stats": {
+      "title": "Findings (no model)",
+      "writer": "fallback",
+      "cited_claims": 0,
+      "cited_disputed": 0,
+      "sentences_kept": 0,
+      "cited_supported": 0,
+      "fallback_reason": "no model",
+      "sentences_total": 1,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0,
+      "sentences_dropped_uncited": 1
+    }
+  },
+  "claims": [],
+  "sources": [
+    {
+      "url": "https://www.newworldencyclopedia.org/entry/Treaty",
+      "domain": "newworldencyclopedia.org",
+      "published_at": "",
+      "content_hash": "234d0c80b2944d204dd434e025a5b8c7b7431d1b507de765f88c029473390794"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_treaties",
+      "domain": "wikipedia.org",
+      "published_at": "2002-08-30",
+      "content_hash": "e53dbfd5fd45ba2c6032f1fa9e4ca11b1c15bafa37ffe90f7e04cb83a9912f26"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 207,
+      "output_tokens": 102,
+      "thinking_tokens": null,
+      "cost_usd": 6.2e-05,
+      "latency_ms": 3341
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2937,
+      "output_tokens": 70,
+      "thinking_tokens": null,
+      "cost_usd": 0.000322,
+      "latency_ms": 1991
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

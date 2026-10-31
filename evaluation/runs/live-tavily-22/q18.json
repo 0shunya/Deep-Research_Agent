@@ -1,0 +1,165 @@
+{
+  "run": {
+    "id": "2d3251d8-a9b5-45a1-9d7f-122d0a8bc3e1",
+    "question": "Who discovered penicillin, and in what year?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 3630,
+    "cost_usd": 0.000504,
+    "search_calls": 1,
+    "research_wall_seconds": 10.8
+  },
+  "plan": {
+    "brief": "The user is asking for the discoverer of penicillin and the year of discovery. This requires a straightforward historical inquiry into Alexander Fleming's scientific breakthrough.",
+    "report": {
+      "max_words": 150,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "Who discovered penicillin and in what year was it discovered?",
+        "why": "Directly answers the user's core question regarding the discoverer and timeline.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "Who discovered penicillin and in what year was it discovered?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Discovery of Penicillin\n\n## Overview\n\nAlexander Fleming discovered penicillin in 1928. [1][2]\n\n## Sources\n\n1. [Alexander Fleming - Wikipedia](https://en.wikipedia.org/wiki/Alexander_Fleming) — wikipedia.org, published 2001-09-18, fetched 2026-10-31\n2. [Penicillin:  Opening the Era of Antibiotics : USDA ARS](https://www.ars.usda.gov/midwest-area/peoria-il/national-center-for-agricultural-utilization-research/docs/penicillin-opening-the-era-of-antibiotics) — usda.gov, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "Alexander Fleming discovered penicillin in 1928.",
+            "claim_ids": [
+              "ee602d08-cb5f-4dd3-bd02-0f8229463f6a"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Discovery of Penicillin",
+      "writer": "model",
+      "cited_claims": 1,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 1,
+      "sentences_total": 1,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "ee602d08-cb5f-4dd3-bd02-0f8229463f6a",
+      "text": "Alexander Fleming discovered penicillin in 1928.",
+      "verdict": "supported",
+      "support_domains": 2,
+      "reason": "Supported by 2 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Alexander_Fleming",
+          "quote": "His discovery in 1928 of what was later named benzylpenicillin (or penicillin G) from the mould Penicillium rubens has been described as the \"single greatest victory ever achieved over disease\".",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "usda.gov",
+          "url": "https://www.ars.usda.gov/midwest-area/peoria-il/national-center-for-agricultural-utilization-research/docs/penicillin-opening-the-era-of-antibiotics",
+          "quote": "Penicillin was discovered in 1928 by bacteriologist Alexander Fleming, working at St. Mary's Hospital in London.",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.ars.usda.gov/midwest-area/peoria-il/national-center-for-agricultural-utilization-research/docs/penicillin-opening-the-era-of-antibiotics",
+      "domain": "usda.gov",
+      "published_at": "",
+      "content_hash": "35137f473651cfe9621f227b6b112a4578116f4aafe7606a2e70415045aec162"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexander_Fleming",
+      "domain": "wikipedia.org",
+      "published_at": "2001-09-18",
+      "content_hash": "34519c629d55f81a3f93b8ea9e7d15a1ef8afd3a93b1663701cf2053212d705a"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 201,
+      "output_tokens": 108,
+      "thinking_tokens": null,
+      "cost_usd": 6.3e-05,
+      "latency_ms": 1480
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 2347,
+      "output_tokens": 192,
+      "thinking_tokens": null,
+      "cost_usd": 0.000311,
+      "latency_ms": 2269
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 339,
+      "output_tokens": 86,
+      "thinking_tokens": null,
+      "cost_usd": 6.8e-05,
+      "latency_ms": 1041
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 271,
+      "output_tokens": 86,
+      "thinking_tokens": null,
+      "cost_usd": 6.2e-05,
+      "latency_ms": 1039
+    }
+  ],
+  "tool_calls": {
+    "search": 1,
+    "fetch_ok": 2,
+    "fetch_failed": 0
+  }
+}

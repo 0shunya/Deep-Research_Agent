@@ -1,0 +1,266 @@
+{
+  "run": {
+    "id": "b6e2cddb-97f4-454d-ad45-79548e1718fd",
+    "question": "What is the speed of light in vacuum in metres per second, and in what year was the metre redefined in terms of it?",
+    "depth": "quick",
+    "status": "completed",
+    "stop_reason": null,
+    "error_code": null,
+    "error_message": null,
+    "max_workers": 3,
+    "search_provider": "tavily",
+    "budget_tokens": 120000,
+    "spent_tokens": 9038,
+    "cost_usd": 0.001211,
+    "search_calls": 2,
+    "research_wall_seconds": 12.1
+  },
+  "plan": {
+    "brief": "This research investigates the exact defined speed of light in a vacuum and the historical year when the SI unit of length, the metre, was redefined based on this constant.",
+    "report": {
+      "max_words": 200,
+      "must_cite": false
+    },
+    "sub_questions": [
+      {
+        "id": "q1",
+        "ask": "What is the exact speed of light in a vacuum in metres per second?",
+        "why": "Provides the fundamental numerical value requested by the user.",
+        "depends_on": []
+      },
+      {
+        "id": "q2",
+        "ask": "In what year was the metre redefined in terms of the speed of light?",
+        "why": "Provides the historical date for the redefinition of the metre.",
+        "depends_on": []
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "key": "q1",
+      "question": "What is the exact speed of light in a vacuum in metres per second?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    },
+    {
+      "key": "q2",
+      "question": "In what year was the metre redefined in terms of the speed of light?",
+      "status": "done",
+      "attempts": 1,
+      "steps": 1,
+      "error": null
+    }
+  ],
+  "report": {
+    "markdown": "# Speed of Light and the Metre\n\n## Overview\n\nThe speed of light in a vacuum is defined as exactly 299,792,458 metres per second, and the metre was redefined in terms of this constant in 1983. [1][2][3][4]\n\n## Sources\n\n1. [Speed of light - Wikipedia](https://en.wikipedia.org/wiki/Speed_of_light) — wikipedia.org, published 2001-10-31, fetched 2026-10-31\n2. [Meter | NIST](https://www.nist.gov/si-redefinition/meter) — nist.gov, published 2019-05-09, fetched 2026-10-31\n3. [How Fast Is the Speed of Light, and How Was It First Measured?](https://physicsfundamentals.org/blog/speed-of-light) — physicsfundamentals.org, published 2026-03-30, fetched 2026-10-31\n4. [Metre - Wikipedia](https://en.wikipedia.org/wiki/Metre) — wikipedia.org, published 2001-11-01, fetched 2026-10-31\n",
+    "sections": [
+      {
+        "heading": "Overview",
+        "sentences": [
+          {
+            "idx": 0,
+            "text": "The speed of light in a vacuum is defined as exactly 299,792,458 metres per second, and the metre was redefined in terms of this constant in 1983.",
+            "claim_ids": [
+              "5f617e50-9b64-4867-9f40-b4e58a78bbbb",
+              "5743faf6-067f-4f66-888f-4e3b4f50da8b"
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Speed of Light and the Metre",
+      "writer": "model",
+      "cited_claims": 2,
+      "cited_disputed": 0,
+      "sentences_kept": 1,
+      "cited_supported": 2,
+      "sentences_total": 1,
+      "cited_unverified": 0,
+      "invalid_claim_ids": 0
+    }
+  },
+  "claims": [
+    {
+      "id": "5743faf6-067f-4f66-888f-4e3b4f50da8b",
+      "text": "The metre was redefined in terms of the speed of light in 1983.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Metre",
+          "quote": "In 1983 this was updated to a length defined in terms of the speed of light ; this definition was reworded in 2019:",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 0.9
+        },
+        {
+          "domain": "physicsfundamentals.org",
+          "url": "https://physicsfundamentals.org/blog/speed-of-light",
+          "quote": "This is not a measured approximation — since 1983, the General Conference on Weights and Measures fixed c at this exact value and redefined the metre accordingly.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "nist.gov",
+          "url": "https://www.nist.gov/si-redefinition/meter",
+          "quote": "Building upon these and other advances, the meter was redefined by international agreement in 1983 as the length of the path traveled by light in a vacuum in 1/299,792,458 of a second.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "5f617e50-9b64-4867-9f40-b4e58a78bbbb",
+      "text": "The speed of light in a vacuum is defined as exactly 299,792,458 m/s.",
+      "verdict": "supported",
+      "support_domains": 3,
+      "reason": "Supported by 3 independent origin(s).",
+      "evidence": [
+        {
+          "domain": "physicsfundamentals.org",
+          "url": "https://physicsfundamentals.org/blog/speed-of-light",
+          "quote": "The speed of light in a vacuum is exactly c = 299,792,458 m/s .",
+          "quote_found": true,
+          "origin": "extracted",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "nist.gov",
+          "url": "https://www.nist.gov/si-redefinition/meter",
+          "quote": "This definition also locked the speed of light at 299,792,458 meters per second in a vacuum.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        },
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+          "quote": "As a result of this definition, the value of the speed of light in vacuum is exactly 299 792 458 m/s and has become a defined constant in the SI system of units.",
+          "quote_found": true,
+          "origin": "cross_check",
+          "stance": "supports",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "id": "ac5e5253-63c9-4b09-8dcd-e36f13e0db74",
+      "text": "The exact speed of light in a vacuum is 299 792 458 metres per second.",
+      "verdict": "unverified",
+      "support_domains": 0,
+      "reason": "No verbatim quote supports this claim.",
+      "evidence": [
+        {
+          "domain": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+          "quote": "The speed of light in vacuum is a universal physical constant denoted c (in ISO and IEC standards c 0 {\files/c_0} ), exactly equal to 299 792 458 m⋅s −1 .",
+          "quote_found": false,
+          "origin": "extracted",
+          "stance": "insufficient",
+          "score": 0.0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+      "domain": "wikipedia.org",
+      "published_at": "2001-10-31",
+      "content_hash": "8044ddeb7ca0ee548b0120ed635c6de8aceb78f7834714ed79f8c1f45b5df441"
+    },
+    {
+      "url": "https://www.nist.gov/si-redefinition/meter",
+      "domain": "nist.gov",
+      "published_at": "2019-05-09",
+      "content_hash": "d66195fb2e5c0a682276bd86753b9c2fd8e7a789ba79cca16decaa73354cb371"
+    },
+    {
+      "url": "https://physicsfundamentals.org/blog/speed-of-light",
+      "domain": "physicsfundamentals.org",
+      "published_at": "2026-03-30",
+      "content_hash": "46532b865e3399616e2787df635e4aa5e6d8e5000fe38024050fbdc064eb00f9"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Metre",
+      "domain": "wikipedia.org",
+      "published_at": "2001-11-01",
+      "content_hash": "8691a559a5e687a0f130184ca7bc8e9fef9a85d530c1fe1d2e352d562d019e98"
+    }
+  ],
+  "model_calls": [
+    {
+      "feature": "plan",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 218,
+      "output_tokens": 205,
+      "thinking_tokens": null,
+      "cost_usd": 0.000104,
+      "latency_ms": 2012
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3454,
+      "output_tokens": 271,
+      "thinking_tokens": null,
+      "cost_usd": 0.000454,
+      "latency_ms": 1802
+    },
+    {
+      "feature": "research",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 3204,
+      "output_tokens": 142,
+      "thinking_tokens": null,
+      "cost_usd": 0.000377,
+      "latency_ms": 1371
+    },
+    {
+      "feature": "verify",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 760,
+      "output_tokens": 318,
+      "thinking_tokens": null,
+      "cost_usd": 0.000203,
+      "latency_ms": 1643
+    },
+    {
+      "feature": "write",
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "error": null,
+      "input_tokens": 379,
+      "output_tokens": 87,
+      "thinking_tokens": null,
+      "cost_usd": 7.3e-05,
+      "latency_ms": 1111
+    }
+  ],
+  "tool_calls": {
+    "search": 2,
+    "fetch_ok": 4,
+    "fetch_failed": 0
+  }
+}
