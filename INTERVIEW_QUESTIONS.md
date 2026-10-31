@@ -34,7 +34,8 @@ Several independent limits, any of which ends the work (all in `backend/app/conf
 | token budget | `record_call_to_db` increments `runs.spent_tokens` atomically; research stops at 70% (`research_budget_share`) so verify and write still fit; past 100% they run without the model |
 | wall clock | `RUN_TIMEOUT_SECONDS`: running workers are cancelled and the run goes on to verify and write with what it has |
 | model retries | `ModelGateway`: bounded attempts, exponential backoff, one retry for invalid JSON |
-| daily spend | `DAILY_MODEL_CALL_LIMIT`, checked before every call (`under_daily_limit`) |
+| model calls per report | `MAX_MODEL_CALLS_PER_RUN` (10 in production): the gateway refuses calls past it; research stops 2 calls early so verify and write still fit |
+| daily spend | `DAILY_MODEL_CALL_LIMIT` (30) in total and `DAILY_CALLS_PER_MODEL` (15), checked before every call; new runs get a 429 when fewer than 4 calls are left |
 
 The plan is a validated DAG, so there are no cycles, and `next_query` can only trigger one more search inside the step cap.
 `tests/test_pipeline.py::test_budget_stops_research_but_still_reports` shows the budget cap stopping research while the run still produces a report.
@@ -45,6 +46,11 @@ Two cases:
   row, and puts the task back to `pending` for another attempt, or marks it `failed`. On retry, the task first
   deletes its own partial claims, so nothing is duplicated (`run_research_task`). Dependants of a failed task
   are `skipped`. If no task finished at all, the run fails with `research_failed` rather than pretending to complete.
+- **The process is stopped** (a deploy, or Render's free instance going to sleep). SIGTERM cancels the jobs,
+  and the orchestrator checks the `cancel_requested` flag to tell a shutdown from a user's cancel. On shutdown,
+  interrupted tasks go back to `pending` and the run keeps its status, so it resumes on the next boot. The first
+  version marked such runs "cancelled", and they would never have resumed. I found that when preparing the
+  deploy (`test_shutdown_mid_run_leaves_it_resumable`).
 - **The process dies.** Nothing important lives in memory: tasks, sources, claims, evidence, events and
   spent tokens are rows. On startup `RunScheduler.resume_active_runs()` resumes every unfinished run.
   `_research_phase` resets `running` tasks to `pending` and never re-runs `done` ones. Sources are unique per
@@ -117,6 +123,13 @@ From real token counts on each call (`input_tokens`, `output_tokens`, `thinking_
 metadata) multiplied by list prices in config (`PRICE_INPUT_PER_MTOK`, `PRICE_OUTPUT_PER_MTOK`). These are the
 prices those tokens would cost on a paid key. The free tier actually billed $0. Live quick reports averaged
 6.5k tokens, about $0.0008 at the configured prices.
+
+### How do you share a free-tier quota between three demos?
+The key allows about 20 requests a day per model, so each demo gets its own models. This one uses
+`gemini-3.1-flash-lite-preview` with `gemini-3-flash-preview` as fallback; I probed the key's models with a real
+structured call before choosing. Caps (per model, per day, per report) are enforced from this app's own
+`model_calls` table. One quick report averages 5 calls, so the demo can serve about 5 reports a day. When the
+allowance is gone, the API says so up front instead of failing halfway through a run.
 
 ### Why plain asyncio rather than LangGraph or a queue?
 The control flow (a DAG of independent tasks with caps) is a 100-line loop. A framework would hide exactly

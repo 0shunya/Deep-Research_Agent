@@ -7,13 +7,15 @@ produces a report in which every sentence links to its evidence.**
 For anyone who needs a cited answer they can audit, not a confident paragraph. Build 04 of the
 "AI Engineer Projects Roadmap": planning, agent orchestration, source verification.
 
-- **Live link:** none yet. It runs locally end to end. Deployment steps for Render, Neon and Vercel are in [DEPLOYMENT.md](DEPLOYMENT.md) but have not been carried out.
+- **Live link:** none yet. It is deployment-ready: a Render Blueprint (`render.yaml`), Neon and Vercel steps, CI, and a smoke test in [DEPLOYMENT.md](DEPLOYMENT.md). It has not been deployed.
 - **Demo video:** not recorded yet.
-- **Headline numbers (live, Tavily search, n=6):**
-  - 47% of cited claims are "supported": verbatim quotes from 2+ independent sites, with no strong contradiction. Before the cross-check fix it was 33%.
-  - 100% of cited claims are backed by at least one verbatim supporting quote.
-  - About $0.001 and 14 s per report.
+- **Headline numbers (live, Tavily search, all 22 labelled questions):**
+  - **54.5%** of cited claims are "supported": verbatim quotes from 2+ independent sites, with no strong contradiction.
+  - **100%** of cited claims are backed by at least one verbatim supporting quote.
+  - 21 of 22 answers are correct.
+  - About **$0.001** and a p50 of **14 s** per report, using about 5 model calls each.
   - See [Evaluation](#evaluation).
+- **Live demo capacity:** the demo runs on a shared free-tier Gemini key, with its own models capped at 15 calls each and 30 a day in total. One report is capped at 10 calls and uses about 5, so the live demo can produce **about 5 quick reports a day** (at least 3). After that, new runs get a clear "resets at 00:00 UTC" message. See [DEPLOYMENT.md](DEPLOYMENT.md#quota-plan-for-the-live-demo).
 
 ## What it does
 
@@ -62,53 +64,55 @@ Rule from the roadmap: no eval, not done. Mocked tests and live-model runs are k
 
 ### Live: real Gemini plus real search
 
-All live runs were on 2026-10-31 with `gemini-3.5-flash-lite`, quick depth (the planner made 1–2
-sub-questions, with 2 sources each) and 3 workers. The free Gemini quota is shared with another project,
-so only part of the 22-question set has run. The runner is resumable, so the rest can follow. Raw records,
-including every quote, verdict and model call, are in `evaluation/runs/<name>/`.
+All live runs were on 2026-10-31 at quick depth (the planner made 1–2 sub-questions, with 2 sources each) and
+3 workers. Raw records, including every quote, verdict and model call, are in `evaluation/runs/<name>/`, and
+scores are in `evaluation/results/<name>.json`. A question without a report counts as wrong, with zero recall.
 
-| Metric | Wikipedia search<br/>n=10 | Tavily search<br/>n=6 | Tavily + cross-check v2<br/>same 6 runs |
-|---|---|---|---|
-| Answer accuracy (accepted answer string in the report) | 9 / 10 | 6 / 6 | 6 / 6 |
-| Required-fact recall (mean) | 0.85 | 1.00 | 1.00 |
-| Cited claims with a verbatim quote judged "supports" | 87.5% (14/16) | 93% (14/15) | **100%** (15/15) |
-| Cited claims rated **supported** (2+ independent sites) | **0%** (0/16) | 33% (5/15) | **47%** (7/15) |
-| Researcher quotes found verbatim in the stored page | 100% | 100% | 100% |
-| Independent sites per report (median) | 1 | 3 | 3 |
-| Model calls per report (mean) | 4.9 | 5.0 | (+1 verify call) |
-| Tokens per report (mean) | 6,487 | 7,441 | — |
-| Cost per report (mean) | $0.0008 | **$0.0011** | — |
-| Wall time per report | p50 10.5 s, max 32.1 s | **p50 14.3 s**, max 31.5 s | — |
+| Metric | Wikipedia search<br/>gemini-3.5-flash-lite<br/>n=10 | **Tavily search**<br/>gemini-3.5-flash-lite<br/>**n=22 (full set)** |
+|---|---|---|
+| Answer accuracy (accepted answer string in the report) | 9 / 10 | **21 / 22** |
+| Required-fact recall (mean) | 0.85 | **0.955** |
+| Cited claims with a verbatim quote judged "supports" | 87.5% (14/16) | **100%** (44/44) |
+| Cited claims rated **supported** (2+ independent sites) | 0% (0/16) | **54.5%** (24/44) |
+| Researcher quotes found verbatim in the stored page | 100% | 98.5% |
+| Independent sites per report (median) | 1 | 3 |
+| Model calls per report (mean, retries included) | 4.9 | 5.0 |
+| Tokens per report (mean) | 6,487 | 6,567 |
+| Cost per report (mean) | $0.0008 | **$0.00095** |
+| Wall time per report | p50 10.5 s, max 32.1 s | **p50 13.9 s**, max 47.8 s |
 
-Results files: `evaluation/results/live-wiki-quick.json`, `live-tavily-quick.json` and `live-tavily-quick-reverified.json`.
+Result sets: `live-wiki-quick` (Wikipedia, n=10) and `live-tavily-22` (Tavily, n=22). The Tavily set combines six questions run first with sixteen run later, all scored with cross-check v2. For the first six, verdicts come from the re-verified copy and cost and time from the original single pass.
 
-**What changed between columns:**
+**The most important change, measured on identical research:** cross-check v2 (`verifier.py: best_sentence`).
 
-- **Wikipedia → Tavily** changes the search provider. Every Wikipedia page counts as one origin, so nothing
-  could reach "supported" under the two-origin rule.
-- **Cross-check v2** (`backend/app/research/verifier.py: best_sentence`) is the most important measured change.
-  - *The problem:* the cross-check looks in other stored pages for a sentence that confirms or contradicts a claim. It required 60% word overlap with the claim. Real sites word facts differently ("architectural height … 828 meters (2,717 feet)" vs "828 m (2,717 ft) tall"), so it missed them.
-  - *v2:* it also accepts a sentence that repeats one of the claim's numbers and shares at least 30% of its words. Units ("meters"/"m") and number formats ("2,717"/"2717") are normalised.
-  - *How it was measured:* `evaluation/reverify.py` re-ran **only the verifier** on the six stored runs. The research, pages and report were identical; only verdicts could change.
-  - *Result:* 4 claims moved from unverified to supported, and none moved the other way. I read all 4 by hand: each is backed by real quotes from 2–3 independent sites.
+- *The problem:* the cross-check looks in other stored pages for a sentence that confirms or contradicts a claim. It needed 60% word overlap, so it missed real sites wording a fact differently ("architectural height … 828 meters (2,717 feet)" vs "828 m (2,717 ft) tall").
+- *v2:* it also accepts a sentence that repeats one of the claim's numbers and shares at least 30% of its words, with units and digit grouping normalised.
+- *How it was measured:* `evaluation/reverify.py` re-ran **only the verifier** on the first six stored Tavily runs, so the pages, claims and report were identical.
 
-**Cost:** tokens × configured list price ($0.10 / $0.40 per 1M input/output tokens). The free tier billed $0, so check current Gemini pricing before quoting a dollar figure. The re-verify column has no cost or time row because it re-ran the verifier only.
+| | Cross-check v1 | Cross-check v2 |
+|---|---|---|
+| Cited claims rated "supported" | 33% (5/15) | **47%** (7/15) |
+| Cited claims with a verbatim supporting quote | 93% (14/15) | 100% (15/15) |
 
-**Caveats:**
+4 claims moved up and none moved down. I read all of them by hand, and a random sample of 5 "supported" claims from the later batch: each is backed by real quotes from 2–3 independent sites.
 
-- Answer and fact checks are deterministic string matches. They are cheap and reproducible, but a correct paraphrase can be scored as wrong, so treat accuracy as a lower bound.
-- With n=6–10 these numbers are indicative, not benchmarks.
-- "Independent" means different sites. It does not judge source quality: an instagram.com page counted as one origin in q12.
+**Production models (`live-tavily-prod-models`, n=2):** the deployed config uses `gemini-3.1-flash-lite-preview` so the three demos never share a model's quota. Both questions were answered correctly, and 40% of cited claims were supported. It is slower: p50 31 s per report and 5–12 s per call, and one plan call hung 88 s before a 5xx. Hence the 30 s production timeout and the fall-back to the second model.
 
-**Live call log:** 100 Gemini calls in total; 95 succeeded and 5 errored.
+**Failures and limits these runs exposed:**
+
+- **q15 (no report):** Tavily returned generic "Treaty" pages, and the researcher correctly extracted no claims. The run used to end as "completed" with an empty report. It now fails visibly with `no_claims`.
+- **Copied text across sites:** in q06 two sites carry the identical sentence about the Nile ("most major sources still call the Nile the world's longest river") and counted as two origins. Copy detection works per page, and only that sentence was copied. A sentence-level fingerprint would catch it.
+- **Source quality isn't judged:** "independent" means different sites, not reliable ones. An instagram.com page counted as an origin in q12.
+- **Rate limits:** per-minute 429s hit 4 runs. The gateway retried them all successfully, at the cost of 15–30 s of backoff.
+- **Small samples:** answer checks are deterministic string matches, so a correct paraphrase can count as wrong, and accuracy is a lower bound. n=22 is still small.
+
+**Live call log (all runs, 2026-10-31):** 190 model calls in `model_calls`; 179 succeeded and 11 errored. A handful of one-off probe calls aren't logged there. The errors were all retried or fixed:
 
 | Errors | What happened |
 |---|---|
 | 2 writer 400s | before the schema fix |
-| 2 rate limits | retried successfully |
-| 1 failed call | an eval-script event-loop bug, now fixed (see below) |
-
-Per-stage p50 latency: plan 1.7 s, research 1.8 s, verify 1.3 s, write 1.2 s.
+| 1 failed call | the eval-script event-loop bug, since fixed |
+| 8 rate limits and 5xx | all retried |
 
 ### Live: verifier on labelled claim–quote pairs (`evaluation/results/verifier-live.json`)
 
@@ -130,15 +134,17 @@ simulated benchmark is where the speedup is measured; it does not measure Gemini
 
 | Suite | Result |
 |---|---|
-| `pytest` (unit + orchestration + API), SQLite | **43 passed** |
-| same suites on PostgreSQL 16 | **43 passed** |
+| `pytest` (unit + orchestration + API), SQLite | **52 passed** |
+| same suites on PostgreSQL 16 | **52 passed** |
+| CI (`.github/workflows/ci.yml`) | the above plus `alembic check`, ruff, and the frontend lint, tests and build; every step was run locally, but the workflow hasn't run on GitHub yet (not pushed) |
 | Vitest (frontend) | **6 passed** |
 | `ruff` (F, E9, B), `tsc`, `oxlint`, `vite build` | clean |
 
-These cover the claims the roadmap's milestones make:
+These cover the claims the roadmap's milestones make, plus the deployment behaviour:
 - **M4:** a planted false claim with a fabricated quote ends up unverified.
 - **M5:** a sentence citing a made-up claim id is dropped.
 - **Durability and caps:** budget stop, retries, cancel that keeps partial results, resume after a crash.
+- **Deployment:** shutdown (SIGTERM) leaves runs resumable and the server resumes them on boot; SSE headers stay unbuffered and `Last-Event-ID` resumes the stream; per-model and per-run call caps hold; runs are refused once the day's calls are used up.
 
 ## Run it locally (three commands, plus keys)
 
@@ -200,12 +206,12 @@ What failed, and what I measured from it:
 - The eval scripts reused the Gemini async client across separate event loops, and the second batch failed with "Event loop is closed". Each batch now runs in one loop. The API was never affected: its scheduler keeps a single loop.
 
 Next, with more time:
-1. Run the remaining 16 questions with Tavily, and compare quick against standard depth (3 sources per sub-question gives the two-origin rule more to work with).
+1. Compare quick against standard depth (3 sources per sub-question gives the two-origin rule more to work with), and evaluate the production model on the full set.
 2. Answer grading that tolerates paraphrase.
 3. Recency weighting using the stored publish dates.
 4. Lease-based multi-instance workers.
 5. A harder verifier set built from real disagreements.
-6. Source-quality weighting (e.g. a social-media post should not count the same as an official site).
+6. Source-quality weighting (e.g. a social-media post should not count the same as an official site), and sentence-level copy detection.
 
 ## Repository
 

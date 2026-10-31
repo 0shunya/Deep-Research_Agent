@@ -110,11 +110,15 @@ failed, or that were never started because of the budget or the clock, become `s
   **Steps per agent** and **attempts per task** are bounded.
 - **Resume:** on entry, tasks left `running` by a crashed process go back to `pending`. `done` tasks
   are never re-run (`tests/test_pipeline.py::test_resume_after_crash_reruns_only_unfinished_tasks`).
+- **Shutdown vs cancel:** a deploy or a sleeping instance sends SIGTERM, and `RunScheduler.stop()` cancels
+  in-flight jobs and waits for them. Without `cancel_requested` set, this is treated as a shutdown:
+  interrupted tasks go back to `pending`, the run keeps its status, and the next boot resumes it.
 - **Cancel:** `POST /runs/:id/cancel` sets `cancel_requested` and cancels the asyncio task.
   `finish_cancelled()` then runs the verifier's deterministic layer only and writes a no-model report, so
   partial results remain readable.
-- If no task finished, the run fails with `research_failed` instead of "completing" with an empty
-  report. A live run hit exactly this (Wikipedia returned 403), which is why the check exists.
+- If no task finished, the run fails with `research_failed`, and if no claim was extracted it fails with
+  `no_claims`, instead of "completing" with an empty report. Live runs hit both: Wikipedia returned 403,
+  and a Tavily search returned only generic pages.
 
 ### Researcher: `backend/app/research/researcher.py`
 The loop for one sub-question, up to `max_steps`:
@@ -171,7 +175,14 @@ If the verifier's model call fails (quota, for example), `execute_run` falls bac
   rejected the writer's nested size limits with a bare 400 (found in a live run). The reply is still
   validated against the full Pydantic model in `parse_reply()`.
 - Retries: transient errors (5xx, timeouts, rate limits) back off exponentially with jitter. Invalid JSON gets one more try.
-  A **daily-quota 429** is not retried: the gateway moves to the next model in `GEMINI_MODELS`.
+  A **daily-quota 429** is not retried: the gateway moves to the next model in `GEMINI_MODELS`. So does a
+  model whose retries all fail on transient errors (a preview model can stay overloaded for minutes).
+- Spend guards, all counted from `model_calls`:
+  - `DAILY_CALLS_PER_MODEL`: a model at its cap for today is skipped (`allow_model`).
+  - `DAILY_MODEL_CALL_LIMIT`: the whole app's daily total (`allow_call`).
+  - `MAX_MODEL_CALLS_PER_RUN`: per report (`allow_run_call` → `run_call_budget`). `researcher.budget_left`
+    stops research 2 calls early, so verify and write still fit.
+  - `POST /api/runs` refuses new runs with `429 daily_quota_reached` when fewer than 4 calls are left today.
 - Every attempt, success or error, becomes a `model_calls` row (trace id, run, task, feature, model,
   prompt version, tokens, cost, latency, status). `record_call_to_db` also increments `runs.spent_tokens`
   and `cost_usd` atomically. That is how budgets are enforced.
