@@ -1,0 +1,156 @@
+{
+  "pairs": 24,
+  "accuracy": 1.0,
+  "false_supports": 0,
+  "per_label": {
+    "supports": {
+      "n": 8,
+      "correct": 8
+    },
+    "contradicts": {
+      "n": 8,
+      "correct": 8
+    },
+    "insufficient": {
+      "n": 8,
+      "correct": 8
+    }
+  },
+  "confusion": {
+    "contradicts->contradicts": 8,
+    "insufficient->insufficient": 8,
+    "supports->supports": 8
+  },
+  "rows": [
+    {
+      "id": "p01",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p02",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p03",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p04",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p05",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p06",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p07",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p08",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p09",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p10",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p11",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p12",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p13",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p14",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p15",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p16",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p17",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p18",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p19",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p20",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p21",
+      "gold": "supports",
+      "pred": "supports"
+    },
+    {
+      "id": "p22",
+      "gold": "contradicts",
+      "pred": "contradicts"
+    },
+    {
+      "id": "p23",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    },
+    {
+      "id": "p24",
+      "gold": "insufficient",
+      "pred": "insufficient"
+    }
+  ],
+  "model_calls": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "status": "success",
+      "input_tokens": 1680,
+      "output_tokens": 1381,
+      "latency_ms": 4759,
+      "cost_usd": 0.00072
+    }
+  ]
+}
