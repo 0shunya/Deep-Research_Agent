@@ -1,0 +1,40 @@
+# Local development database (default) and an optional containerised backend:
+#   docker compose up -d db                 # just PostgreSQL on localhost:5436
+#   docker compose --profile app up --build # PostgreSQL + API (http://localhost:8020)
+name: deep-research-agent
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: research
+      POSTGRES_PASSWORD: research
+      POSTGRES_DB: research
+    ports:
+      - "5436:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U research -d research"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  api:
+    profiles: ["app"]
+    build: ./backend
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://research:research@db:5432/research
+      FRONTEND_ORIGIN: http://localhost:5183
+      PORT: "8020"
+    ports:
+      - "8020:8020"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

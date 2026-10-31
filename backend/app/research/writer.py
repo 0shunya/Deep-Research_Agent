@@ -116,7 +116,7 @@ def render_markdown(title: str, sections: list[dict], sources_by_claim: dict[str
     return "\n".join(lines).strip() + "\n"
 
 
-def _supporting_sources(claim_ids: list[uuid.UUID]) -> dict[str, list[Source]]:
+def supporting_sources(claim_ids: list[uuid.UUID]) -> dict[str, list[Source]]:
     with session_scope() as db:
         rows = db.execute(select(Evidence.claim_id, Source).join(Source, Source.id == Evidence.source_id)
                           .where(Evidence.claim_id.in_(claim_ids), Evidence.quote_found.is_(True),
@@ -130,7 +130,7 @@ def _supporting_sources(claim_ids: list[uuid.UUID]) -> dict[str, list[Source]]:
 
 
 def save_report(run_id: uuid.UUID, title: str, sections: list[dict], stats: dict, claims: list[Claim]) -> uuid.UUID:
-    sources = _supporting_sources([c.id for c in claims])
+    sources = supporting_sources([c.id for c in claims])
     markdown = render_markdown(title, sections, sources)
     with session_scope() as db:
         version = (db.scalar(select(func.max(Report.version)).where(Report.run_id == run_id)) or 0) + 1

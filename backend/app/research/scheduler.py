@@ -93,10 +93,10 @@ class RunScheduler:
 
     def resume_active_runs(self) -> int:
         with session_scope() as db:
-            rows = db.execute(select(Run.id, Run.status, Run.cancel_requested).where(Run.status.in_(
+            rows = db.execute(select(Run.id, Run.status).where(Run.status.in_(
                 [RunStatus.planning.value, RunStatus.researching.value, RunStatus.verifying.value,
                  RunStatus.writing.value]))).all()
-        for run_id, status, cancel in rows:
+        for run_id, status in rows:
             log.info("resuming run", extra={"run_id": str(run_id), "status": status})
             if status == RunStatus.planning.value:
                 self.submit_plan(run_id)

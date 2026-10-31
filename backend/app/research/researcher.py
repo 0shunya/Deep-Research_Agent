@@ -14,6 +14,7 @@ import uuid
 from dataclasses import dataclass, field
 
 from sqlalchemy import delete, select
+from sqlalchemy.exc import IntegrityError
 
 from app.db import session_scope
 from app.llm.gateway import CallContext
@@ -70,17 +71,25 @@ class ResearchOutcome:
 
 
 def _store_source(run_id: uuid.UUID, task_id: uuid.UUID, page: FetchedPage, provider: str, rank: int) -> uuid.UUID:
+    """Store a page once per run. Parallel workers often find the same URL: the unique constraint on
+    (run_id, url) decides the winner and the loser reuses the stored row."""
+    find = select(Source.id).where(Source.run_id == run_id, Source.url == page.url)
     with session_scope() as db:
-        existing = db.scalar(select(Source).where(Source.run_id == run_id, Source.url == page.url))
+        existing = db.scalar(find)
         if existing:
-            return existing.id
-        source = Source(run_id=run_id, task_id=task_id, url=page.url, domain=page.domain, title=page.title,
-                        published_at=page.published_at, content_hash=page.content_hash,
-                        shingle_hash=page.shingle_hash, raw_content=page.raw, text=page.text,
-                        content_type=page.content_type, search_provider=provider, search_rank=rank)
-        db.add(source)
-        db.flush()
-        return source.id
+            return existing
+    try:
+        with session_scope() as db:
+            source = Source(run_id=run_id, task_id=task_id, url=page.url, domain=page.domain, title=page.title,
+                            published_at=page.published_at, content_hash=page.content_hash,
+                            shingle_hash=page.shingle_hash, raw_content=page.raw, text=page.text,
+                            content_type=page.content_type, search_provider=provider, search_rank=rank)
+            db.add(source)
+            db.flush()
+            return source.id
+    except IntegrityError:
+        with session_scope() as db:
+            return db.scalar(find)
 
 
 async def _search(env: ResearchEnv, run_id: uuid.UUID, task_id: uuid.UUID, query: str) -> list[SearchHit]:

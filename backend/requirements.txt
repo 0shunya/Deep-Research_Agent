@@ -1,0 +1,11 @@
+# Runtime dependencies (installed by the Dockerfile and by hosts that read requirements.txt)
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+SQLAlchemy==2.1.6
+alembic==1.20.1
+psycopg[binary]==3.3.6
+pydantic==2.14.1
+pydantic-settings==2.16.1
+google-genai==2.33.0
+httpx==0.28.1
+beautifulsoup4==4.15.0
