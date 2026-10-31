@@ -88,7 +88,8 @@ def origin_map(sources: list[Source]) -> dict[uuid.UUID, str]:
 
 
 def _keywords(text: str) -> set[str]:
-    return {t for t in re.findall(r"[a-z0-9.%$]+", normalize_text(text)) if t not in _STOPWORDS and len(t) > 1}
+    tokens = (t.strip(".") for t in re.findall(r"[a-z0-9.%$]+", normalize_text(text)))
+    return {t for t in tokens if t not in _STOPWORDS and len(t) > 1}
 
 
 def _sentences(text: str) -> list[str]:

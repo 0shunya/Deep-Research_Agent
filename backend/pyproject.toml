@@ -1,0 +1,14 @@
+[project]
+name = "deep-research-agent"
+version = "1.0.0"
+description = "Planner + parallel researcher agents + claim verifier + cited report writer, with evaluation."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q -m 'not live and not postgres'"
+markers = [
+  "live: calls the real Gemini API and the web (needs GEMINI_API_KEY and quota); run with -m live",
+  "postgres: needs TEST_DATABASE_URL pointing at a disposable PostgreSQL database; run with -m postgres",
+]

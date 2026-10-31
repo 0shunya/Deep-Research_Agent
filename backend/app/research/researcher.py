@@ -36,7 +36,7 @@ class BudgetExhausted(Exception):
 
 def claim_group_key(text: str) -> str:
     """Claims with the same content words (any order, any casing) line up under one key."""
-    tokens = sorted({t for t in re.findall(r"[a-z0-9.%$]+", text.lower()) if t not in _STOPWORDS})
+    tokens = sorted({t.strip(".") for t in re.findall(r"[a-z0-9.%$]+", text.lower())} - _STOPWORDS - {""})
     return hashlib.sha1(" ".join(tokens).encode()).hexdigest()[:16]
 
 
