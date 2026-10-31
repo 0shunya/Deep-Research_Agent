@@ -20,7 +20,7 @@ from urllib.parse import quote, urlsplit
 import httpx
 from bs4 import BeautifulSoup
 
-USER_AGENT = "DeepResearchAgent/1.0 (portfolio research bot; respects robots via search APIs)"
+DEFAULT_USER_AGENT = "DeepResearchAgent/1.0 (+https://github.com/0shunya; research bot)"
 
 # Second-level labels under which the registrable domain has three labels (bbc.co.uk, abc.net.au).
 _MULTI_PART_SUFFIXES = {"co", "com", "net", "org", "gov", "ac", "edu"}
@@ -186,12 +186,13 @@ class HttpFetcher:
     timeout: float = 12.0
     max_bytes: int = 3_000_000
     allow_private: bool = False
+    user_agent: str = DEFAULT_USER_AGENT
     client: httpx.AsyncClient | None = None
 
     async def fetch(self, url: str) -> FetchedPage:
         await check_url_allowed(url, self.allow_private)
         client = self.client or httpx.AsyncClient(follow_redirects=False, timeout=self.timeout,
-                                                  headers={"User-Agent": USER_AGENT, "Accept": "text/html,text/plain"})
+                                                  headers={"User-Agent": self.user_agent, "Accept": "text/html,text/plain"})
         try:
             current = url
             for _ in range(5):  # follow redirects manually so every hop passes the SSRF check
@@ -255,10 +256,11 @@ class WikipediaSearch:
     """Keyless fallback. Narrow (one publisher), so claims from it count as a single domain."""
 
     timeout: float = 15.0
+    user_agent: str = DEFAULT_USER_AGENT
     name: str = "wikipedia"
 
     async def search(self, query: str, limit: int) -> list[SearchHit]:
-        async with httpx.AsyncClient(timeout=self.timeout, headers={"User-Agent": USER_AGENT}) as client:
+        async with httpx.AsyncClient(timeout=self.timeout, headers={"User-Agent": self.user_agent}) as client:
             try:
                 response = await client.get("https://en.wikipedia.org/w/rest.php/v1/search/page",
                                             params={"q": query, "limit": limit})

@@ -16,7 +16,7 @@ import logging
 import uuid
 from datetime import datetime, timedelta, timezone
 
-from sqlalchemy import select, update
+from sqlalchemy import func, select, update
 
 from app.db import session_scope
 from app.llm.gateway import CallContext, ModelCallFailed
@@ -218,6 +218,15 @@ async def execute_run(env: ResearchEnv, run_id: uuid.UUID) -> None:
             stop = await _research_phase(env, run_id)
             if stop == "cancelled":
                 await finish_cancelled(env, run_id)
+                return
+            with session_scope() as db:
+                done = db.scalar(select(func.count(Task.id)).where(Task.run_id == run_id,
+                                                                    Task.status == TaskStatus.done.value))
+                errors = [t.error for t in db.scalars(select(Task).where(Task.run_id == run_id)) if t.error]
+            if not done:
+                # Nothing was researched: a "completed" run with an empty report would hide the failure.
+                fail_run(run_id, "research_failed", "No sub-question could be researched. "
+                         + (f"Last error: {errors[-1]}" if errors else f"Stopped: {stop}"))
                 return
             if stop:
                 with session_scope() as db:

@@ -36,6 +36,8 @@ class Settings(BaseSettings):
     # Search and fetch
     search_provider: Literal["auto", "tavily", "wikipedia"] = "auto"
     tavily_api_key: str | None = None
+    # Wikimedia (and polite crawling generally) requires a User-Agent with a contact URL.
+    http_user_agent: str = "DeepResearchAgent/1.0 (+https://github.com/0shunya; research bot)"
     search_results_per_query: int = Field(default=5, ge=1, le=10)
     fetch_timeout_seconds: float = Field(default=12, ge=2, le=60)
     fetch_max_bytes: int = Field(default=3_000_000, ge=50_000)

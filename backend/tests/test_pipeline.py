@@ -91,6 +91,22 @@ def test_edited_plan_with_cycle_is_rejected(make_env, new_run):
 
 
 def test_budget_stops_research_but_still_reports(make_env, new_run, settings_override):
+    # One worker, and research may only use half of a small budget: the first sub-question's model call
+    # crosses that line, so the second is skipped and the run moves on to verify + write.
+    settings_override(research_budget_share=0.5)
+    env = make_env()
+    run_id = new_run(budget=1_200, workers=1)
+    _plan_and_approve(env, run_id)
+    asyncio.run(execute_run(env, run_id))
+    with session_scope() as db:
+        run = db.get(Run, run_id)
+        assert run.status == "completed", run.error_message
+        assert run.stop_reason == "budget"
+        assert sorted(t.status for t in run.tasks) == ["done", "skipped"]
+        assert db.scalar(select(Report).where(Report.run_id == run_id)) is not None
+
+
+def test_run_fails_when_nothing_could_be_researched(make_env, new_run, settings_override):
     settings_override(research_budget_share=0.0001)
     env = make_env()
     run_id = new_run(budget=5_000)
@@ -98,9 +114,7 @@ def test_budget_stops_research_but_still_reports(make_env, new_run, settings_ove
     asyncio.run(execute_run(env, run_id))
     with session_scope() as db:
         run = db.get(Run, run_id)
-        assert run.status == "completed"
-        assert run.stop_reason == "budget"
-        assert any(t.status == "skipped" for t in run.tasks)
+        assert run.status == "failed" and run.error_code == "research_failed"
 
 
 def test_worker_failure_is_retried_then_recorded(make_env, new_run):

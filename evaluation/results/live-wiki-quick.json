@@ -1,0 +1,57 @@
+{
+  "name": "live-wiki-quick",
+  "aggregate": {
+    "questions": 1,
+    "with_report": 0,
+    "answer_accuracy": null,
+    "fact_recall_mean": null,
+    "cited_claims": 0,
+    "cited_quote_backed_share": null,
+    "cited_supported_verdict_share": null,
+    "extracted_quote_verbatim_rate": null,
+    "domains_median": null,
+    "cost_usd_mean": null,
+    "tokens_mean": null,
+    "model_calls_mean": null,
+    "wall_seconds_p50": null,
+    "wall_seconds_max": null
+  },
+  "per_question": [
+    {
+      "id": "q01",
+      "category": "multi-hop",
+      "status": "completed",
+      "has_report": false,
+      "answer_correct": false,
+      "fact_recall": 0.0,
+      "cited_claims": 0,
+      "cited_quote_backed": 0,
+      "cited_supported_verdict": 0,
+      "claims": 0,
+      "extracted_quotes": 0,
+      "extracted_quotes_verbatim": 0,
+      "domains": 0,
+      "sources": 0,
+      "model_calls": 1,
+      "model_call_errors": 0,
+      "tokens": 359,
+      "cost_usd": 8e-05,
+      "wall_seconds": 1.5,
+      "sentences_dropped_uncited": 1
+    }
+  ],
+  "config": {
+    "depth": "quick",
+    "workers": 3,
+    "models": [
+      "gemini-3.5-flash-lite",
+      "gemini-3.1-flash-lite"
+    ],
+    "search_provider": "wikipedia",
+    "min_independent_domains": 2,
+    "price_per_mtok": [
+      0.1,
+      0.4
+    ]
+  }
+}

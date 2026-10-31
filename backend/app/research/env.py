@@ -28,7 +28,7 @@ def build_search(settings: Settings) -> SearchProvider:
         if not settings.tavily_api_key:
             raise RuntimeError("SEARCH_PROVIDER=tavily but TAVILY_API_KEY is not set.")
         return TavilySearch(settings.tavily_api_key)
-    return WikipediaSearch()
+    return WikipediaSearch(user_agent=settings.http_user_agent)
 
 
 def build_default_env(settings: Settings | None = None) -> ResearchEnv:
@@ -36,5 +36,5 @@ def build_default_env(settings: Settings | None = None) -> ResearchEnv:
     gateway = ModelGateway(build_providers(settings), record_call_to_db, max_attempts=settings.model_max_attempts,
                            allow_call=under_daily_limit)
     fetcher = HttpFetcher(timeout=settings.fetch_timeout_seconds, max_bytes=settings.fetch_max_bytes,
-                          allow_private=settings.allow_private_fetch)
+                          allow_private=settings.allow_private_fetch, user_agent=settings.http_user_agent)
     return ResearchEnv(gateway, build_search(settings), fetcher, settings)
