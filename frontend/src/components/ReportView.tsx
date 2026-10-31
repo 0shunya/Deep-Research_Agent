@@ -56,8 +56,8 @@ export default function ReportView({ report, onOpenClaim }: { report: Report; on
               <p className="leading-7 text-ink">
                 {section.sentences.map((sent) => (
                   <span key={sent.idx}>
-                    {sent.text}{" "}
-                    {sent.claim_ids.map((id) => {
+                    {sent.text}{" "}
+                    <span className="whitespace-nowrap">{sent.claim_ids.map((id) => {
                       const claim = report.claims[id];
                       const verdict = claim?.verdict ?? "pending";
                       return (
@@ -68,7 +68,7 @@ export default function ReportView({ report, onOpenClaim }: { report: Report; on
                           {numbering.get(id)}
                         </button>
                       );
-                    })}{" "}
+                    })}</span>{" "}
                   </span>
                 ))}
               </p>
