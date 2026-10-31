@@ -31,9 +31,10 @@ from app.research.web import normalize_text
 from app.services.observability import emit
 
 _STOPWORDS = set("a an the of in on at to for and or is are was were be been by with as from that this it its which "
-                 "who has have had than then into about over per also more most".split())
+                 "who has have had than then into about over per also more most but".split())
 MAX_CROSS_CHECKS_PER_CLAIM = 3
-CROSS_CHECK_MIN_OVERLAP = 0.6
+CROSS_CHECK_MIN_OVERLAP = 0.6          # wording match alone
+CROSS_CHECK_MIN_OVERLAP_WITH_NUMBER = 0.3  # looser when the sentence repeats one of the claim's numbers
 SUPPORT_MIN_SCORE = 0.5
 
 
@@ -87,9 +88,19 @@ def origin_map(sources: list[Source]) -> dict[uuid.UUID, str]:
     return {s.id: by_id[find(s.id)].domain for s in sources}
 
 
+_UNITS = {"meters": "m", "metres": "m", "meter": "m", "metre": "m", "feet": "ft", "foot": "ft",
+          "kilometres": "km", "kilometers": "km", "kilometre": "km", "kilometer": "km", "miles": "mi", "mile": "mi",
+          "percent": "%"}
+
+
 def _keywords(text: str) -> set[str]:
-    tokens = (t.strip(".") for t in re.findall(r"[a-z0-9.%$]+", normalize_text(text)))
-    return {t for t in tokens if t not in _STOPWORDS and len(t) > 1}
+    text = re.sub(r"(?<=\d),(?=\d{3})", "", normalize_text(text))  # 2,717 -> 2717
+    tokens = (_UNITS.get(t, t) for t in (t.strip(".") for t in re.findall(r"[a-z0-9.%$]+", text)))
+    return {t for t in tokens if t not in _STOPWORDS and (len(t) > 1 or t in ("m", "%"))}
+
+
+def _numbers(keys: set[str]) -> set[str]:
+    return {k for k in keys if re.fullmatch(r"\d+(\.\d+)?%?", k) and k not in {"1", "2", "3"}}
 
 
 def _sentences(text: str) -> list[str]:
@@ -97,15 +108,26 @@ def _sentences(text: str) -> list[str]:
 
 
 def best_sentence(claim_text: str, source_text: str) -> tuple[str, float] | None:
+    """The sentence in another page most likely to confirm or contradict the claim.
+
+    Real pages phrase one fact differently ("828 m tall" vs "architectural height … 828 m (2,717 ft)"), so
+    word overlap alone misses most matches. A sentence also qualifies when it repeats one of the claim's
+    numbers and shares a smaller fraction of its words. The LLM judge then decides what it actually says.
+    """
     keys = _keywords(claim_text)
     if len(keys) < 3:
         return None
-    best: tuple[str, float] | None = None
+    numbers = _numbers(keys)
+    best: tuple[str, float, int] | None = None
     for sentence in _sentences(source_text):
-        overlap = len(keys & _keywords(sentence)) / len(keys)
-        if overlap >= CROSS_CHECK_MIN_OVERLAP and (best is None or overlap > best[1]):
-            best = (sentence, overlap)
-    return best
+        words = _keywords(sentence)
+        overlap = len(keys & words) / len(keys)
+        shared_numbers = len(numbers & words)
+        if overlap < CROSS_CHECK_MIN_OVERLAP and not (shared_numbers and overlap >= CROSS_CHECK_MIN_OVERLAP_WITH_NUMBER):
+            continue
+        if best is None or (shared_numbers, overlap) > (best[2], best[1]):
+            best = (sentence, overlap, shared_numbers)
+    return (best[0], best[1]) if best else None
 
 
 def add_cross_checks(run_id: uuid.UUID) -> int:

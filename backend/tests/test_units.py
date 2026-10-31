@@ -195,3 +195,15 @@ def test_provider_schema_is_flat_and_keeps_title_property():
     assert "$ref" not in dumped and "$defs" not in dumped
     assert not any(k in dumped for k in ('"minLength"', '"maxLength"', '"minItems"', '"maxItems"'))
     assert "title" in schema["properties"] and schema["required"] == ["title", "sections"]
+
+
+def test_cross_check_matches_differently_worded_sentence_with_same_number():
+    # Real case from a live run: three sites state 828 m, worded differently from the extracted claim.
+    claim = ("The architectural height of the Burj Khalifa (excluding the antenna, but including a 242.6 m spire) "
+             "is 828 meters (2,717 feet).")
+    page = ("The building was developed by Emaar. The Burj Khalifa is 828 m (2,717 ft) tall and has 163 floors. "
+            "The figure is architectural height, measured from the entrance level to the top of the spire.")
+    sentence, _ = best_sentence(claim, page)
+    assert sentence.startswith("The Burj Khalifa is 828 m")
+    # an unrelated sentence that only shares a number is still not a candidate
+    assert best_sentence(claim, "The company reported 828 new customers in the quarter this year.") is None

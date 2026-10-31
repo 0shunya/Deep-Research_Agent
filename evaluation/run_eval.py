@@ -40,8 +40,7 @@ def load_labels() -> dict[str, dict]:
     return {row["id"]: row for row in map(json.loads, DATASET.read_text(encoding="utf-8").splitlines()) if row}
 
 
-async def run_one(label: dict, depth: str, workers: int) -> dict:
-    env = build_default_env()
+async def run_one(env, label: dict, depth: str, workers: int) -> dict:
     settings = get_settings()
     with session_scope() as db:
         run = Run(question=label["question"], depth=depth, budget_tokens=settings.default_budget_tokens,
@@ -59,6 +58,25 @@ async def run_one(label: dict, depth: str, workers: int) -> dict:
     if approved:
         await execute_run(env, run_id)
     return export_run(run_id)
+
+
+async def run_all(folder: Path, labels: dict, ids: list[str], depth: str, workers: int) -> None:
+    # One event loop and one environment for the whole batch: the Gemini async client is bound to the loop
+    # it was first used on, so it must not be shared across separate asyncio.run() calls.
+    env = build_default_env()
+    for qid in ids:
+        path = folder / f"{qid}.json"
+        if path.exists():
+            print(f"{qid}: already recorded, skipping")
+            continue
+        record = await run_one(env, labels[qid], depth, workers)
+        run = record["run"]
+        if run["status"] == "failed" and run["error_code"] in STOP_CATEGORIES:
+            print(f"{qid}: stopped — {run['error_code']}: {run['error_message']} (not saved; resume later)")
+            break
+        path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"{qid}: {run['status']} in {run['research_wall_seconds']}s, {len(record['model_calls'])} model calls, "
+              f"{run['spent_tokens']} tokens")
 
 
 def score(name: str) -> dict:
@@ -95,19 +113,7 @@ def main() -> None:
         (folder / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
         labels = load_labels()
         ids = [i for i in args.ids.split(",") if i] or list(labels)
-        for qid in ids:
-            path = folder / f"{qid}.json"
-            if path.exists():
-                print(f"{qid}: already recorded, skipping")
-                continue
-            record = asyncio.run(run_one(labels[qid], args.depth, args.workers))
-            run = record["run"]
-            if run["status"] == "failed" and run["error_code"] in STOP_CATEGORIES:
-                print(f"{qid}: stopped — {run['error_code']}: {run['error_message']} (not saved; resume later)")
-                break
-            path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
-            print(f"{qid}: {run['status']} in {run['research_wall_seconds']}s, {len(record['model_calls'])} model calls, "
-                  f"{run['spent_tokens']} tokens")
+        asyncio.run(run_all(folder, labels, ids, args.depth, args.workers))
     summary = score(args.name)
     print(json.dumps(summary["aggregate"], indent=2))
 
