@@ -1,14 +1,24 @@
 # Deployment: Render (API) + Neon (Postgres) + Vercel (frontend)
 
-**Status: not deployed yet.** There is no live URL. Everything here was run locally:
+**Status: deployed on 2026-10-31.**
+
+- Frontend: https://deep-research-agent-plum.vercel.app
+- API: https://deep-research-agent-api.onrender.com (`/api/health`)
+
+Checked after the deploy: health reports the database, both models, Tavily search and the access code;
+`/api/runs` without the code returns 401; CORS allows the Vercel origin (preflight 200, and the 401 is
+readable cross-origin, so the access-code screen appears). One live smoke report through the deployed UI
+(the James Webb question, quick depth): plan approved, live activity streamed over SSE as it happened, 4
+sources from 3 domains, 3 claims all **supported**, 2 cited sentences with none dropped, 5 model calls,
+6.8k tokens, $0.0012, about 1 min 50 s from approval to report on `gemini-3.1-flash-lite-preview`.
+
+Before deploying, everything was also run locally:
 
 - Docker Compose for Postgres.
 - Alembic `upgrade` / `downgrade` / `upgrade`, and `alembic check`.
 - The production image (`backend/Dockerfile`), built and run against the Compose database; it applied the migrations and answered `/api/health`.
 - The CI steps in `.github/workflows/ci.yml`.
 - Two full live reports on the production model list.
-
-The hosted steps below have not been carried out yet.
 
 | Piece | Where | Config in the repo |
 |---|---|---|
@@ -95,8 +105,13 @@ The UI also polls the run every 5 s while it is active, so even a dropped stream
 ## 3. Vercel (frontend)
 
 1. **Add New → Project**, import the repository, set **Root Directory** to `frontend`. The Vite preset is detected (`npm run build` → `dist`).
-2. Environment variable: `VITE_API_BASE_URL` = the Render URL, e.g. `https://deep-research-agent-api.onrender.com` (no trailing slash).
+2. Environment variable: `VITE_API_BASE_URL` = the Render URL, e.g. `https://deep-research-agent-api.onrender.com` (no trailing slash), for the **Production** environment.
 3. Deploy, then put the Vercel URL into Render's `FRONTEND_ORIGIN` (CORS).
+
+Vite bakes `VITE_API_BASE_URL` into the bundle at build time. If it is missing, the site silently calls
+`/api/...` on Vercel itself, and the SPA rewrite answers with `index.html` and status 200, so nothing looks
+broken. Adding the variable later needs a **Redeploy** (without the build cache) to take effect. Check: the
+loaded `assets/index-*.js` must contain the Render URL.
 
 Only public values go in `VITE_*` variables. The model and search keys stay on Render.
 

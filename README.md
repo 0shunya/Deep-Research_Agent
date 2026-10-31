@@ -7,7 +7,7 @@ produces a report in which every sentence links to its evidence.**
 For anyone who needs a cited answer they can audit, not a confident paragraph. Build 04 of the
 "AI Engineer Projects Roadmap": planning, agent orchestration, source verification.
 
-- **Live link:** none yet. It is deployment-ready: a Render Blueprint (`render.yaml`), Neon and Vercel steps, CI, and a smoke test in [DEPLOYMENT.md](DEPLOYMENT.md). It has not been deployed.
+- **Live link:** https://deep-research-agent-plum.vercel.app (API: https://deep-research-agent-api.onrender.com/api/health). Starting a run needs a demo access code, so the free model quota is not open to everyone; ask me for it. The free Render instance sleeps when idle, so the first request can take about a minute. Setup in [DEPLOYMENT.md](DEPLOYMENT.md).
 - **Demo video:** not recorded yet.
 - **Headline numbers (live, Tavily search, all 22 labelled questions):**
   - **54.5%** of cited claims are "supported": verbatim quotes from 2+ independent sites, with no strong contradiction.
